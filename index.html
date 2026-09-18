@@ -61,14 +61,13 @@
         #lock-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.98); z-index: 999999; flex-direction: column; align-items: center; justify-content: center; }
 
         /* ═══════════ LOGIN ═══════════ */
-        #login-screen {
+        #login-screen,
+        .login-container {
             display: flex !important;
             visibility: visible !important;
             opacity: 1 !important;
-            flex-wrap: wrap;
         }
         .login-container {
-            display: flex;
             width: 100%;
             min-height: 100vh;
             flex-wrap: wrap;
@@ -86,11 +85,14 @@
         }
         .slogan-main { font-family: 'Orbitron'; font-size: 2.5rem; color: var(--prof); text-shadow: 0 0 15px rgba(0,173,239,0.6); margin-bottom: 5px; }
         .slogan-sub { font-weight: 300; letter-spacing: 2px; color: #ccc; font-style: italic; }
+        #login-screen .sector-column,
         .sector-column {
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
             flex: 1;
             min-width: 180px;
             max-width: 220px;
-            display: flex !important;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -100,9 +102,6 @@
             border-radius: 14px;
             background: rgba(12, 17, 24, 0.7);
             box-shadow: 0 10px 24px rgba(0,0,0,0.18);
-            opacity: 1 !important;
-            visibility: visible !important;
-            z-index: 2;
             position: relative;
         }
         .sector-column:hover {
@@ -171,7 +170,7 @@
                     login.style.visibility = 'visible';
                     login.style.opacity = '1';
                 }
-                document.querySelectorAll('.sector-column').forEach(function (col) {
+                document.querySelectorAll('#login-screen .sector-column, .sector-column').forEach(function (col) {
                     col.style.display = 'flex';
                     col.style.visibility = 'visible';
                     col.style.opacity = '1';
