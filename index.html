@@ -2441,30 +2441,53 @@ html, body { background-color: #06245a !important; }
     // Também corrige contas criadas antes com a senha antiga "NTEi2026" (maiúscula),
     // sem mexer em senha que a pessoa já trocou manualmente.
     // ═══════════════════════════════════════════════════════
-    (async function bootstrapNTEiImideo() {
+    /* ══════════════════════════════════════════════════════════════════
+       CORREÇÃO v2.1.1 — "loop executado por mais de 400 ms"
+       Antes: um for...of com await no Firebase, 3 usuários em fila, rodando
+       durante o carregamento. Se a rede/Firebase não responde (pré-visualização,
+       sandbox, escola offline), cada await fica pendurado e o navegador acusa
+       loop travado.
+       Agora: roda depois do load, em paralelo, com limite de tempo por chamada.
+       ══════════════════════════════════════════════════════════════════ */
+    (function bootstrapNTEiImideo() {
         const equipe = [
             { pront: '46690', nome: 'Kelvin (NTEi)' },
             { pront: '47295', nome: 'Manuela (Estagiária NTEi)' },
             { pront: '48036', nome: 'Karla (Estagiária NTEi)' }
         ];
-        for (const u of equipe) {
-            try {
-                const snap = await db.ref('usuarios/' + u.pront).once('value');
-                if (!snap.exists()) {
-                    await db.ref('usuarios/' + u.pront).set({
-                        nome: u.nome, pront: u.pront, cargo: 'NTEi',
-                        pass: 'ntei2026', status: 'ativo'
-                    });
-                } else {
-                    const atual = snap.val() || {};
-                    // Só corrige se a senha ainda estiver com o valor antigo/errado (maiúscula)
-                    // ou vazia — nunca sobrescreve senha já personalizada pela pessoa.
-                    if (atual.pass === 'NTEi2026' || !atual.pass) {
-                        await db.ref('usuarios/' + u.pront).update({ pass: 'ntei2026' });
-                    }
-                }
-            } catch (e) { /* offline no carregamento inicial: tenta de novo no próximo load */ }
+        const LIMITE_MS = 4000;
+        const comLimite = (promessa) => Promise.race([
+            Promise.resolve(promessa),
+            new Promise((_, rej) => setTimeout(() => rej(new Error('tempo esgotado')), LIMITE_MS))
+        ]);
+
+        async function sincronizar(u) {
+            const ref = db.ref('usuarios/' + u.pront);
+            const snap = await comLimite(ref.once('value'));
+            if (!snap.exists()) {
+                await comLimite(ref.set({
+                    nome: u.nome, pront: u.pront, cargo: 'NTEi',
+                    pass: 'ntei2026', status: 'ativo'
+                }));
+                return;
+            }
+            const atual = snap.val() || {};
+            // Só corrige se a senha ainda estiver com o valor antigo/errado (maiúscula)
+            // ou vazia — nunca sobrescreve senha já personalizada pela pessoa.
+            if (atual.pass === 'NTEi2026' || !atual.pass) {
+                await comLimite(ref.update({ pass: 'ntei2026' }));
+            }
         }
+
+        function iniciar() {
+            if (typeof db === 'undefined' || !db || navigator.onLine === false) return;
+            // allSettled: nenhuma falha derruba as outras e nada bloqueia a tela.
+            Promise.allSettled(equipe.map(u => sincronizar(u)))
+                   .catch(() => { /* offline: tenta de novo no próximo carregamento */ });
+        }
+
+        if (document.readyState === 'complete') setTimeout(iniciar, 1200);
+        else window.addEventListener('load', () => setTimeout(iniciar, 1200));
     })();
 
 
