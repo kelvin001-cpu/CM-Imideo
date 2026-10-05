@@ -5655,6 +5655,7 @@ input::placeholder, textarea::placeholder { color: #94a3b8 !important; opacity: 
         },
 
         _p2pChannelId(pront) {
+            if (String(pront).startsWith('g:')) return 'grupo_' + String(pront).slice(2);
             return [this.user.pront, pront].sort((a, b) => String(a).localeCompare(String(b))).join('_');
         },
 
@@ -6884,6 +6885,85 @@ input::placeholder, textarea::placeholder { color: #94a3b8 !important; opacity: 
             setInterval(() => app._pintarOnline(), 8000);
             db.ref('usuarios/' + app.user.pront + '/chamada_entrante').on('value', s => { const c = s.val(); if (!c) return; db.ref('usuarios/' + app.user.pront + '/chamada_entrante').remove(); if (Date.now() - c.ts < 60000 && confirm('📞 ' + c.de + ' está te ligando. Atender?')) window.open(c.url, '_blank'); });
         } catch (e) { console.warn(e); } } };
+    })();
+
+
+    // ═══════════════════════════════════════════════════════
+    //  GRUPOS NO CHAT DIRECT
+    // ═══════════════════════════════════════════════════════
+    Object.assign(app, {
+        _grupos: {},
+        escutarGrupos() {
+            db.ref('p2p_grupos').on('value', s => {
+                const g = {}; s.forEach(c => { const d = c.val(); if (d && d.membros && d.membros[this.user.pront]) g[c.key] = d; });
+                this._grupos = g; this.renderP2PContactList();
+                if (this.currentP2PTarget && String(this.currentP2PTarget).startsWith('g:') && !g[this.currentP2PTarget.slice(2)]) { this.currentP2PTarget = null; this.currentP2PChannel = null; document.getElementById('p2p-chat-box').innerHTML = ''; document.getElementById('p2p-conv-header').innerHTML = '<i class="fa fa-comments"></i><span>Selecione um contato ou grupo</span>'; document.getElementById('p2p-conv-header').classList.add('p2p-conv-header-empty'); }
+            });
+        },
+        _htmlGrupos() {
+            const ks = Object.keys(this._grupos), termo = (this.p2pSearchTerm || '').toLowerCase();
+            const itens = ks.filter(k => !termo || (this._grupos[k].nome || '').toLowerCase().includes(termo)).map(k => { const g = this._grupos[k], n = Object.keys(g.membros || {}).length, ativo = this.currentP2PTarget === 'g:' + k ? 'active' : '';
+                return `<div class="p2p-contact-item ${ativo}" onclick="app.selectGrupo('${k}')"><div class="p2p-contact-avatar" style="background:linear-gradient(135deg,#6a5cff,#00adef)"><i class="fa fa-users" style="font-size:13px"></i></div><div class="p2p-contact-info"><div class="p2p-contact-name">${nxEsc(g.nome)}</div><div class="p2p-contact-preview">${n} participantes</div></div></div>`; }).join('');
+            return `<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px 4px;font-size:10px;letter-spacing:1px;color:#dbe5f2;font-weight:700">GRUPOS <button type="button" onclick="app.novoGrupo()" style="border:0;border-radius:8px;background:#2ecc71;color:#000;font-weight:800;font-size:10px;padding:4px 9px;cursor:pointer">＋ NOVO</button></div>${itens || '<div style="font-size:11px;color:#9aa7b8;padding:2px 10px 8px">Nenhum grupo ainda.</div>'}<div style="padding:8px 10px 4px;font-size:10px;letter-spacing:1px;color:#dbe5f2;font-weight:700">CONTATOS</div>`;
+        },
+        novoGrupo() {
+            document.getElementById('grp-modal')?.remove();
+            const m = document.createElement('div'); m.id = 'grp-modal';
+            m.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:10000;display:flex;align-items:center;justify-content:center;padding:12px';
+            m.innerHTML = `<div style="background:#0d1626;border:1px solid rgba(0,173,239,.5);border-radius:16px;padding:18px;width:min(420px,100%);max-height:90vh;display:flex;flex-direction:column;gap:8px">
+                <h3 style="margin:0"><i class="fa fa-users"></i> Novo grupo</h3>
+                <input type="text" id="grp-nome" placeholder="Nome do grupo (ex.: Professores 6º ano)" maxlength="40">
+                <input type="text" id="grp-busca" placeholder="Buscar pessoas..." oninput="document.querySelectorAll('#grp-lista label').forEach(l=>l.style.display=l.textContent.toLowerCase().includes(this.value.toLowerCase())?'':'none')">
+                <div id="grp-lista" style="overflow:auto;max-height:42vh;border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:6px">${this.p2pUsersCache.map(u => `<label style="display:flex;gap:8px;align-items:center;padding:6px;font-size:12px;cursor:pointer"><input type="checkbox" value="${nxEsc(u.pront)}" style="width:auto;margin:0"> ${nxEsc(u.nome)} <small style="color:#9aa7b8">${nxEsc(u.cargo || '')}</small></label>`).join('')}</div>
+                <div style="display:flex;gap:8px"><button class="btn" style="background:#2ecc71;color:#000" onclick="app.criarGrupo()">CRIAR GRUPO</button><button class="btn" style="background:rgba(255,255,255,.12)" onclick="document.getElementById('grp-modal').remove()">CANCELAR</button></div></div>`;
+            document.body.appendChild(m);
+        },
+        criarGrupo() {
+            const nome = document.getElementById('grp-nome').value.trim(), sel = [...document.querySelectorAll('#grp-lista input:checked')].map(i => i.value);
+            if (!nome) return alert('Dê um nome ao grupo.'); if (!sel.length) return alert('Escolha ao menos uma pessoa.');
+            const membros = { [this.user.pront]: true }; sel.forEach(p => membros[p] = true);
+            const ref = db.ref('p2p_grupos').push();
+            ref.set({ nome, membros, criador: this.user.pront, criadorNome: this.user.nome, ts: Date.now() }).then(() => {
+                document.getElementById('grp-modal').remove();
+                db.ref('p2p_chats/grupo_' + ref.key).push({ sender: this.user.pront, name: 'Sistema', type: 'text', text: `👥 ${this.user.nome} criou o grupo "${nome}"`, timestamp: Date.now() });
+                setTimeout(() => this.selectGrupo(ref.key), 400);
+            }).catch(e => alert('Erro: ' + e.message));
+        },
+        selectGrupo(id) {
+            const g = this._grupos[id]; if (!g) return;
+            this.currentP2PTarget = 'g:' + id; this.renderP2PContactList();
+            const h = document.getElementById('p2p-conv-header'); h.classList.remove('p2p-conv-header-empty');
+            const nomes = Object.keys(g.membros).map(p => (this.p2pUsersCache.find(u => u.pront === p) || {}).nome || (p === this.user.pront ? 'Você' : p));
+            h.innerHTML = `<div class="p2p-contact-avatar" style="background:linear-gradient(135deg,#6a5cff,#00adef)"><i class="fa fa-users" style="font-size:13px"></i></div><div style="min-width:0"><div class="p2p-conv-header-name">${nxEsc(g.nome)}</div><div class="p2p-conv-header-status" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:260px" title="${nxEsc(nomes.join(', '))}">${nxEsc(nomes.join(', '))}</div></div>
+                <div class="p2p-conv-header-icons"><i class="fa fa-phone" title="Ligar para o grupo" style="cursor:pointer" onclick="app.p2pCall(false)"></i><i class="fa fa-video" title="Vídeo para o grupo" style="cursor:pointer" onclick="app.p2pCall(true)"></i><i class="fa fa-user-plus" title="Adicionar pessoas" style="cursor:pointer" onclick="app.addNoGrupo('${id}')"></i><i class="fa fa-right-from-bracket" title="${g.criador === this.user.pront ? 'Excluir grupo' : 'Sair do grupo'}" style="cursor:pointer" onclick="app.sairGrupo('${id}')"></i></div>`;
+            this.initP2PChat();
+        },
+        addNoGrupo(id) {
+            const g = this._grupos[id]; const livres = this.p2pUsersCache.filter(u => !g.membros[u.pront]); if (!livres.length) return alert('Todos já estão no grupo.');
+            const p = prompt('Digite o prontuário para adicionar:\n' + livres.slice(0, 15).map(u => u.pront + ' — ' + u.nome).join('\n')); if (!p || !livres.find(u => u.pront === p.trim())) return;
+            db.ref(`p2p_grupos/${id}/membros/${p.trim()}`).set(true);
+        },
+        sairGrupo(id) {
+            const g = this._grupos[id], dono = g.criador === this.user.pront;
+            if (!confirm(dono ? 'Excluir o grupo para todos?' : 'Sair deste grupo?')) return;
+            if (dono) { db.ref('p2p_grupos/' + id).remove(); db.ref('p2p_chats/grupo_' + id).remove(); } else db.ref(`p2p_grupos/${id}/membros/${this.user.pront}`).remove();
+        },
+        p2pCall(video) {
+            if (!this.currentP2PChannel) return alert('Selecione um contato ou grupo primeiro.');
+            const sala = 'ConectIGN-' + this.currentP2PChannel.replace(/[^A-Za-z0-9]/g, '') + '-' + Date.now().toString(36);
+            const url = 'https://meet.jit.si/' + sala + (video ? '' : '#config.startWithVideoMuted=true');
+            const alvo = String(this.currentP2PTarget), grupo = alvo.startsWith('g:');
+            this._p2pEnviar({ type: 'call', url, text: video ? '📹 Chamada de vídeo' : '📞 Chamada de voz' });
+            const quem = grupo ? Object.keys((this._grupos[alvo.slice(2)] || {}).membros || {}).filter(p => p !== this.user.pront) : [alvo];
+            quem.forEach(p => db.ref('usuarios/' + p + '/chamada_entrante').set({ de: this.user.nome + (grupo ? ' (grupo ' + this._grupos[alvo.slice(2)].nome + ')' : ''), url, ts: Date.now() }));
+            window.open(url, '_blank');
+        }
+    });
+    (function () {
+        const _rl2 = app.renderP2PContactList.bind(app);
+        app.renderP2PContactList = function () { _rl2(); const box = document.getElementById('p2p-contact-list'); if (box && app._htmlGrupos) { box.insertAdjacentHTML('afterbegin', app._htmlGrupos()); } };
+        const _st2 = app.start.bind(app);
+        app.start = function () { try { return _st2(); } finally { try { app.escutarGrupos(); } catch (e) { console.warn(e); } } };
     })();
 
 </script>
