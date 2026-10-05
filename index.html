@@ -848,9 +848,36 @@ html.modo-basico .sb-fav-item:not([onclick*="'operacional'"]) { display:none !im
 .nx-circle{width:110px;height:110px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;flex-shrink:0}
 </style>
 
+</style><style id="chromebook-css">
+html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
+.nx-two{display:grid;grid-template-columns:minmax(300px,380px) 1fr;gap:15px}
+#sb-toggle{display:none}
+@media (max-width:1400px){:root{--sidebar-w:236px}#main-system{padding-left:10px!important;padding-right:10px!important;gap:12px!important}}
+@media (max-width:1100px){
+ .mobile-menu-btn{display:inline-flex!important;align-items:center;justify-content:center;color:#fff!important;font-size:19px;min-width:40px;height:38px}
+ #topbar{flex-wrap:nowrap!important;gap:8px}
+ .topbar-search{flex:1;min-width:0}
+ #topbar-nav{display:none!important}
+ #topbar-nav.mobile-open{display:flex!important;flex-direction:column;position:fixed;top:56px;left:0;right:0;z-index:9500;background:rgba(7,18,36,.98);padding:10px;gap:4px;max-height:calc(100vh - 60px);overflow-y:auto;border-bottom:2px solid #f4c521;box-shadow:0 14px 34px rgba(0,0,0,.6)}
+ #topbar-nav>*{width:100%}
+ #topbar-nav .area-btn{width:100%;text-align:left;padding:13px 14px;font-size:13px;color:#fff}
+ #topbar-nav .area-dropdown{position:static!important;min-width:0!important;margin:2px 0 8px 14px;box-shadow:none!important}
+ #app-sidebar{display:flex!important;position:fixed!important;left:0;top:56px!important;bottom:0;width:min(300px,86vw)!important;max-height:none!important;background:#071224;padding:10px;z-index:9400;transform:translateX(-105%);transition:transform .22s;box-shadow:8px 0 30px rgba(0,0,0,.6)}
+ body.sb-open #app-sidebar{transform:none}
+ body.sb-open #sb-toggle{left:calc(min(300px,86vw) + 10px)}
+ #app-sidebar{padding-bottom:70px!important}
+ #sb-toggle{display:flex;position:fixed;left:12px;bottom:14px;z-index:9450;width:48px;height:48px;border-radius:50%;border:2px solid #f4c521;background:#0d3161;color:#fff;font-size:18px;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.5)}
+ .nx-two{grid-template-columns:1fr}
+ .dash-grid-2col{grid-template-columns:1fr!important}
+ .p2p-chat-wrap{height:420px}
+}
+@media (max-width:1700px){.kpi-grid{grid-template-columns:repeat(4,1fr)!important}}
+@media (max-width:700px){.kpi-grid{grid-template-columns:repeat(2,1fr)!important}}
+@media (max-height:820px){#main-system{padding-top:62px!important}.panel{padding:12px!important}.chart-container{height:190px!important}.nx-hero{padding:12px 16px}.module-container .kpi-card{padding:10px}}
+@media (max-width:700px){.p2p-contacts-col{width:34%;min-width:110px}.nx-tabs{overflow-x:auto;flex-wrap:nowrap}.nx-tab{white-space:nowrap}}
 </style></head>
-<body>
-<script>(function(){var ids=["al-nome", "al-pass", "al-user", "body-alunos", "busca-aluno-perfil", "card-preview-area", "cart-nome", "cart-ra", "cart-tema", "cart-turma", "carteira-aluno", "chart-smeti-chamados", "chart-smeti-patrimonio", "chart-smeti-reservas", "chart-smeti-terminais", "ed-busca", "ed-categoria", "ed-descricao", "ed-doc-file", "ed-doc-link", "ed-doc-link-box", "ed-doc-upload-box", "ed-filtro-status", "ed-lista", "ed-numero", "ed-prazo", "ed-tab-link", "ed-tab-upload", "ed-titulo", "ed-upload-status", "edm-admin-busca-email", "edm-admin-lista-contas", "edm-admin-resultado", "funcao-acao-tipo", "funcao-acao-valor", "funcao-ativa", "funcao-btn-cancelar", "funcao-btn-salvar", "funcao-id", "funcao-menu-vinculado", "funcao-nome", "funcao-perfil", "funcao-prontuarios", "gam-aluno", "gam-badge", "gam-lista", "gen-disc", "gen-output", "gen-serie", "gen-tipo", "hist-prof-container", "hp-cert", "hp-cert-data", "hp-cert-horas", "hp-cert-nome", "hp-cursos", "hp-horas", "hp-lista", "lista-funcoes-criadas", "lista-menus-criados", "lista-riscos-escolares", "lista-salas", "lista-trilhas", "menu-ativo", "menu-btn-cancelar", "menu-btn-salvar", "menu-categoria", "menu-icone", "menu-id", "menu-nome", "menu-perfis-checks", "menu-prontuarios", "mod-alunos", "mod-editais", "painel-criar-edital", "panel-criador-funcoes", "panel-criador-menus", "panel-ntei-edm", "panel-smeti", "perfil-carteira", "perfil360-container", "port-aluno", "port-desc", "port-tipo", "port-titulo", "portfolio-lista", "proj-lista", "proj-nome", "proj-obj", "proj-periodo", "proj-turma", "sala-disc", "sala-mural", "sala-nome", "smeti-filtros", "smeti-kpi-atendimento", "smeti-kpi-chamados-abertos", "smeti-kpi-chamados-trend", "smeti-kpi-devolucao", "smeti-kpi-grid", "smeti-kpi-manutencao", "smeti-kpi-reservas-hoje", "smeti-kpi-resolvidos-hoje", "smeti-kpi-tempo-medio", "smeti-kpi-terminais", "smeti-kpi-terminais-trend", "smeti-live-dot", "smeti-rede-status", "student-form-container", "student-lock-message", "student-login-panel", "trilha-carga", "trilha-desc", "trilha-nome"],g=document.getElementById.bind(document),ph={};document.getElementById=function(i){var e=g(i);if(e||ids.indexOf(i)<0)return e;return ph[i]||(ph[i]=document.createElement('div'))};})();</script>
+<body><button id="sb-toggle" type="button" title="Painel lateral" onclick="document.body.classList.toggle('sb-open')"><i class="fa fa-table-columns"></i></button>
+<script>(function(){var ids=["al-nome", "al-pass", "al-user", "biblio-busca", "biblio-lista", "body-alunos", "busca-aluno-perfil", "card-preview-area", "cart-nome", "cart-ra", "cart-tema", "cart-turma", "carteira-aluno", "chart-smeti-chamados", "chart-smeti-patrimonio", "chart-smeti-reservas", "chart-smeti-terminais", "ed-busca", "ed-categoria", "ed-descricao", "ed-doc-file", "ed-doc-link", "ed-doc-link-box", "ed-doc-upload-box", "ed-filtro-status", "ed-lista", "ed-numero", "ed-prazo", "ed-tab-link", "ed-tab-upload", "ed-titulo", "ed-upload-status", "edm-admin-busca-email", "edm-admin-lista-contas", "edm-admin-resultado", "funcao-acao-tipo", "funcao-acao-valor", "funcao-ativa", "funcao-btn-cancelar", "funcao-btn-salvar", "funcao-id", "funcao-menu-vinculado", "funcao-nome", "funcao-perfil", "funcao-prontuarios", "gam-aluno", "gam-badge", "gam-lista", "gen-disc", "gen-output", "gen-serie", "gen-tipo", "hist-prof-container", "hp-cert", "hp-cert-data", "hp-cert-horas", "hp-cert-nome", "hp-cursos", "hp-horas", "hp-lista", "lista-funcoes-criadas", "lista-menus-criados", "lista-riscos-escolares", "lista-salas", "lista-trilhas", "menu-ativo", "menu-btn-cancelar", "menu-btn-salvar", "menu-categoria", "menu-icone", "menu-id", "menu-nome", "menu-perfis-checks", "menu-prontuarios", "mod-alunos", "mod-editais", "mod-formacao", "painel-criar-edital", "panel-criador-funcoes", "panel-criador-menus", "panel-ntei-edm", "panel-smeti", "perfil-carteira", "perfil360-container", "port-aluno", "port-desc", "port-tipo", "port-titulo", "portfolio-lista", "proj-lista", "proj-nome", "proj-obj", "proj-periodo", "proj-turma", "sala-disc", "sala-mural", "sala-nome", "smeti-filtros", "smeti-kpi-atendimento", "smeti-kpi-chamados-abertos", "smeti-kpi-chamados-trend", "smeti-kpi-devolucao", "smeti-kpi-grid", "smeti-kpi-manutencao", "smeti-kpi-reservas-hoje", "smeti-kpi-resolvidos-hoje", "smeti-kpi-tempo-medio", "smeti-kpi-terminais", "smeti-kpi-terminais-trend", "smeti-live-dot", "smeti-rede-status", "student-form-container", "student-lock-message", "student-login-panel", "trilha-carga", "trilha-desc", "trilha-nome"],g=document.getElementById.bind(document),ph={};document.getElementById=function(i){var e=g(i);if(e||ids.indexOf(i)<0)return e;return ph[i]||(ph[i]=document.createElement('div'))};})();</script>
     <div id="alert-ribbon">⚠️ AVISO NTEi: <span id="alert-text">Sincronizando...</span> <i id="alert-ribbon-close" class="fa fa-times hidden" style="cursor:pointer; margin-left:14px" onclick="app.removerAvisoGeral()" title="Remover aviso"></i></div>
 
     <div id="lock-overlay">
@@ -933,7 +960,6 @@ html.modo-basico .sb-fav-item:not([onclick*="'operacional'"]) { display:none !im
                     <div class="area-dropdown-item" onclick="areaNav.go('pedagogico','ensino')"><i class="fa fa-book"></i> Pedagógico (turmas, planejamento, avaliações)</div>
                     <div class="area-dropdown-item" onclick="areaNav.go('alunos','ensino')"><i class="fa fa-users"></i> Alunos</div>
                     <div class="area-dropdown-item" onclick="areaNav.go('chamada','ensino')"><i class="fa fa-clipboard-user"></i> Chamada — Equipe Escolar</div>
-                    <div class="area-dropdown-item" onclick="areaNav.go('formacao','ensino')"><i class="fa fa-route"></i> Formação de Professores</div>
                     <div class="area-dropdown-item" onclick="areaNav.go('operacional','ensino','panel-plataformas')"><i class="fa fa-book-open"></i> Plataformas Educacionais</div>
                 </div>
             </div>
@@ -1371,10 +1397,6 @@ html.modo-basico .sb-fav-item:not([onclick*="'operacional'"]) { display:none !im
                         <div class="panel">
                             <h3><i class="fa fa-book-open" style="color:var(--plat-color)"></i> Plataformas Educacionais</h3>
                             <div id="dynamic-plat-list" style="margin-bottom:10px"></div>
-                            <div style="display:flex; gap:8px">
-                                <button class="btn" style="background:#54a0ff; font-size: 11px" onclick="app.pedirAcesso('Elefante Letrado')">Pedir Elefante</button>
-                                <button class="btn" style="background:#1dd1a1; font-size: 11px" onclick="app.pedirAcesso('Matific')">Pedir Matific</button>
-                            </div>
                         </div>
 
                         <!-- Login Alunos -->
@@ -1716,7 +1738,7 @@ html.modo-basico .sb-fav-item:not([onclick*="'operacional'"]) { display:none !im
             <!-- ══════════ MODULE: ALUNOS ══════════ -->
 
             <div id="mod-alunos" class="module-view">
-                <div style="display:grid; grid-template-columns: minmax(300px,380px) 1fr; gap:15px">
+                <div class="nx-two">
                     <!-- Perfil 360 -->
                     <div class="panel" style="border:1px solid rgba(0,173,239,0.3)">
                         <h3 style="color:var(--prof)"><i class="fa fa-user-circle"></i> Perfil 360° do Aluno</h3>
@@ -1780,20 +1802,6 @@ html.modo-basico .sb-fav-item:not([onclick*="'operacional'"]) { display:none !im
                 </div>
             </div>
 
-            <!-- ══════════ MODULE: FORMAÇÃO ══════════ -->
-            <div id="mod-formacao" class="module-view">
-                <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:15px">
-
-
-                    <!-- Biblioteca Digital -->
-                    <div class="panel">
-                        <h3 style="color:var(--plat-color)"><i class="fa fa-book-open"></i> Biblioteca Digital</h3>
-                        <input type="text" id="biblio-busca" placeholder="Buscar material..." oninput="biblioteca.buscar(this.value)">
-                        <div id="biblio-lista" style="max-height:320px; overflow-y:auto; margin-top:8px"></div>
-                    </div>
-                </div>
-
-            </div>
 
             <!-- ══════════ MODULE: GÊMEO DIGITAL ══════════ -->
             <div id="mod-gemeo" class="module-view">
@@ -2358,6 +2366,7 @@ html.modo-basico .sb-fav-item:not([onclick*="'operacional'"]) { display:none !im
         },
         setKPI(id, val) { const el = document.getElementById(id); if (el) el.textContent = val; },
         renderCharts(tipos, disp, uso, manut) {
+            if (typeof Chart === 'undefined') { console.warn('Chart.js bloqueado pela rede'); return; }
             ['chart-dash-chamados','chart-dash-recursos','chart-dash-equip'].forEach(id => {
                 const existing = Chart.getChart(id);
                 if (existing) existing.destroy();
@@ -2386,7 +2395,7 @@ html.modo-basico .sb-fav-item:not([onclick*="'operacional'"]) { display:none !im
     //  GÊMEO DIGITAL
     // ═══════════════════════════════════════════════════════
     const gemeoDigital = {
-        salas: ['Sala 1', 'Sala 2', 'Sala 3', 'Sala 4', 'Sala 5', 'Lab. Info.', 'Sala 6', 'Sala 7', 'Sala 8', 'Sala 9', 'Quadra', 'Biblioteca', 'Sala 10', 'Lab. Ciências', 'Auditório'],
+        salas: ['Sala 1', 'Sala 2', 'Sala 3', 'Sala 4', 'Sala 5', 'Lab. Info.', 'Sala 6', 'Sala 7', 'Sala 8', 'Sala 9', 'Quadra', 'Biblioteca', 'Sala 10', 'Auditório'],
         async render() {
             const grid = document.getElementById('gemeo-grid');
             if (!grid) return;
@@ -4507,7 +4516,7 @@ input::placeholder, textarea::placeholder { color: #94a3b8 !important; opacity: 
         _menusBase: [
             { id: 'dashboard', nome: 'Dashboard' }, { id: 'operacional', nome: 'Operacional' },
             { id: 'pedagogico', nome: 'Pedagógico' }, { id: 'alunos', nome: 'Alunos' },
-            { id: 'patrimonio', nome: 'Patrimônio' }, { id: 'formacao', nome: 'Formação' },
+            { id: 'patrimonio', nome: 'Patrimônio' },
             { id: 'gemeo', nome: 'Gêmeo Digital' }, { id: 'comunicacao', nome: 'Comunicação' },
             { id: 'editais', nome: 'Editais' }, { id: 'analise', nome: 'Análise IA' }, { id: 'admin', nome: 'Admin NTEi' }
         ],
@@ -5108,6 +5117,7 @@ input::placeholder, textarea::placeholder { color: #94a3b8 !important; opacity: 
         },
 
         _renderGraficos(cham, term, res, pat) {
+            if (typeof Chart === 'undefined') return;
             const mk = (id, cfg) => {
                 const ctx = document.getElementById(id);
                 if (!ctx) return;
@@ -5567,13 +5577,18 @@ input::placeholder, textarea::placeholder { color: #94a3b8 !important; opacity: 
         },
 
         startVeyonMasterMonitor() {
-            db.ref('veyon_live').on('value', snap => {
+            db.ref('usuarios').on('value', us => { this._contasVivas = us.val() || {}; this._veyonSnap && this._veyonDesenhar(this._veyonSnap); });
+            db.ref('veyon_live').on('value', snap => { this._veyonSnap = snap; this._veyonDesenhar(snap); });
+        },
+        _veyonDesenhar(snap) {
+            {
                 const container = document.getElementById('veyon-container-monitores');
                 if (!container) return;
                 container.innerHTML = '';
                 const agora = Date.now();
                 let total = 0;
                 snap.forEach(child => {
+                    if (this._contasVivas && !this._contasVivas[child.key]) return;
                     total++;
                     const s = child.val();
                     const isOnline = (agora - s.lastSeen) < 12000;
@@ -5585,8 +5600,8 @@ input::placeholder, textarea::placeholder { color: #94a3b8 !important; opacity: 
                         <button class="btn" style="font-size:8px; padding:3px; margin-top:4px; background:var(--ntei)" onclick="app.intervirVeyon('${child.key}')">Intervir</button>
                     </div>`;
                 });
-                if (total === 0) container.innerHTML = '<p style="font-size:12px; color:#666; grid-column:1/-1">Nenhum usuário online no momento.</p>';
-            });
+                if (total === 0) container.innerHTML = '<p style="font-size:12px; color:#9aa7b8; grid-column:1/-1">Nenhum usuário online no momento.</p>';
+            }
         },
 
         intervirVeyon(pront) {
@@ -5769,7 +5784,7 @@ input::placeholder, textarea::placeholder { color: #94a3b8 !important; opacity: 
             if (!key || key === "undefined") return alert("Erro ao identificar registro.");
             if (confirm(`Remover permanentemente o registro [${key}]?`)) {
                 notificacoes.enviar(key, { titulo: 'Solicitação recusada', corpo: 'Sua solicitação de conta foi recusada pelo NTEi.', modulo: 'Admin NTEi', funcao: 'Autorizações', tipo: 'erro' });
-                db.ref('usuarios/' + key).remove().then(() => { alert("Removido!"); auditoria.registrar('Usuários', `Conta ${key} removida`); });
+                db.ref('veyon_live/' + key).remove(); db.ref('usuarios/' + key).remove().then(() => { alert("Removido!"); auditoria.registrar('Usuários', `Conta ${key} removida`); });
             }
         },
 
@@ -6408,7 +6423,6 @@ input::placeholder, textarea::placeholder { color: #94a3b8 !important; opacity: 
             { chave: ['aluno', 'turma', 'alunos'], titulo: '👥 Ver meus alunos', area: '🎓 Ensino / 👥 Pessoas', modulo: 'Alunos', destino: 'alunos' },
             { chave: ['chamado', 'problema', 'defeito', 'quebrado', 'não funciona'], titulo: '🎫 Abrir chamado', area: '🛠️ Suporte', modulo: 'Chamados NTEi', destino: 'operacional' },
             { chave: ['ntei', 'falar com o ntei', 'suporte'], titulo: '💬 Falar com o NTEi', area: '🛠️ Suporte', modulo: 'Atendimento NTEi', destino: 'comunicacao' },
-            { chave: ['formação', 'curso', 'trilha'], titulo: '🎓 Acessar uma formação', area: '🎓 Ensino', modulo: 'Formação', destino: 'formacao' },
             { chave: ['patrimônio', 'patrimonio', 'inventário'], titulo: '💻 Consultar patrimônio', area: '🏫 Escola', modulo: 'Patrimônio', destino: 'patrimonio' },
             { chave: ['comunicado', 'mural', 'aviso'], titulo: '📣 Ver mural / comunicados', area: '💬 Comunicação', modulo: 'Comunicação', destino: 'comunicacao' },
             { chave: ['relatório', 'relatorio', 'indicador', 'análise'], titulo: '📊 Ver relatórios', area: '📊 Gestão', modulo: 'Análise IA', destino: 'analise' },
@@ -6778,6 +6792,98 @@ input::placeholder, textarea::placeholder { color: #94a3b8 !important; opacity: 
         app.start = function () { try { return _start(); } finally { try { acessoCargo.aplicar(); dashPresenca.init(); chamadaEscola.init(); } catch (e) { console.warn(e); } } };
         const _show2 = modules.show;
         modules.show = function (id) { _show2.call(modules, id); if (id === 'alunos') alunosRA.init(); };
+    })();
+
+
+    // ═══════════════════════════════════════════════════════
+    //  CHAT DIRETO: emoji, anexo, áudio, ligação e online/offline
+    // ═══════════════════════════════════════════════════════
+    Object.assign(app, {
+        _online: {}, _rec: null,
+        _pintarOnline() {
+            document.querySelectorAll('#p2p-contact-list .p2p-contact-item').forEach(el => {
+                const m = (el.getAttribute('onclick') || '').match(/'([^']+)'/); if (!m) return;
+                const d = el.querySelector('.p2p-status-dot'); if (d) { d.classList.toggle('online', !!this._online[m[1]]); d.classList.toggle('offline', !this._online[m[1]]); d.style.background = this._online[m[1]] ? '#2ecc71' : '#7d8794'; }
+            });
+            const h = document.querySelector('#p2p-conv-header .p2p-status-dot');
+            if (h && this.currentP2PTarget) { const on = !!this._online[this.currentP2PTarget]; h.style.background = on ? '#2ecc71' : '#7d8794'; h.style.boxShadow = on ? '0 0 6px #2ecc71' : 'none'; h.title = on ? 'Online' : 'Offline'; }
+        },
+        p2pToolHint(tipo) {
+            if (!this.currentP2PChannel) return alert('Selecione um contato primeiro.');
+            if (tipo === 'emoji') return this._p2pEmoji();
+            if (tipo === 'anexo') return this._p2pAnexo();
+            if (tipo === 'audio') return this._p2pAudio();
+        },
+        _p2pEmoji() {
+            const col = document.querySelector('.p2p-conv-col'); let p = document.getElementById('p2p-emoji'); if (p) { p.remove(); return; }
+            p = document.createElement('div'); p.id = 'p2p-emoji';
+            p.style.cssText = 'position:absolute;bottom:56px;left:10px;width:260px;max-height:170px;overflow:auto;background:#0d1626;border:1px solid rgba(0,173,239,.5);border-radius:12px;padding:8px;display:flex;flex-wrap:wrap;gap:2px;z-index:50;box-shadow:0 10px 30px rgba(0,0,0,.6)';
+            '😀😁😂🤣😊😍😘😎🤔😅😢😭😡👍👎👏🙏💪🔥✅❌⚠️📌📎💻🖥️🖨️🔧🛠️📚🏫🎉❤️⭐🕘📞📅👋🙌🤝😴🥳'.match(/\p{Extended_Pictographic}\uFE0F?/gu).forEach(e => { const b = document.createElement('button'); b.type = 'button'; b.textContent = e; b.style.cssText = 'font-size:20px;background:none;border:0;cursor:pointer;padding:3px;border-radius:6px'; b.onclick = () => { const i = document.getElementById('p2p-chat-in'); i.value += e; i.focus(); }; p.appendChild(b); });
+            col.style.position = 'relative'; col.appendChild(p);
+        },
+        _p2pEnviar(obj) { return db.ref('p2p_chats/' + this.currentP2PChannel).push({ sender: this.user.pront, name: this.user.nome, timestamp: Date.now(), ...obj }); },
+        _p2pAnexo() {
+            const f = document.createElement('input'); f.type = 'file';
+            f.onchange = () => { const a = f.files[0]; if (!a) return; if (a.size > 1500000) return alert('Arquivo grande demais (máx. 1,5 MB). Envie por link ou compacte.');
+                const r = new FileReader(); r.onload = () => this._p2pEnviar({ type: 'file', fname: a.name, mime: a.type, data: r.result, text: '' }); r.readAsDataURL(a); };
+            f.click();
+        },
+        async _p2pAudio() {
+            const btn = document.querySelector('.p2p-input-row .fa-microphone')?.parentElement;
+            if (this._rec) { this._rec.stop(); return; }
+            try {
+                const st = await navigator.mediaDevices.getUserMedia({ audio: true }), mr = new MediaRecorder(st), parts = [];
+                mr.ondataavailable = e => parts.push(e.data);
+                mr.onstop = () => { st.getTracks().forEach(t => t.stop()); this._rec = null; if (btn) { btn.style.color = ''; btn.innerHTML = '<i class="fa fa-microphone"></i>'; }
+                    const blob = new Blob(parts, { type: mr.mimeType }); if (blob.size > 1500000) return alert('Áudio muito longo. Grave até ~1 minuto.');
+                    const r = new FileReader(); r.onload = () => this._p2pEnviar({ type: 'audio', data: r.result, text: '' }); r.readAsDataURL(blob); };
+                this._rec = mr; mr.start(); if (btn) { btn.style.color = '#e74c3c'; btn.innerHTML = '<i class="fa fa-stop"></i>'; }
+                setTimeout(() => { if (this._rec === mr) mr.stop(); }, 60000);
+            } catch (e) { alert('Não consegui acessar o microfone. Libere a permissão no navegador.'); }
+        },
+        p2pCall(video) {
+            if (!this.currentP2PChannel) return alert('Selecione um contato primeiro.');
+            const sala = 'ConectIGN-' + this.currentP2PChannel.replace(/[^A-Za-z0-9]/g, '') + '-' + Date.now().toString(36);
+            const url = 'https://meet.jit.si/' + sala + (video ? '' : '#config.startWithVideoMuted=true');
+            this._p2pEnviar({ type: 'call', url, text: video ? '📹 Chamada de vídeo' : '📞 Chamada de voz' });
+            db.ref('usuarios/' + this.currentP2PTarget + '/chamada_entrante').set({ de: this.user.nome, url, ts: Date.now() });
+            window.open(url, '_blank');
+        },
+        initP2PChat() {
+            const box = document.getElementById('p2p-chat-box');
+            if (!this.currentP2PTarget) { if (box) box.innerHTML = ''; return; }
+            const ch = this._p2pChannelId(this.currentP2PTarget); this.currentP2PChannel = ch;
+            if (this._p2pRef) this._p2pRef.off();
+            this._p2pRef = db.ref('p2p_chats/' + ch).limitToLast(30);
+            this._p2pRef.on('value', snap => {
+                if (!box) return; let h = '';
+                snap.forEach(m => { const d = m.val(), eu = d.sender === this.user.pront; let c = '';
+                    if (d.type === 'audio') c = `<audio controls src="${d.data}" style="max-width:220px;height:34px"></audio>`;
+                    else if (d.type === 'file') c = (d.mime || '').startsWith('image/') ? `<img src="${d.data}" style="max-width:200px;max-height:160px;border-radius:8px;display:block">` : `<a href="${d.data}" download="${nxEsc(d.fname)}" style="color:#fff">📎 ${nxEsc(d.fname)}</a>`;
+                    else if (d.type === 'call') c = `${nxEsc(d.text)}<br><a href="${nxEsc(d.url)}" target="_blank" style="display:inline-block;margin-top:4px;padding:4px 10px;border-radius:8px;background:#2ecc71;color:#000;font-weight:700;text-decoration:none">ENTRAR NA CHAMADA</a>`;
+                    else c = nxEsc(d.text);
+                    h += `<div class="msg ${eu ? 'msg-out' : 'msg-in'}"><b>${nxEsc(d.name)}:</b><br>${c}</div>`; });
+                box.innerHTML = h; box.scrollTop = box.scrollHeight;
+            });
+        },
+        sendP2PMessage() {
+            const i = document.getElementById('p2p-chat-in'); if (!i?.value.trim() || !this.currentP2PChannel) return;
+            this._p2pEnviar({ type: 'text', text: i.value }).then(() => { i.value = ''; document.getElementById('p2p-emoji')?.remove(); });
+        }
+    });
+    document.addEventListener('click', e => { if (document.body.classList.contains('sb-open') && e.target.closest('#app-sidebar [onclick]')) document.body.classList.remove('sb-open'); if (e.target.closest('#topbar-nav .area-dropdown-item') && window.app) app.fecharMobileMenu(); });
+    (function () {
+        const _sel = app.selectP2PContact.bind(app);
+        app.selectP2PContact = function (p) { _sel(p); const ic = document.querySelectorAll('#p2p-conv-header .p2p-conv-header-icons i'); ic.forEach(i => { if (i.classList.contains('fa-phone')) { i.style.cursor = 'pointer'; i.title = 'Ligar'; i.onclick = () => app.p2pCall(false); } else if (i.classList.contains('fa-video')) { i.style.cursor = 'pointer'; i.title = 'Chamada de vídeo'; i.onclick = () => app.p2pCall(true); } }); app._pintarOnline(); };
+        const _rl = app.renderP2PContactList.bind(app);
+        app.renderP2PContactList = function () { _rl(); app._pintarOnline(); };
+        const _st = app.start.bind(app);
+        app.start = function () { try { return _st(); } finally { try {
+            document.querySelector('.p2p-input-row').style.position = 'relative';
+            db.ref('veyon_live').on('value', s => { const o = {}; s.forEach(c => { if (Date.now() - (c.val().lastSeen || 0) < 15000) o[c.key] = true; }); app._online = o; app._pintarOnline(); });
+            setInterval(() => app._pintarOnline(), 8000);
+            db.ref('usuarios/' + app.user.pront + '/chamada_entrante').on('value', s => { const c = s.val(); if (!c) return; db.ref('usuarios/' + app.user.pront + '/chamada_entrante').remove(); if (Date.now() - c.ts < 60000 && confirm('📞 ' + c.de + ' está te ligando. Atender?')) window.open(c.url, '_blank'); });
+        } catch (e) { console.warn(e); } } };
     })();
 
 </script>
