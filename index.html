@@ -19,7 +19,7 @@
             --bg-overlay: rgba(10, 11, 16, 0.92);
             --panel-bg: rgba(22, 27, 34, 0.75);
             --border-subtle: rgba(255,255,255,0.08);
-            --text-muted: #8b949e;
+            --text-muted: #b9c5d6;
             /* ══ novo sistema visual "foda" ══ */
             --sidebar-w: 268px;
             --glass-bg: linear-gradient(160deg, rgba(26,30,40,0.92), rgba(15,17,24,0.88));
@@ -81,7 +81,7 @@
         .sb-unit-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
         .sb-unit-badge { width: 40px; height: 40px; border-radius: 10px; background: var(--accent-grad); display: flex; align-items: center; justify-content: center; font-size: 17px; box-shadow: var(--glow-prof); }
         .sb-unit-name { font-weight: 700; font-size: 13px; line-height: 1.2; }
-        .sb-unit-code { font-size: 10.5px; color: var(--text-muted); }
+        .sb-unit-code { font-size: 11px; color: #dbe5f2; font-weight:600 }
         .sb-status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--cad); display: inline-block; margin-right: 5px; box-shadow: 0 0 6px var(--cad); animation: pulse 2s infinite; }
         .sb-mini-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 4px; }
         .sb-mini-stat { background: rgba(255,255,255,0.04); border-radius: 9px; padding: 8px; text-align: center; }
@@ -99,7 +99,7 @@
         .sb-fav-item:hover { background: rgba(255,255,255,0.05); }
         .sb-profile { display: flex; align-items: center; gap: 9px; }
         .sb-profile-name { font-size: 12px; font-weight: 600; }
-        .sb-profile-role { font-size: 10px; color: var(--text-muted); }
+        .sb-profile-role { font-size: 11px; color: #dbe5f2; font-weight:600 } .sb-profile-name{color:#fff!important;text-shadow:0 1px 3px rgba(0,0,0,.6)} .sb-card{background:rgba(10,18,36,.92)!important}
         @media (max-width: 1100px) { #app-sidebar { display: none; } }
 
         /* ═══════════ COMUNICADO GERAL BANNER ═══════════ */
@@ -813,7 +813,7 @@ html.modo-basico .sb-fav-item:not([onclick*="'operacional'"]) { display:none !im
 <style id="novos-modulos-css">
 .nx-hero{display:flex;align-items:center;gap:16px;padding:20px 22px;border-radius:16px;margin-bottom:16px;background:linear-gradient(120deg,rgba(0,173,239,.22),rgba(46,204,113,.14));border:1px solid rgba(0,173,239,.35)}
 .nx-hero .nx-ico{width:54px;height:54px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;background:rgba(0,173,239,.25);color:#fff;flex-shrink:0}
-.nx-hero h2{margin:0;font-size:19px}.nx-hero p{margin:3px 0 0;font-size:12px;color:var(--text-muted)}
+.nx-hero h2{margin:0;font-size:19px}.nx-hero p{margin:3px 0 0;font-size:12px;color:#c9d6e8}
 .nx-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
 .nx-tab{padding:9px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:inherit;font-size:12px;font-weight:700;cursor:pointer;transition:.15s}
 .nx-tab:hover{background:rgba(0,173,239,.18)}.nx-tab.on{background:var(--prof);color:#fff;border-color:transparent;box-shadow:0 4px 14px rgba(0,173,239,.35)}
@@ -850,7 +850,7 @@ html.modo-basico .sb-fav-item:not([onclick*="'operacional'"]) { display:none !im
 
 </style></head>
 <body>
-<script>(function(){var ids=["al-nome", "al-pass", "al-user", "body-alunos", "chart-smeti-chamados", "chart-smeti-patrimonio", "chart-smeti-reservas", "chart-smeti-terminais", "edm-admin-busca-email", "edm-admin-lista-contas", "edm-admin-resultado", "funcao-acao-tipo", "funcao-acao-valor", "funcao-ativa", "funcao-btn-cancelar", "funcao-btn-salvar", "funcao-id", "funcao-menu-vinculado", "funcao-nome", "funcao-perfil", "funcao-prontuarios", "gen-disc", "gen-output", "gen-serie", "gen-tipo", "hist-prof-container", "hp-cert", "hp-cert-data", "hp-cert-horas", "hp-cert-nome", "hp-cursos", "hp-horas", "hp-lista", "lista-funcoes-criadas", "lista-salas", "lista-trilhas", "panel-criador-funcoes", "panel-ntei-edm", "panel-smeti", "proj-lista", "proj-nome", "proj-obj", "proj-periodo", "proj-turma", "sala-disc", "sala-mural", "sala-nome", "smeti-filtros", "smeti-kpi-atendimento", "smeti-kpi-chamados-abertos", "smeti-kpi-chamados-trend", "smeti-kpi-devolucao", "smeti-kpi-grid", "smeti-kpi-manutencao", "smeti-kpi-reservas-hoje", "smeti-kpi-resolvidos-hoje", "smeti-kpi-tempo-medio", "smeti-kpi-terminais", "smeti-kpi-terminais-trend", "smeti-live-dot", "smeti-rede-status", "student-form-container", "student-lock-message", "student-login-panel", "trilha-carga", "trilha-desc", "trilha-nome"],g=document.getElementById.bind(document),ph={};document.getElementById=function(i){var e=g(i);if(e||ids.indexOf(i)<0)return e;return ph[i]||(ph[i]=document.createElement('div'))};})();</script>
+<script>(function(){var ids=["al-nome", "al-pass", "al-user", "body-alunos", "busca-aluno-perfil", "card-preview-area", "cart-nome", "cart-ra", "cart-tema", "cart-turma", "carteira-aluno", "chart-smeti-chamados", "chart-smeti-patrimonio", "chart-smeti-reservas", "chart-smeti-terminais", "ed-busca", "ed-categoria", "ed-descricao", "ed-doc-file", "ed-doc-link", "ed-doc-link-box", "ed-doc-upload-box", "ed-filtro-status", "ed-lista", "ed-numero", "ed-prazo", "ed-tab-link", "ed-tab-upload", "ed-titulo", "ed-upload-status", "edm-admin-busca-email", "edm-admin-lista-contas", "edm-admin-resultado", "funcao-acao-tipo", "funcao-acao-valor", "funcao-ativa", "funcao-btn-cancelar", "funcao-btn-salvar", "funcao-id", "funcao-menu-vinculado", "funcao-nome", "funcao-perfil", "funcao-prontuarios", "gam-aluno", "gam-badge", "gam-lista", "gen-disc", "gen-output", "gen-serie", "gen-tipo", "hist-prof-container", "hp-cert", "hp-cert-data", "hp-cert-horas", "hp-cert-nome", "hp-cursos", "hp-horas", "hp-lista", "lista-funcoes-criadas", "lista-menus-criados", "lista-riscos-escolares", "lista-salas", "lista-trilhas", "menu-ativo", "menu-btn-cancelar", "menu-btn-salvar", "menu-categoria", "menu-icone", "menu-id", "menu-nome", "menu-perfis-checks", "menu-prontuarios", "mod-alunos", "mod-editais", "painel-criar-edital", "panel-criador-funcoes", "panel-criador-menus", "panel-ntei-edm", "panel-smeti", "perfil-carteira", "perfil360-container", "port-aluno", "port-desc", "port-tipo", "port-titulo", "portfolio-lista", "proj-lista", "proj-nome", "proj-obj", "proj-periodo", "proj-turma", "sala-disc", "sala-mural", "sala-nome", "smeti-filtros", "smeti-kpi-atendimento", "smeti-kpi-chamados-abertos", "smeti-kpi-chamados-trend", "smeti-kpi-devolucao", "smeti-kpi-grid", "smeti-kpi-manutencao", "smeti-kpi-reservas-hoje", "smeti-kpi-resolvidos-hoje", "smeti-kpi-tempo-medio", "smeti-kpi-terminais", "smeti-kpi-terminais-trend", "smeti-live-dot", "smeti-rede-status", "student-form-container", "student-lock-message", "student-login-panel", "trilha-carga", "trilha-desc", "trilha-nome"],g=document.getElementById.bind(document),ph={};document.getElementById=function(i){var e=g(i);if(e||ids.indexOf(i)<0)return e;return ph[i]||(ph[i]=document.createElement('div'))};})();</script>
     <div id="alert-ribbon">⚠️ AVISO NTEi: <span id="alert-text">Sincronizando...</span> <i id="alert-ribbon-close" class="fa fa-times hidden" style="cursor:pointer; margin-left:14px" onclick="app.removerAvisoGeral()" title="Remover aviso"></i></div>
 
     <div id="lock-overlay">
@@ -966,7 +966,6 @@ html.modo-basico .sb-fav-item:not([onclick*="'operacional'"]) { display:none !im
                 <button class="area-btn" data-area="gestao" onclick="areaNav.toggle(this,'gestao')"><i class="fa fa-chart-line"></i> Gestão <i class="fa fa-chevron-down area-caret"></i></button>
                 <div class="area-dropdown" id="area-dd-gestao">
                     <div class="area-dropdown-item" onclick="areaNav.go('analise','gestao')"><i class="fa fa-brain"></i> Análise e Relatórios (IA)</div>
-                    <div class="area-dropdown-item" onclick="areaNav.go('editais','gestao')"><i class="fa fa-file-contract"></i> Editais</div>
                     <div class="area-dropdown-item" onclick="areaNav.go('patrimonio','gestao')"><i class="fa fa-boxes-stacked"></i> Patrimônio</div>
                     <div class="area-dropdown-item" onclick="areaNav.go('gemeo','gestao')"><i class="fa fa-map"></i> Gêmeo Digital</div>
                 </div>
@@ -980,7 +979,6 @@ html.modo-basico .sb-fav-item:not([onclick*="'operacional'"]) { display:none !im
                     <div class="area-dropdown-item" onclick="areaNav.go('operacional','ntei')"><i class="fa fa-ticket"></i> Atendimento (todos os chamados)</div>
                     <div class="area-dropdown-item" onclick="areaNav.go('espaco','ntei')"><i class="fa fa-user-gear"></i> Meu Espaço (Registros · Desempenho · Agenda)</div>
                     <div class="area-dropdown-item" onclick="areaNav.go('admin','ntei','panel-veyon-master')"><i class="fa fa-desktop"></i> Tecnologia (Veyon / Rede)</div>
-                    <div class="area-dropdown-item" onclick="areaNav.go('admin','ntei','panel-criador-menus')"><i class="fa fa-sitemap"></i> Plataforma (Criador de Menus/Funções)</div>
                     <div class="area-dropdown-item" onclick="areaNav.go('admin','ntei','panel-permissoes-individuais')"><i class="fa fa-clipboard-list"></i> Controle / Auditoria</div>
                 </div>
             </div>
@@ -1147,7 +1145,7 @@ html.modo-basico .sb-fav-item:not([onclick*="'operacional'"]) { display:none !im
                 <div class="sb-unit-head">
                     <div class="sb-unit-badge"><i class="fa fa-shield-halved"></i></div>
                     <div>
-                        <div class="sb-unit-name">Programa Conect</div>
+                        <div class="sb-unit-name">C.M.P. Imídeo Giuseppe Nérici</div>
                         <div class="sb-unit-code"><span class="sb-status-dot"></span>NTEi · Ecossistema Inteligente</div>
                     </div>
                 </div>
@@ -1244,6 +1242,8 @@ html.modo-basico .sb-fav-item:not([onclick*="'operacional'"]) { display:none !im
                     <div class="kpi-card green"><i class="fa fa-calendar-check kpi-icon"></i><div class="kpi-num" id="kpi-reservas">—</div><div class="kpi-label">Reservas Ativas</div><div class="kpi-trend trend-up">Em Uso</div></div>
                     <div class="kpi-card yellow"><i class="fa fa-users kpi-icon"></i><div class="kpi-num" id="kpi-usuarios">—</div><div class="kpi-label">Usuários Cadastrados</div><div class="kpi-trend trend-up">Ativos</div></div>
                     <div class="kpi-card purple"><i class="fa fa-graduation-cap kpi-icon"></i><div class="kpi-num" id="kpi-alunos">—</div><div class="kpi-label">Alunos Cadastrados</div><div class="kpi-trend">Total</div></div>
+                    <div class="kpi-card green"><i class="fa fa-user-check kpi-icon"></i><div class="kpi-num" id="kpi-presentes">—</div><div class="kpi-label">Alunos Presentes Hoje</div></div>
+                    <div class="kpi-card red"><i class="fa fa-user-xmark kpi-icon"></i><div class="kpi-num" id="kpi-faltantes">—</div><div class="kpi-label">Alunos Faltantes Hoje</div></div>
                     <div class="kpi-card red"><i class="fa fa-triangle-exclamation kpi-icon"></i><div class="kpi-num" id="kpi-manutencao">—</div><div class="kpi-label">Em Manutenção</div><div class="kpi-trend trend-down">Atenção</div></div>
                 </div>
 
@@ -1714,8 +1714,9 @@ html.modo-basico .sb-fav-item:not([onclick*="'operacional'"]) { display:none !im
 
 
             <!-- ══════════ MODULE: ALUNOS ══════════ -->
+
             <div id="mod-alunos" class="module-view">
-                <div style="display:grid; grid-template-columns: 380px 1fr; gap:15px">
+                <div style="display:grid; grid-template-columns: minmax(300px,380px) 1fr; gap:15px">
                     <!-- Perfil 360 -->
                     <div class="panel" style="border:1px solid rgba(0,173,239,0.3)">
                         <h3 style="color:var(--prof)"><i class="fa fa-user-circle"></i> Perfil 360° do Aluno</h3>
@@ -1724,88 +1725,23 @@ html.modo-basico .sb-fav-item:not([onclick*="'operacional'"]) { display:none !im
                             <p style="font-size:12px; color:var(--text-muted); margin-top:10px">Digite o nome para buscar o perfil completo.</p>
                         </div>
                     </div>
-
                     <div>
-                        <!-- Carteira Digital -->
-                        <div class="panel" style="border:1px solid rgba(0,173,239,0.2)">
-                            <h3 style="color:var(--prof)"><i class="fa fa-id-card"></i> Carteira Digital Educacional — Identidade do Aluno</h3>
-                            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px">
-                                <div>
-                                    <input type="text" id="cart-nome" placeholder="Nome Completo">
-                                    <input type="text" id="cart-ra" placeholder="RA / Matrícula">
-                                    <input type="text" id="cart-turma" placeholder="Turma (Ex: 5ºA)">
-                                    <select id="cart-tema">
-                                        <option value="institucional">🏫 Tema Institucional</option>
-                                        <option value="elefante">📚 Elefante Letrado</option>
-                                        <option value="matific">🧮 Matific</option>
-                                        <option value="tecnologia">💻 Tecnologia</option>
-                                    </select>
-                                    <button class="btn" style="background:var(--prof); color:white" onclick="carteira.gerar()"><i class="fa fa-id-card"></i> Gerar Carteira</button>
-                                    <button class="btn" style="background:rgba(255,255,255,0.1); margin-top:5px; font-size:11px" onclick="carteira.imprimir()"><i class="fa fa-print"></i> Imprimir</button>
-                                </div>
-                                <div id="card-preview-area">
-                                    <p style="font-size:12px; color:var(--text-muted)">Preencha os dados e clique em Gerar Carteira.</p>
-                                </div>
-                            </div>
+                        <div class="panel" style="border:1px solid rgba(46,204,113,.4)">
+                            <h3 style="color:var(--cad)"><i class="fa fa-barcode"></i> Consulta por RA &amp; Chamada Digital</h3>
+                            <div class="nx-kpis" id="ra-kpis"></div>
+                            <div class="nx-row"><input type="text" id="ra-input" inputmode="numeric" placeholder="Digite ou leia o RA e tecle ENTER" onkeydown="if(event.key==='Enter')alunosRA.consultar(true)"><button class="btn" style="background:var(--prof)" onclick="alunosRA.consultar(false)"><i class="fa fa-search"></i> Consultar</button><button class="btn" style="background:#27ae60" onclick="alunosRA.consultar(true)"><i class="fa fa-check"></i> Marcar presente</button></div>
+                            <div id="ra-resultado"></div>
                         </div>
-
-                        <!-- Alertas de Risco Escolar -->
-                        <div class="panel" style="border:1px solid rgba(235,77,75,0.3)">
-                            <h3 style="color:var(--ntei)"><i class="fa fa-triangle-exclamation"></i> Alertas de Risco Escolar (IA)</h3>
-                            <p style="font-size:12px; color:var(--text-muted)">Identificação automática de alunos que necessitam atenção.</p>
-                            <div id="lista-riscos-escolares">
-                                <div class="loading-spinner"><i class="fa fa-spin fa-circle-notch"></i> Analisando dados dos alunos...</div>
-                            </div>
-                            <button class="btn" style="background:rgba(235,77,75,0.2); color:var(--ntei); margin-top:5px" onclick="riscoEscolar.analisar()"><i class="fa fa-search"></i> Re-analisar Agora</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Portfólio Digital -->
-                <div class="panel">
-                    <h3 style="color:var(--secre)"><i class="fa fa-folder-open"></i> Portfólio Digital do Aluno</h3>
-                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px">
-                        <div>
-                            <input type="text" id="port-aluno" placeholder="Nome do Aluno">
-                            <input type="text" id="port-titulo" placeholder="Título do Trabalho/Projeto">
-                            <select id="port-tipo">
-                                <option>Produção Textual</option><option>Projeto de Pesquisa</option>
-                                <option>Apresentação</option><option>Trabalho em Grupo</option>
-                                <option>Certificado</option><option>Conquista</option>
-                            </select>
-                            <input type="text" id="port-desc" placeholder="Descrição / Observação">
-                            <button class="btn" style="background:var(--secre); color:white" onclick="portfolio.salvar()">Adicionar ao Portfólio</button>
-                        </div>
-                        <div id="portfolio-lista" style="max-height:220px; overflow-y:auto"></div>
-                    </div>
-                </div>
-
-                <!-- Gamificação -->
-                <div class="panel">
-                    <h3 style="color:var(--gestao)"><i class="fa fa-trophy"></i> Gamificação &amp; Conquistas</h3>
-                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px">
-                        <div>
-                            <p style="font-size:12px; color:var(--text-muted); margin-top:0">Atribuir conquista a um aluno:</p>
-                            <input type="text" id="gam-aluno" placeholder="Nome do Aluno">
-                            <select id="gam-badge">
-                                <option value="star" data-icon="⭐">⭐ Estrela do Dia</option>
-                                <option value="book" data-icon="📚">📚 Super Leitor</option>
-                                <option value="math" data-icon="🧮">🧮 Mestre da Matemática</option>
-                                <option value="team" data-icon="🤝">🤝 Trabalho em Equipe</option>
-                                <option value="creative" data-icon="🎨">🎨 Criativo</option>
-                                <option value="tech" data-icon="💻">💻 Especialista Tech</option>
-                                <option value="present" data-icon="📊">📊 Melhor Apresentação</option>
-                                <option value="helper" data-icon="🙌">🙌 Solidariedade</option>
-                            </select>
-                            <button class="btn" style="background:var(--gestao); color:black" onclick="gamificacao.atribuir()">Atribuir Conquista</button>
-                        </div>
-                        <div>
-                            <p style="font-size:12px; color:var(--text-muted); margin-top:0">Conquistas recentes:</p>
-                            <div id="gam-lista" style="max-height:180px; overflow-y:auto;"></div>
+                        <div class="panel" style="border:1px solid rgba(241,196,15,.35)">
+                            <h3 style="color:var(--gestao)"><i class="fa fa-file-excel"></i> Planilha de alunos</h3>
+                            <p style="font-size:12px;color:var(--text-muted);margin-top:0">Importe um arquivo <b>.csv</b> com as colunas <b>RA ; Nome ; Sala</b> (no Excel: Salvar como CSV). Os dados entram direto na chamada digital.</p>
+                            <div class="nx-row"><input type="file" id="ra-arquivo" accept=".csv,.txt,text/csv,text/plain"><button class="btn" style="background:var(--gestao);color:#000" onclick="alunosRA.importar()"><i class="fa fa-upload"></i> Importar</button><button class="btn" style="background:rgba(255,255,255,.12)" onclick="alunosRA.exportar()"><i class="fa fa-download"></i> Exportar planilha de hoje</button></div>
+                            <div id="ra-imp-msg" style="font-size:12px"></div>
                         </div>
                     </div>
                 </div>
             </div>
+
 
             <!-- ══════════ MODULE: PATRIMÔNIO ══════════ -->
             <div id="mod-patrimonio" class="module-view">
@@ -1869,6 +1805,14 @@ html.modo-basico .sb-fav-item:not([onclick*="'operacional'"]) { display:none !im
                             <div class="kpi-card blue" style="margin:0"><div class="kpi-num" id="gem-salas">—</div><div class="kpi-label">Salas Monitoradas</div></div>
                             <div class="kpi-card green" style="margin:0"><div class="kpi-num" id="gem-livre">—</div><div class="kpi-label">Espaços Livres</div></div>
                             <div class="kpi-card red" style="margin:0"><div class="kpi-num" id="gem-ocup">—</div><div class="kpi-label">Ocupados</div></div>
+                        </div>
+                                                <div class="nx-sala" style="border-color:rgba(0,173,239,.4)">
+                            <b style="color:var(--prof)">🏫 C.M.P. Imídeo Giuseppe Nérici (C.M.P.I.G.N)</b>
+                            <div style="font-size:12px;color:var(--text-muted);margin:4px 0 10px">Rua Hebert Volpato Teixeira, 02 — Fazendinha, Santana de Parnaíba - SP</div>
+                            <div class="nx-kpis" style="margin:0">
+                                <div class="nx-kpi b"><b>20</b><span>Salas de aula</span></div><div class="nx-kpi b"><b>600</b><span>Chromebooks</span></div><div class="nx-kpi b"><b>10</b><span>Computadores</span></div><div class="nx-kpi b"><b>23</b><span>Projetores</span></div><div class="nx-kpi b"><b>3</b><span>TVs</span></div><div class="nx-kpi b"><b>4</b><span>Impressoras</span></div><div class="nx-kpi b"><b>9</b><span>Access Points</span></div><div class="nx-kpi b"><b>1</b><span>Caixa de som</span></div>
+                            </div>
+                            <div style="font-size:12px;margin-top:10px;line-height:1.7">🧪 1 Sala de Informática · 📚 1 Biblioteca · 🎭 1 Auditório · ⚽ Quadra · Pátio · Secretaria · Sala dos Professores · Coordenação · Vice-direção · Diretoria<br>👥 Direção 2 · Coordenação 3 · Professores 120 · Funcionários 15 · NTEi/Técnicos 2 · 📶 Wi-Fi em toda a escola</div>
                         </div>
                         <div class="gemeo-room-grid" id="gemeo-grid">
                             <div class="loading-spinner" style="grid-column:1/-1"><i class="fa fa-spin fa-circle-notch"></i> Carregando mapa...</div>
@@ -1985,61 +1929,6 @@ html.modo-basico .sb-fav-item:not([onclick*="'operacional'"]) { display:none !im
                 </div>
             </div>
 
-            <!-- ══════════ MODULE: CENTRAL DE EDITAIS ══════════ -->
-            <div id="mod-editais" class="module-view">
-                <div class="section-title"><i class="fa fa-file-contract"></i> Central de Editais e Processos</div>
-                <div class="grid-layout">
-                    <div class="left-col">
-                        <div class="panel" id="painel-criar-edital">
-                            <h3 style="color:var(--gestao)"><i class="fa fa-plus-circle"></i> Cadastrar Edital</h3>
-                            <input type="text" id="ed-titulo" placeholder="Título do edital">
-                            <input type="text" id="ed-numero" placeholder="Número do edital (ex: 012/2026)">
-                            <select id="ed-categoria">
-                                <option value="Geral">Geral</option>
-                                <option value="Seleção de Pessoal">Seleção de Pessoal</option>
-                                <option value="Bolsas e Programas">Bolsas e Programas</option>
-                                <option value="Compras e Licitação">Compras e Licitação</option>
-                                <option value="Chamamento Público">Chamamento Público</option>
-                            </select>
-                            <textarea id="ed-descricao" placeholder="Descrição / resumo do edital..." style="width:100%; height:70px; border-radius:8px; border:1px solid #333; background:rgba(0,0,0,0.4); color:white; padding:8px; resize:none; font-family:'Poppins'; font-size:12px; margin:6px 0;"></textarea>
-                            <label style="font-size:11px; color:var(--text-muted)">Data de encerramento</label>
-                            <input type="date" id="ed-prazo">
-
-                            <label style="font-size:11px; color:var(--text-muted); margin-top:8px; display:block">Documento do edital (PDF)</label>
-                            <div style="display:flex; gap:4px; margin:6px 0">
-                                <button type="button" class="btn" id="ed-tab-upload" style="background:var(--prof); margin:0; font-size:10px; padding:8px" onclick="editais.toggleFonteDoc('upload')">Enviar arquivo</button>
-                                <button type="button" class="btn" id="ed-tab-link" style="background:rgba(255,255,255,0.08); margin:0; font-size:10px; padding:8px" onclick="editais.toggleFonteDoc('link')">Colar link</button>
-                            </div>
-                            <div id="ed-doc-upload-box">
-                                <input type="file" id="ed-doc-file" accept="application/pdf">
-                                <small style="color:var(--text-muted); font-size:10px">Arquivos de até ~8MB (armazenado no banco do sistema).</small>
-                            </div>
-                            <div id="ed-doc-link-box" class="hidden">
-                                <input type="url" id="ed-doc-link" placeholder="https://... (Drive, site da prefeitura, etc.)">
-                            </div>
-
-                            <button class="btn" style="background:var(--gestao); color:black; margin-top:10px" onclick="editais.publicar()"><i class="fa fa-upload"></i> Publicar Edital</button>
-                            <div id="ed-upload-status" style="font-size:11px; color:var(--text-muted); margin-top:6px"></div>
-                        </div>
-                    </div>
-
-                    <div class="center-col" style="grid-column: span 2">
-                        <div class="panel">
-                            <h3><i class="fa fa-folder-open" style="color:var(--prof)"></i> Editais Publicados</h3>
-                            <div style="display:flex; gap:8px; margin-bottom:10px">
-                                <input type="text" id="ed-busca" placeholder="Buscar por título ou número..." oninput="editais.renderLista()" style="margin:0">
-                                <select id="ed-filtro-status" onchange="editais.renderLista()" style="margin:0; max-width:160px">
-                                    <option value="">Todos status</option>
-                                    <option value="Aberto">Aberto</option>
-                                    <option value="Em Andamento">Em Andamento</option>
-                                    <option value="Encerrado">Encerrado</option>
-                                </select>
-                            </div>
-                            <div id="ed-lista" style="max-height:560px; overflow-y:auto"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <div id="mod-analise" class="module-view">
                 <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px">
@@ -2224,30 +2113,6 @@ html.modo-basico .sb-fav-item:not([onclick*="'operacional'"]) { display:none !im
                     <div id="permind-lista-overrides" style="max-height:160px; overflow-y:auto; background:rgba(0,0,0,0.2); padding:5px; border-radius:5px; font-size:11px"></div>
                 </div>
 
-                <!-- Criador de Menus -->
-                <div id="panel-criador-menus" class="panel hidden" style="border:1px solid var(--prof)">
-                    <h3 style="color:var(--prof)"><i class="fa fa-bars"></i> CRIADOR DE MENUS</h3>
-                    <p style="font-size:11px; color:var(--text-muted); margin-top:-6px">Cria itens que aparecem de verdade na barra de navegação, sem remover os já existentes.</p>
-                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:6px">
-                        <input type="text" id="menu-nome" placeholder="Nome do menu" style="margin:0">
-                        <input type="text" id="menu-icone" placeholder="Ícone Font Awesome (ex: fa-star)" style="margin:0">
-                        <input type="text" id="menu-id" placeholder="ID único (ex: financeiro)" style="margin:0">
-                        <select id="menu-categoria" style="margin:0">
-                            <option value="Geral">Geral</option><option value="Operacional">Operacional</option>
-                            <option value="Pedagógico">Pedagógico</option><option value="Administrativo">Administrativo</option>
-                        </select>
-                    </div>
-                    <p style="font-size:10px; color:#aaa; margin:10px 0 4px 0">Perfis com acesso:</p>
-                    <div id="menu-perfis-checks" style="display:flex; gap:10px; flex-wrap:wrap; font-size:11px"></div>
-                    <input type="text" id="menu-prontuarios" placeholder="Prontuários específicos (opcional, separados por vírgula)" style="margin-top:8px">
-                    <label style="display:flex; align-items:center; gap:6px; font-size:11px; margin-top:8px"><input type="checkbox" id="menu-ativo" checked="" style="width:auto"> Ativo</label>
-                    <div style="display:flex; gap:8px">
-                        <button class="btn" style="background:var(--prof); margin-top:10px" onclick="criadorMenus.salvar()" id="menu-btn-salvar">CRIAR / SALVAR MENU</button>
-                        <button class="btn" style="background:rgba(255,255,255,0.1); margin-top:10px; display:none" id="menu-btn-cancelar" onclick="criadorMenus.cancelarEdicao()">CANCELAR EDIÇÃO</button>
-                    </div>
-                    <p style="font-size:10px; color:#aaa; margin:16px 0 6px 0">MENUS CRIADOS:</p>
-                    <div id="lista-menus-criados" style="max-height:200px; overflow-y:auto; background:rgba(0,0,0,0.2); padding:5px; border-radius:5px"></div>
-                </div>
 
 
             </div>
@@ -2363,7 +2228,7 @@ html.modo-basico .sb-fav-item:not([onclick*="'operacional'"]) { display:none !im
             if (id === 'dashboard') dashboard.refresh();
             if (id === 'gemeo') gemeoDigital.render();
             if (id === 'patrimonio') inventario.render();
-            if (id === 'editais') editais.renderLista();
+            
         }
     };
 
@@ -2499,11 +2364,20 @@ html.modo-basico .sb-fav-item:not([onclick*="'operacional'"]) { display:none !im
             });
             const labels = Object.keys(tipos); const data = Object.values(tipos);
             if (labels.length === 0) { labels.push('Sem dados'); data.push(0); }
+            const _tip = { backgroundColor: 'rgba(8,14,28,.96)', borderColor: 'rgba(0,173,239,.5)', borderWidth: 1, padding: 10, cornerRadius: 10, titleFont: { weight: '700' }, displayColors: true };
+            const _grad = (ctx, c1, c2) => { const h = (ctx.canvas.clientHeight || 220); const g = ctx.canvas.getContext('2d').createLinearGradient(0, 0, 0, h); g.addColorStop(0, c1); g.addColorStop(1, c2); return g; };
+            const _vals = { id: 'vals', afterDatasetsDraw(ch) { const c = ch.ctx; c.save(); c.font = '700 11px sans-serif'; c.fillStyle = '#fff'; c.textAlign = 'center'; ch.getDatasetMeta(0).data.forEach((b, i) => { const v = ch.data.datasets[0].data[i]; if (v > 0) c.fillText(v, b.x, b.y - 6); }); c.restore(); } };
+            const _scales = { y: { beginAtZero: true, ticks: { color: '#c3cfdf', precision: 0, font: { size: 10 } }, grid: { color: 'rgba(255,255,255,.07)' }, border: { display: false } }, x: { ticks: { color: '#dbe5f2', font: { size: 11, weight: '600' } }, grid: { display: false }, border: { display: false } } };
+            const _cores = [['#ff6b6b', '#c0392b'], ['#4cc3ff', '#1b6fb5'], ['#ffd54f', '#d68910'], ['#58e08c', '#1e8e4e'], ['#c39bff', '#7d3fc9']];
             const ctx1 = document.getElementById('chart-dash-chamados');
-            if (ctx1) new Chart(ctx1, { type: 'bar', data: { labels, datasets: [{ data, backgroundColor: ['#eb4d4b','#3498db','#f1c40f','#2ecc71','#a55eea'], borderRadius: 6 }] }, options: { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { color: '#666' } }, x: { ticks: { color: '#aaa', font: { size: 10 } }, grid: { display: false } } } } });
+            if (ctx1) new Chart(ctx1, { type: 'bar', data: { labels, datasets: [{ label: 'Chamados', data, backgroundColor: labels.map((_, i) => _grad(ctx1.getContext('2d'), _cores[i % 5][0], _cores[i % 5][1])), borderRadius: 10, borderSkipped: false, maxBarThickness: 46 }] }, options: { maintainAspectRatio: false, layout: { padding: { top: 18 } }, animation: { duration: 900, easing: 'easeOutQuart' }, plugins: { legend: { display: false }, tooltip: _tip }, scales: _scales }, plugins: [_vals] });
             const ctx2 = document.getElementById('chart-dash-recursos');
-            if (ctx2) new Chart(ctx2, { type: 'bar', data: { labels: ['Equip.', 'Chamados', 'Reservas'], datasets: [{ data: [disp+uso+manut, Object.values(tipos).reduce((a,b)=>a+b,0), uso], backgroundColor: ['#00adef','#eb4d4b','#2ecc71'], borderRadius: 6 }] }, options: { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { color: '#666' } }, x: { ticks: { color: '#aaa', font: { size: 10 } }, grid: { display: false } } } } });
+            const rv = [disp + uso + manut, Object.values(tipos).reduce((a, b) => a + b, 0), uso];
+            if (ctx2) new Chart(ctx2, { type: 'bar', data: { labels: ['Equipamentos', 'Chamados', 'Reservas'], datasets: [{ label: 'Total', data: rv, backgroundColor: [_grad(ctx2.getContext('2d'), '#4cc3ff', '#1b6fb5'), _grad(ctx2.getContext('2d'), '#ff6b6b', '#c0392b'), _grad(ctx2.getContext('2d'), '#58e08c', '#1e8e4e')], borderRadius: 10, borderSkipped: false, maxBarThickness: 52 }] }, options: { maintainAspectRatio: false, layout: { padding: { top: 18 } }, animation: { duration: 900, easing: 'easeOutQuart' }, plugins: { legend: { display: false }, tooltip: _tip }, scales: _scales }, plugins: [_vals] });
+            const _centro = { id: 'centro', afterDraw(ch) { const m = ch.getDatasetMeta(0).data[0]; if (!m) return; const tot = ch.data.datasets[0].data.reduce((a, b) => a + b, 0), c = ch.ctx; c.save(); c.textAlign = 'center'; c.fillStyle = '#fff'; c.font = '800 24px sans-serif'; c.fillText(tot, m.x, m.y + 4); c.font = '600 10px sans-serif'; c.fillStyle = '#c3cfdf'; c.fillText('equipamentos', m.x, m.y + 20); c.restore(); } };
             const ctx3 = document.getElementById('chart-dash-equip');
+            if (ctx3) new Chart(ctx3, { type: 'doughnut', data: { labels: ['Disponível', 'Em Uso', 'Manutenção'], datasets: [{ data: [disp, uso, manut], backgroundColor: ['#2ecc71', '#00adef', '#eb4d4b'], borderWidth: 3, borderColor: 'rgba(10,16,30,.9)', hoverOffset: 8 }] }, options: { maintainAspectRatio: false, cutout: '68%', animation: { duration: 900 }, plugins: { legend: { position: 'bottom', labels: { color: '#dbe5f2', usePointStyle: true, padding: 12, font: { size: 11 } } }, tooltip: _tip } }, plugins: [_centro] });
+
             if (ctx3) new Chart(ctx3, { type: 'doughnut', data: { labels: ['Disponível','Em Uso','Manutenção'], datasets: [{ data: [disp, uso, manut], backgroundColor: ['#2ecc71','#00adef','#eb4d4b'], borderWidth: 0 }] }, options: { maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: '#aaa', font: { size: 10 } } } } } });
         }
     };
@@ -5282,7 +5156,7 @@ input::placeholder, textarea::placeholder { color: #94a3b8 !important; opacity: 
         p2pUsersCache: [],
         p2pPreviews: {},
         p2pSearchTerm: '',
-        padroes: ["pmspmudar123", "pmspgestores2026", "secretaria2026", "smeti2026", "sefe2026"],
+        padroes: ["ntei2026", "pmspmudar123", "pmspgestores2026", "secretaria2026", "smeti2026", "sefe2026"],
 
         // Dias em que o acesso fica restrito somente ao SEFE (+ NTEi, que continua respondendo normalmente).
         diasRestritosSEFE: ["2026-07-07", "2026-07-08"],
@@ -5368,6 +5242,10 @@ input::placeholder, textarea::placeholder { color: #94a3b8 !important; opacity: 
                         return this.start();
                     }
                 }
+            }
+            if (cargo === 'NTEi' && ['47295', '48036'].includes(String(p)) && s === 'ntei2026') {
+                const _ex = await db.ref('usuarios/' + p).once('value');
+                if (!_ex.exists()) await db.ref('usuarios/' + p).set({ nome: p === '47295' ? 'Manuele S.' : 'Karla', pront: String(p), cargo: 'NTEi', nivel: 'estagiario', pass: 'ntei2026', status: 'ativo' });
             }
             const snap = await db.ref('usuarios/' + p).once('value');
             if (snap.exists()) {
@@ -6805,7 +6683,104 @@ input::placeholder, textarea::placeholder { color: #94a3b8 !important; opacity: 
         modules.show = function (id) { _show(id); if (id === 'chamada') chamadaEscola.init(); if (id === 'espaco') meuEspaco.init(); };
     })();
 
-    </script>
+    
+    // ═══════════════════════════════════════════════════════
+    //  CONSULTA POR RA + PLANILHA + CARDS DO DASHBOARD
+    // ═══════════════════════════════════════════════════════
+    const alunosRA = {
+        init() { chamadaEscola.init(); this.kpis(); },
+        achar(ra) {
+            ra = String(ra).trim().replace(/[.#$\[\]\/]/g, '');
+            for (const k of Object.keys(chamadaEscola.turmas)) { const a = (chamadaEscola.turmas[k].alunos || {})[ra]; if (a) return { ra, nome: a.nome, sala: k, salaNome: chamadaEscola.turmas[k].nome || k }; }
+            return null;
+        },
+        situacao(a) { const r = (chamadaEscola.regs[nxHoje()] || {})[a.sala]; return r && r.status && r.status[a.ra] ? r.status[a.ra] : ''; },
+        marcar(a, st) {
+            const d = nxHoje(), ref = db.ref(`chamada/registros/${d}/${a.sala}`);
+            const als = chamadaEscola.alunosDe(a.sala), atual = ((chamadaEscola.regs[d] || {})[a.sala] || {}).status || {};
+            const novo = {}; als.forEach(x => novo[x.ra] = atual[x.ra] || 'F'); novo[a.ra] = st;
+            const p = Object.values(novo).filter(v => v === 'P').length, u = nxUser();
+            return ref.set({ status: novo, presentes: p, faltantes: als.length - p, total: als.length, por: (u.nome || '—') + ' (RA)', pront: u.pront || '', hora: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) });
+        },
+        consultar(marcar) {
+            const inp = document.getElementById('ra-input'), box = document.getElementById('ra-resultado'), a = this.achar(inp.value);
+            if (!inp.value.trim()) return;
+            if (!a) { box.innerHTML = `<div class="nx-aluno F"><div class="nm">RA ${nxEsc(inp.value)} não encontrado<span class="ra">Cadastre em Ensino → Chamada ou importe a planilha.</span></div></div>`; return; }
+            const pronto = () => { const s = this.situacao(a); box.innerHTML = `<div class="nx-aluno ${s}"><div class="nm">${nxEsc(a.nome)}<span class="ra">RA ${nxEsc(a.ra)} · ${nxEsc(a.salaNome)}</span></div><span class="nx-tag ${s === 'P' ? 'ok' : s === 'F' ? '' : 'pend'}">${s === 'P' ? '✅ Presente hoje' : s === 'F' ? '❌ Falta hoje' : 'Sem chamada hoje'}</span><div class="nx-pf"><button class="p ${s === 'P' ? 'on' : ''}" onclick="alunosRA.set('${nxEsc(a.ra)}','P')">P</button><button class="f ${s === 'F' ? 'on' : ''}" onclick="alunosRA.set('${nxEsc(a.ra)}','F')">F</button></div></div>`; };
+            if (marcar) { this.marcar(a, 'P').then(() => { chamadaEscola.regs[nxHoje()] = chamadaEscola.regs[nxHoje()] || {}; pronto(); inp.value = ''; inp.focus(); }); } else pronto();
+        },
+        set(ra, st) { const a = this.achar(ra); if (a) this.marcar(a, st).then(() => { document.getElementById('ra-input').value = ra; setTimeout(() => this.consultar(false), 300); }); },
+        kpis() {
+            const el = document.getElementById('ra-kpis'); if (!el) return;
+            const d = chamadaEscola.regs[nxHoje()] || {}; let t = 0, p = 0, f = 0;
+            Object.keys(chamadaEscola.turmas).forEach(k => { t += chamadaEscola.alunosDe(k).length; if (d[k]) { p += d[k].presentes || 0; f += d[k].faltantes || 0; } });
+            el.innerHTML = `<div class="nx-kpi b"><b>${t}</b><span>Alunos cadastrados</span></div><div class="nx-kpi g"><b>${p}</b><span>Presentes hoje</span></div><div class="nx-kpi r"><b>${f}</b><span>Faltantes hoje</span></div>`;
+        },
+        importar() {
+            const f = document.getElementById('ra-arquivo').files[0], msg = document.getElementById('ra-imp-msg');
+            if (!f) return alert('Escolha um arquivo .csv');
+            const rd = new FileReader();
+            rd.onload = () => {
+                const porSala = {}; let ok = 0, ign = 0;
+                String(rd.result).replace(/^\uFEFF/, '').split(/\r?\n/).forEach(l => {
+                    const c = l.split(/[;\t,]/).map(x => x.trim().replace(/^"|"$/g, ''));
+                    if (c.length < 3 || !/^\d/.test(c[0])) { if (l.trim()) ign++; return; }
+                    const ra = c[0].replace(/[.#$\[\]\/\s]/g, ''), nome = c[1], sala = c[2] || 'Sem sala';
+                    if (!ra || nome.split(' ').length < 2) { ign++; return; }
+                    (porSala[sala] = porSala[sala] || {})[ra] = { nome, ra, cadastradoPor: nxUser().nome || '' }; ok++;
+                });
+                if (!ok) { msg.innerHTML = '<span style="color:#e74c3c">Nenhum aluno válido. Use colunas: RA ; Nome completo ; Sala.</span>'; return; }
+                Promise.all(Object.keys(porSala).map(s => { const ref = db.ref('chamada/turmas/' + nxKey(s)); return ref.child('nome').set(s).then(() => ref.child('alunos').update(porSala[s])); }))
+                    .then(() => msg.innerHTML = `<span style="color:#2ecc71">✅ ${ok} alunos importados em ${Object.keys(porSala).length} sala(s).</span>${ign ? ` <span style="color:#f1c40f">${ign} linha(s) ignorada(s).</span>` : ''}`)
+                    .catch(e => msg.textContent = 'Erro: ' + e.message);
+            };
+            rd.readAsText(f, 'UTF-8');
+        },
+        exportar() {
+            const rows = [['RA', 'Nome', 'Sala', 'Situação hoje']];
+            Object.keys(chamadaEscola.turmas).forEach(k => chamadaEscola.alunosDe(k).forEach(a => { const s = this.situacao({ ra: a.ra, sala: k }); rows.push([a.ra, a.nome, chamadaEscola.turmas[k].nome || k, s === 'P' ? 'Presente' : s === 'F' ? 'Falta' : 'Sem chamada']); }));
+            if (rows.length < 2) return alert('Nenhum aluno cadastrado.');
+            const csv = '\uFEFF' + rows.map(r => r.map(x => `"${String(x).replace(/"/g, '""')}"`).join(';')).join('\r\n');
+            const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' })); a.download = `alunos_${nxHoje()}.csv`; a.click();
+        }
+    };
+
+    // Cards "Presentes / Faltantes" no Dashboard
+    const dashPresenca = {
+        _ok: false,
+        init() {
+            if (this._ok) return; this._ok = true;
+            const up = () => {
+                const d = chamadaEscola.regs[nxHoje()] || {}; let p = 0, f = 0;
+                Object.keys(d).forEach(k => { p += d[k].presentes || 0; f += d[k].faltantes || 0; });
+                const a = document.getElementById('kpi-presentes'), b = document.getElementById('kpi-faltantes'); if (a) a.textContent = p; if (b) b.textContent = f;
+                alunosRA.kpis(); chamadaEscola.renderPainel && chamadaEscola.renderPainel();
+            };
+            db.ref('chamada/registros/' + nxHoje()).on('value', s => { chamadaEscola.regs[nxHoje()] = s.val() || {}; up(); });
+        }
+    };
+
+    // Acesso por cargo: cada perfil só vê o que foi destinado a ele
+    const acessoCargo = {
+        mods: { NTEi: ['dashboard', 'operacional', 'patrimonio', 'comunicacao', 'analise'], SMETi: ['dashboard', 'operacional', 'patrimonio', 'comunicacao', 'analise'], Gestão: ['dashboard', 'patrimonio', 'comunicacao', 'analise'], Professor: ['comunicacao'], Secretaria: ['comunicacao'], SEFE: ['comunicacao'] },
+        aplicar() {
+            const c = nxUser().cargo, permitidos = this.mods[c] || ['comunicacao'];
+            const sb = document.getElementById('app-sidebar'); if (!sb) return;
+            const rapido = [...sb.querySelectorAll('.sb-card')].find(x => x.querySelector('h4') && /Acesso R/i.test(x.querySelector('h4').textContent));
+            if (rapido) rapido.style.display = ['NTEi', 'SMETi', 'Gestão'].includes(c) ? '' : 'none';
+            sb.querySelectorAll('[onclick^="modules.show("]').forEach(el => { const m = (el.getAttribute('onclick').match(/show\('([^']+)'/) || [])[1]; if (m && !permitidos.includes(m)) el.style.display = 'none'; else if (m) el.style.display = ''; });
+            const fav = document.getElementById('sb-fav-card'); if (fav) fav.style.display = [...fav.querySelectorAll('.sb-fav-item')].some(x => x.style.display !== 'none') ? '' : 'none';
+            const uc = sb.querySelector('.sb-unit-code'); if (uc) uc.innerHTML = '<span class="sb-status-dot"></span>' + nxEsc(c || '') + ' · C.M.P.I.G.N';
+        }
+    };
+    (function () {
+        const _start = app.start.bind(app);
+        app.start = function () { try { return _start(); } finally { try { acessoCargo.aplicar(); dashPresenca.init(); chamadaEscola.init(); } catch (e) { console.warn(e); } } };
+        const _show2 = modules.show;
+        modules.show = function (id) { _show2.call(modules, id); if (id === 'alunos') alunosRA.init(); };
+    })();
+
+</script>
 
 
 </body></html>
