@@ -875,6 +875,30 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
 @media (max-width:700px){.kpi-grid{grid-template-columns:repeat(2,1fr)!important}}
 @media (max-height:820px){#main-system{padding-top:62px!important}.panel{padding:12px!important}.chart-container{height:190px!important}.nx-hero{padding:12px 16px}.module-container .kpi-card{padding:10px}}
 @media (max-width:700px){.p2p-contacts-col{width:34%;min-width:110px}.nx-tabs{overflow-x:auto;flex-wrap:nowrap}.nx-tab{white-space:nowrap}}
+
+/* números legíveis (Orbitron tem zero cortado ⊘) */
+.kpi-num,.sb-mini-stat b,.net-stat b,.perfil-stat-num,.cham-code-big,.cham-card-code,#veloc-num,.nx-kpi b{font-family:'Poppins','Segoe UI',Roboto,Arial,sans-serif!important;font-weight:800!important;font-variant-numeric:tabular-nums lining-nums;letter-spacing:0!important}
+.kpi-num{font-size:1.9rem!important}
+/* celular */
+@media (max-width:700px){
+ body{font-size:14px}
+ #main-system{padding:60px 8px 78px!important}
+ .topbar-logo{display:none}
+ .topbar-search input{font-size:13px}
+ .kpi-grid{gap:8px!important}.kpi-card{padding:10px 6px!important}.kpi-num{font-size:1.5rem!important}.kpi-label{font-size:10px!important}
+ .panel{padding:12px!important;border-radius:14px}
+ .btn{min-height:44px}
+ input,select,textarea{font-size:16px!important}
+ .nx-row>*{min-width:100%!important}.nx-row>.btn{flex:1 1 100%!important}
+ .nx-hero{flex-direction:column;align-items:flex-start}
+ .p2p-chat-wrap,.p2p-layout{flex-direction:column!important;height:auto!important}
+ .p2p-contacts-col{width:100%!important;max-height:220px}.p2p-conv-col{min-height:380px}
+ table{display:block;overflow-x:auto;white-space:nowrap}
+ .chart-container{height:200px!important}
+ #ai-widget,.ai-fab{bottom:74px!important}
+ [style*="grid-template-columns"]:not([style*="auto-fit"]):not(.kpi-grid){grid-template-columns:1fr!important}
+ .topbar-search{display:none!important}
+}
 </style></head>
 <body><button id="sb-toggle" type="button" title="Painel lateral" onclick="document.body.classList.toggle('sb-open')"><i class="fa fa-table-columns"></i></button>
 <script>(function(){var ids=["al-nome", "al-pass", "al-user", "biblio-busca", "biblio-lista", "body-alunos", "busca-aluno-perfil", "card-preview-area", "cart-nome", "cart-ra", "cart-tema", "cart-turma", "carteira-aluno", "chart-smeti-chamados", "chart-smeti-patrimonio", "chart-smeti-reservas", "chart-smeti-terminais", "ed-busca", "ed-categoria", "ed-descricao", "ed-doc-file", "ed-doc-link", "ed-doc-link-box", "ed-doc-upload-box", "ed-filtro-status", "ed-lista", "ed-numero", "ed-prazo", "ed-tab-link", "ed-tab-upload", "ed-titulo", "ed-upload-status", "edm-admin-busca-email", "edm-admin-lista-contas", "edm-admin-resultado", "funcao-acao-tipo", "funcao-acao-valor", "funcao-ativa", "funcao-btn-cancelar", "funcao-btn-salvar", "funcao-id", "funcao-menu-vinculado", "funcao-nome", "funcao-perfil", "funcao-prontuarios", "gam-aluno", "gam-badge", "gam-lista", "gen-disc", "gen-output", "gen-serie", "gen-tipo", "hist-prof-container", "hp-cert", "hp-cert-data", "hp-cert-horas", "hp-cert-nome", "hp-cursos", "hp-horas", "hp-lista", "lista-funcoes-criadas", "lista-menus-criados", "lista-riscos-escolares", "lista-salas", "lista-trilhas", "menu-ativo", "menu-btn-cancelar", "menu-btn-salvar", "menu-categoria", "menu-icone", "menu-id", "menu-nome", "menu-perfis-checks", "menu-prontuarios", "mod-alunos", "mod-editais", "mod-formacao", "painel-criar-edital", "panel-criador-funcoes", "panel-criador-menus", "panel-ntei-edm", "panel-smeti", "perfil-carteira", "perfil360-container", "port-aluno", "port-desc", "port-tipo", "port-titulo", "portfolio-lista", "proj-lista", "proj-nome", "proj-obj", "proj-periodo", "proj-turma", "sala-disc", "sala-mural", "sala-nome", "smeti-filtros", "smeti-kpi-atendimento", "smeti-kpi-chamados-abertos", "smeti-kpi-chamados-trend", "smeti-kpi-devolucao", "smeti-kpi-grid", "smeti-kpi-manutencao", "smeti-kpi-reservas-hoje", "smeti-kpi-resolvidos-hoje", "smeti-kpi-tempo-medio", "smeti-kpi-terminais", "smeti-kpi-terminais-trend", "smeti-live-dot", "smeti-rede-status", "student-form-container", "student-lock-message", "student-login-panel", "trilha-carga", "trilha-desc", "trilha-nome"],g=document.getElementById.bind(document),ph={};document.getElementById=function(i){var e=g(i);if(e||ids.indexOf(i)<0)return e;return ph[i]||(ph[i]=document.createElement('div'))};})();</script>
@@ -6966,6 +6990,18 @@ input::placeholder, textarea::placeholder { color: #94a3b8 !important; opacity: 
         app.start = function () { try { return _st2(); } finally { try { app.escutarGrupos(); } catch (e) { console.warn(e); } } };
     })();
 
+
+    // Fallback de ícones: se o filtro da escola bloquear o Font Awesome, usa emojis
+    window.addEventListener('load', () => setTimeout(() => {
+        const i = document.createElement('i'); i.className = 'fa fa-user'; i.style.display = 'none'; document.body.appendChild(i);
+        const c = getComputedStyle(i, '::before').content; i.remove();
+        if (c && c !== 'none' && c !== 'normal' && c !== '""') return;
+        const M = { spin: '⏳', headset: '🎧', xmark: '✖', times: '✖', users: '👥', trash: '🗑️', 'paper-plane': '➤', 'user-plus': '➕', 'shield-halved': '🛡️', robot: '🤖', 'chevron-down': '▾', brain: '🧠', laptop: '💻', comments: '💬', 'user-shield': '🛡️', 'triangle-exclamation': '⚠️', search: '🔍', microphone: '🎤', gauge: '⏱️', 'chart-line': '📈', tools: '🛠️', map: '🗺️', lock: '🔒', 'graduation-cap': '🎓', edit: '✏️', desktop: '🖥️', 'calendar-plus': '📅', bars: '☰', 'arrow-left': '←', 'volume-high': '🔊', video: '📹', 'user-lock': '🔒', 'user-gear': '⚙️', 'user-circle': '👤', ticket: '🎫', stop: '⏹', phone: '📞', pen: '✏️', 'list-check': '✅', key: '🔑', 'floppy-disk': '💾', download: '⬇', upload: '⬆', cloud: '☁️', clock: '🕘', 'clipboard-user': '📋', 'circle-exclamation': '❗', 'chart-pie': '📊', 'calendar-check': '📅', 'boxes-stacked': '📦', 'book-open': '📖', book: '📕', bell: '🔔', wifi: '📶', 'user-check': '✅', 'user-xmark': '❌', 'user-graduate': '🎓', 'table-columns': '▤', 'right-from-bracket': '🚪', check: '✔', 'check-double': '✔✔', 'wand-magic-sparkles': '✨', 'file-excel': '📗', barcode: '▮▯▮', 'clipboard-list': '📋' };
+        let s = '.fa,.fas,.far,.fab{font-style:normal;display:inline-block}.fa-spin{animation:nxspin 1s linear infinite}@keyframes nxspin{to{transform:rotate(360deg)}}';
+        Object.keys(M).forEach(k => s += `.fa-${k}::before{content:"${M[k]}";font-family:sans-serif}`);
+        const st = document.createElement('style'); st.textContent = s; document.head.appendChild(st);
+        console.warn('Font Awesome bloqueado — usando ícones alternativos');
+    }, 1500));
 </script>
 
 
