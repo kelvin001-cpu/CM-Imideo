@@ -1,7 +1,7 @@
 <html lang="pt-br" style="--aviso-altura: 0px;"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programa Conect - NTEi IMÍDEO GIUSEPPE</title>
+    <title>Programa Conect - NTEi</title>
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -497,7 +497,7 @@
         /* ═══════════════════════════════════════════════════════
            REFORMA NTEi — NAVEGAÇÃO POR ÁREAS
         ═══════════════════════════════════════════════════════ */
-        .area-nav { display: flex; gap: 3px; }
+        .area-nav { display: flex; gap: 2px; }
         .area-btn { position: relative; background: transparent; border: none; color: var(--text-muted); font-family: 'Poppins', sans-serif; font-size: 11.5px; font-weight: 600; padding: 8px 10px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: background .15s, color .15s; white-space: nowrap; }
         .area-btn:hover, .area-btn:focus-visible { background: rgba(255,255,255,0.08); color: #fff; }
         .area-btn.area-active { background: rgba(0,173,239,0.16); color: var(--prof); }
@@ -772,44 +772,72 @@ button, .btn, .topbar-btn, .sb-nav-item, .sb-quick-btn {
 @media (max-width:450px) { #login-screen .im-initial { padding-top:125px; } #login-screen .im-grid { grid-template-columns:1fr; max-width:330px; } #login-screen .im-card { min-height:170px; } }
 </style>
 <style id="imideo-brand-skin">
-/* Skin de marca do Imídeo Giuseppe (navy + dourado) na barra superior e na lateral.
+/* Skin de marca da escola (cores vêm de ESCOLA.cores; padrão navy + dourado) na barra superior e na lateral.
    Não altera as cores funcionais dos cargos (var(--prof)/--gestao/etc.), só a "moldura". */
-#topbar { background: linear-gradient(90deg,#071a33,#0d3161) !important; border-bottom: 2px solid #f4c521 !important; }
-#topbar .topbar-logo { color:#f4c521 !important; }
-#topbar .area-btn.area-active, #topbar .area-btn:hover { color:#f4c521 !important; }
+#topbar { background: linear-gradient(90deg,var(--escola-topo-1,#071a33),var(--escola-topo-2,#0d3161)) !important; border-bottom: 2px solid var(--escola-destaque,#f4c521) !important; }
+#topbar .topbar-logo { color:var(--escola-destaque,#f4c521) !important; }
+#topbar .area-btn.area-active, #topbar .area-btn:hover { color:var(--escola-destaque,#f4c521) !important; }
 #app-sidebar .sb-card { border-color: rgba(244,197,33,.22) !important; }
-#app-sidebar .sb-unit-badge { background:#f4c521 !important; color:#07152d !important; }
-#app-sidebar .sb-card h4 { color:#f4c521 !important; }
+#app-sidebar .sb-unit-badge { background:var(--escola-destaque,#f4c521) !important; color:var(--escola-escuro,#07152d) !important; }
+#app-sidebar .sb-card h4 { color:var(--escola-destaque,#f4c521) !important; }
 #app-sidebar .sb-unit-name { color:#fff !important; }
 
 /* ══════════ MODO BÁSICO: Professor / Gestão / Secretaria (tudo, exceto NTEi) ══════════
    Objetivo: navegação enxuta e focada — Início (Central de Suporte), Suporte e Comunicação.
    Áreas administrativas/de criação (Ensino, Escola, Pessoas, Gestão, Central NTEi) ficam
    reservadas ao cargo NTEi, que continua vendo tudo normalmente. */
-html.modo-basico #topbar-nav .area-item:has(> .area-btn[data-area="ensino"]),
-html.modo-basico #topbar-nav .area-item:has(> .area-btn[data-area="escola"]),
-html.modo-basico #topbar-nav .area-item:has(> .area-btn[data-area="pessoas"]),
-html.modo-basico #topbar-nav .area-item:has(> .area-btn[data-area="gestao"]) { display:none !important; }
+html.modo-basico #topbar-nav .area-item[data-modulo]:not([data-basico]) { display:none !important; }
+html.modo-basico #topbar-nav .area-dropdown-item.nav-avancado { display:none !important; }
+html.modo-basico #topbar-nav .area-item.menu-liberado[data-modulo] { display:block !important; }
+html.modo-basico .sb-nav-item.menu-liberado[data-modulo] { display:flex !important; }
+/* ═══ NTEi padrão — barra compacta com 11 grupos ═══ */
+#topbar-nav { min-width:0; flex-shrink:1; }
+.area-btn { padding:8px 8px; font-size:11px; }
+.dash-escola-head { display:flex; align-items:center; gap:14px; flex-wrap:wrap; padding:14px 18px; margin-bottom:14px; border-radius:14px; background:var(--glass-bg); border:1px solid rgba(255,255,255,.1); border-left:4px solid var(--escola-destaque,#f4c521); box-shadow:var(--card-shadow); }
+.dash-escola-logo { width:50px; height:50px; border-radius:12px; background:var(--escola-destaque,#f4c521); color:var(--escola-escuro,#07152d); display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; overflow:hidden; }
+.dash-escola-txt { flex:1; min-width:200px; }
+.dash-escola-txt b { display:block; font-size:16px; }
+.dash-escola-txt span { font-size:11.5px; color:var(--text-muted); }
+.dash-rede-pill { display:inline-flex; align-items:center; gap:7px; padding:6px 12px; border-radius:99px; font-size:11px; font-weight:700; background:rgba(46,204,113,.15); color:#2ecc71; }
+.dash-rede-pill.off { background:rgba(235,77,75,.15); color:var(--ntei); }
+.dash-atalhos { display:grid; grid-template-columns:repeat(auto-fit,minmax(105px,1fr)); gap:10px; margin-bottom:14px; }
+.dash-atalho { cursor:pointer; text-align:center; padding:12px 6px; border-radius:12px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); font-size:11px; transition:.15s; }
+.dash-atalho:hover { transform:translateY(-2px); border-color:var(--escola-destaque,#f4c521); }
+.dash-atalho i { display:block; font-size:18px; margin-bottom:6px; }
+.dash-info-row { display:flex; justify-content:space-between; gap:8px; padding:6px 0; border-bottom:1px solid rgba(255,255,255,.05); font-size:11.5px; }
+.dash-info-row:last-child { border-bottom:none; }
+.dash-info-row span { color:var(--text-muted); }
+.dash-comun-item { padding:7px 0; border-bottom:1px solid rgba(255,255,255,.05); font-size:11.5px; }
+.dash-comun-item:last-child { border-bottom:none; }
+.dash-comun-item small { display:block; color:var(--text-muted); font-size:10px; }
+.chat-ia-box { height:380px; overflow-y:auto; background:rgba(0,0,0,.3); border-radius:10px; padding:12px; display:flex; flex-direction:column; gap:8px; margin-bottom:10px; }
+.chat-ia-msg { max-width:86%; padding:9px 12px; border-radius:12px; font-size:12.5px; line-height:1.5; white-space:pre-wrap; word-break:break-word; }
+.chat-ia-msg.eu { align-self:flex-end; background:var(--prof); color:#fff; }
+.chat-ia-msg.ia { align-self:flex-start; background:rgba(255,255,255,.08); }
+@media (max-width:1600px) { .area-btn > i:first-child { display:none; } .topbar-search { max-width:200px; } .topbar-user { display:none; } }
+@media (max-width:1400px) { .topbar-logo { display:none; } .area-btn { padding:8px 6px; font-size:10.5px; } }
+@media (max-width:1100px) { .area-btn > i:first-child { display:inline-block; } .topbar-user { display:inline; } }
 
 html.modo-basico .sb-nav-item:not([onclick*="'operacional'"]):not([onclick*="'comunicacao'"]) { display:none !important; }
 html.modo-basico .sb-quick-btn:not([onclick*="'operacional'"]) { display:none !important; }
 html.modo-basico .sb-fav-item:not([onclick*="'operacional'"]) { display:none !important; }
 
 .bh-hero { text-align:center; padding:26px 16px 6px; }
-.bh-hero-icon { width:62px; height:62px; margin:0 auto 14px; border-radius:50%; background:linear-gradient(145deg,#0d3161,#07152d);
-  border:2px solid #f4c521; display:flex; align-items:center; justify-content:center; font-size:26px; color:#f4c521; }
+.bh-hero-icon { width:62px; height:62px; margin:0 auto 14px; border-radius:50%; background:linear-gradient(145deg,var(--escola-topo-2,#0d3161),var(--escola-escuro,#07152d));
+  border:2px solid var(--escola-destaque,#f4c521); display:flex; align-items:center; justify-content:center; font-size:26px; color:var(--escola-destaque,#f4c521); }
 .bh-hero h1 { margin:0 0 6px; font-family:'Poppins',sans-serif; font-size:24px; color:#fff; }
 .bh-hero p { margin:0; color:var(--text-muted); font-size:13px; }
 .bh-grid { max-width:980px; margin:22px auto 10px; display:grid; grid-template-columns:repeat(4,1fr); gap:16px; padding:0 16px; }
 .bh-card { cursor:pointer; padding:22px 16px; border-radius:14px; text-align:center; background:var(--glass-bg,rgba(22,27,34,.75));
   border:1px solid rgba(244,197,33,.22); box-shadow:var(--card-shadow,0 10px 30px rgba(0,0,0,.35)); transition:transform .18s ease, border-color .18s ease; }
-.bh-card:hover { transform:translateY(-4px); border-color:#f4c521; }
+.bh-card:hover { transform:translateY(-4px); border-color:var(--escola-destaque,#f4c521); }
 .bh-card i { font-size:28px; margin-bottom:10px; display:block; }
 .bh-card h3 { margin:0 0 8px; font-size:14px; color:#fff; }
 .bh-card p { margin:0; font-size:11.5px; line-height:1.5; color:var(--text-muted); }
 .bh-c1 i { color:var(--ntei); } .bh-c2 i { color:var(--cad); } .bh-c3 i { color:var(--secre); } .bh-c4 i { color:var(--prof); }
 @media (max-width:900px) { .bh-grid { grid-template-columns:repeat(2,1fr); } }
 @media (max-width:480px) { .bh-grid { grid-template-columns:1fr; } .bh-hero h1 { font-size:20px; } }
+</style>
 <style id="novos-modulos-css">
 .nx-hero{display:flex;align-items:center;gap:16px;padding:20px 22px;border-radius:16px;margin-bottom:16px;background:linear-gradient(120deg,rgba(0,173,239,.22),rgba(46,204,113,.14));border:1px solid rgba(0,173,239,.35)}
 .nx-hero .nx-ico{width:54px;height:54px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;background:rgba(0,173,239,.25);color:#fff;flex-shrink:0}
@@ -848,7 +876,7 @@ html.modo-basico .sb-fav-item:not([onclick*="'operacional'"]) { display:none !im
 .nx-circle{width:110px;height:110px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;flex-shrink:0}
 </style>
 
-</style><style id="chromebook-css">
+<style id="chromebook-css">
 html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
 .nx-two{display:grid;grid-template-columns:minmax(300px,380px) 1fr;gap:15px}
 #sb-toggle{display:none}
@@ -858,7 +886,7 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
  #topbar{flex-wrap:nowrap!important;gap:8px}
  .topbar-search{flex:1;min-width:0}
  #topbar-nav{display:none!important}
- #topbar-nav.mobile-open{display:flex!important;flex-direction:column;position:fixed;top:56px;left:0;right:0;z-index:9500;background:rgba(7,18,36,.98);padding:10px;gap:4px;max-height:calc(100vh - 60px);overflow-y:auto;border-bottom:2px solid #f4c521;box-shadow:0 14px 34px rgba(0,0,0,.6)}
+ #topbar-nav.mobile-open{display:flex!important;flex-direction:column;position:fixed;top:56px;left:0;right:0;z-index:9500;background:rgba(7,18,36,.98);padding:10px;gap:4px;max-height:calc(100vh - 60px);overflow-y:auto;border-bottom:2px solid var(--escola-destaque,#f4c521);box-shadow:0 14px 34px rgba(0,0,0,.6)}
  #topbar-nav>*{width:100%}
  #topbar-nav .area-btn{width:100%;text-align:left;padding:13px 14px;font-size:13px;color:#fff}
  #topbar-nav .area-dropdown{position:static!important;min-width:0!important;margin:2px 0 8px 14px;box-shadow:none!important}
@@ -866,7 +894,7 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
  body.sb-open #app-sidebar{transform:none}
  body.sb-open #sb-toggle{left:calc(min(300px,86vw) + 10px)}
  #app-sidebar{padding-bottom:70px!important}
- #sb-toggle{display:flex;position:fixed;left:12px;bottom:14px;z-index:9450;width:48px;height:48px;border-radius:50%;border:2px solid #f4c521;background:#0d3161;color:#fff;font-size:18px;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.5)}
+ #sb-toggle{display:flex;position:fixed;left:12px;bottom:14px;z-index:9450;width:48px;height:48px;border-radius:50%;border:2px solid var(--escola-destaque,#f4c521);background:var(--escola-topo-2,#0d3161);color:#fff;font-size:18px;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.5)}
  .nx-two{grid-template-columns:1fr}
  .dash-grid-2col{grid-template-columns:1fr!important}
  .p2p-chat-wrap{height:420px}
@@ -899,12 +927,54 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
  [style*="grid-template-columns"]:not([style*="auto-fit"]):not(.kpi-grid){grid-template-columns:1fr!important}
  .topbar-search{display:none!important}
 }
-</style></head>
+</style><style>@keyframes toastIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}</style></head>
 <body><button id="sb-toggle" type="button" title="Painel lateral" onclick="document.body.classList.toggle('sb-open')"><i class="fa fa-table-columns"></i></button>
+<script id="escola-config">
+/* ═══════════════════════════════════════════════════════════════════
+   IDENTIDADE DA ESCOLA — único bloco a editar ao instanciar outro colégio.
+   Estrutura, menu, módulos e permissões do NTEi são idênticos em todas as escolas.
+   Imagens: fundo do app (CSS "body") e fundo do login (#imideo-login-screen) ficam
+   nos blocos <style> marcados "IDENTIDADE DA ESCOLA".
+   ═══════════════════════════════════════════════════════════════════ */
+const ESCOLA = {
+    id: 'imideo',                                   // chave técnica (sessão local e prefixo no banco)
+    nome: 'C.M.P. Imídeo Giuseppe Nérici',
+    nomeCompleto: 'Colégio Municipal Imídeo Giuseppe Nérici',
+    nomeCurto: 'Imídeo Giuseppe',
+    sigla: 'C.M.P.I.G.N',
+    nomeNTEi: 'NTEi Imídeo Giuseppe',
+    tituloPagina: 'Programa Conect - NTEi IMÍDEO GIUSEPPE',
+    programa: 'Programa CONECT',
+    cidade: 'Santana de Parnaíba',
+    logo: null,                                     // URL/dataURI do logo (opcional; sem logo usa o ícone padrão)
+    cores: { destaque: '#f4c521', topo1: '#071a33', topo2: '#0d3161', escuro: '#07152d' }
+};
+ESCOLA.chaveSessao = 'nteiSession_' + ESCOLA.id;
+ESCOLA.dbPrefix = 'unidades/' + ESCOLA.id;
+const escolaIdentidade = {
+    aplicar() {
+        const r = document.documentElement.style, c = ESCOLA.cores || {};
+        if (c.destaque) r.setProperty('--escola-destaque', c.destaque);
+        if (c.topo1) r.setProperty('--escola-topo-1', c.topo1);
+        if (c.topo2) r.setProperty('--escola-topo-2', c.topo2);
+        if (c.escuro) r.setProperty('--escola-escuro', c.escuro);
+        document.title = ESCOLA.tituloPagina;
+        document.querySelectorAll('[data-escola]').forEach(el => {
+            const v = ESCOLA[el.getAttribute('data-escola')];
+            if (v == null) return;
+            if (el.tagName === 'INPUT') el.value = v; else el.textContent = v;
+        });
+        document.querySelectorAll('[data-escola-logo]').forEach(el => {
+            if (ESCOLA.logo) el.innerHTML = '<img src="' + ESCOLA.logo + '" alt="" style="width:100%;height:100%;object-fit:contain;border-radius:inherit">';
+        });
+    }
+};
+document.addEventListener('DOMContentLoaded', () => escolaIdentidade.aplicar());
+</script>
 <script>(function(){var ids=["al-nome", "al-pass", "al-user", "biblio-busca", "biblio-lista", "body-alunos", "busca-aluno-perfil", "card-preview-area", "cart-nome", "cart-ra", "cart-tema", "cart-turma", "carteira-aluno", "chart-smeti-chamados", "chart-smeti-patrimonio", "chart-smeti-reservas", "chart-smeti-terminais", "ed-busca", "ed-categoria", "ed-descricao", "ed-doc-file", "ed-doc-link", "ed-doc-link-box", "ed-doc-upload-box", "ed-filtro-status", "ed-lista", "ed-numero", "ed-prazo", "ed-tab-link", "ed-tab-upload", "ed-titulo", "ed-upload-status", "edm-admin-busca-email", "edm-admin-lista-contas", "edm-admin-resultado", "funcao-acao-tipo", "funcao-acao-valor", "funcao-ativa", "funcao-btn-cancelar", "funcao-btn-salvar", "funcao-id", "funcao-menu-vinculado", "funcao-nome", "funcao-perfil", "funcao-prontuarios", "gam-aluno", "gam-badge", "gam-lista", "gen-disc", "gen-output", "gen-serie", "gen-tipo", "hist-prof-container", "hp-cert", "hp-cert-data", "hp-cert-horas", "hp-cert-nome", "hp-cursos", "hp-horas", "hp-lista", "lista-funcoes-criadas", "lista-menus-criados", "lista-riscos-escolares", "lista-salas", "lista-trilhas", "menu-ativo", "menu-btn-cancelar", "menu-btn-salvar", "menu-categoria", "menu-icone", "menu-id", "menu-nome", "menu-perfis-checks", "menu-prontuarios", "mod-alunos", "mod-editais", "mod-formacao", "painel-criar-edital", "panel-criador-funcoes", "panel-criador-menus", "panel-ntei-edm", "panel-smeti", "perfil-carteira", "perfil360-container", "port-aluno", "port-desc", "port-tipo", "port-titulo", "portfolio-lista", "proj-lista", "proj-nome", "proj-obj", "proj-periodo", "proj-turma", "sala-disc", "sala-mural", "sala-nome", "smeti-filtros", "smeti-kpi-atendimento", "smeti-kpi-chamados-abertos", "smeti-kpi-chamados-trend", "smeti-kpi-devolucao", "smeti-kpi-grid", "smeti-kpi-manutencao", "smeti-kpi-reservas-hoje", "smeti-kpi-resolvidos-hoje", "smeti-kpi-tempo-medio", "smeti-kpi-terminais", "smeti-kpi-terminais-trend", "smeti-live-dot", "smeti-rede-status", "student-form-container", "student-lock-message", "student-login-panel", "trilha-carga", "trilha-desc", "trilha-nome"],g=document.getElementById.bind(document),ph={};document.getElementById=function(i){var e=g(i);if(e||ids.indexOf(i)<0)return e;return ph[i]||(ph[i]=document.createElement('div'))};})();</script>
-    <div id="alert-ribbon">⚠️ AVISO NTEi: <span id="alert-text">Sincronizando...</span> <i id="alert-ribbon-close" class="fa fa-times hidden" style="cursor:pointer; margin-left:14px" onclick="app.removerAvisoGeral()" title="Remover aviso"></i></div>
+    <div id="alert-ribbon" style="display: none;">⚠️ AVISO NTEi: <span id="alert-text">Sincronizando...</span> <i id="alert-ribbon-close" class="fa fa-times hidden" style="cursor:pointer; margin-left:14px" onclick="app.removerAvisoGeral()" title="Remover aviso"></i></div>
 
-    <div id="lock-overlay">
+    <div id="lock-overlay" style="display: none;">
         <i class="fa fa-radiation fa-5x fa-spin" style="color:var(--ntei); margin-bottom:20px"></i>
         <h1 style="font-family: Orbitron">SISTEMA EM MANUTENÇÃO</h1>
         <p>O NTEi está atualizando os servidores para melhor atendê-lo.</p>
@@ -975,61 +1045,56 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
             <div class="search-results-dropdown" id="search-dropdown" style="display: none;"></div>
         </div>
         <div class="area-nav" id="topbar-nav">
-            <div class="area-item">
+            <div class="area-item" data-modulo="dashboard" data-basico="1">
                 <button class="area-btn area-active" data-area="inicio" onclick="areaNav.click(this,'dashboard')"><i class="fa fa-house"></i> Início</button>
             </div>
-            <div class="area-item">
-                <button class="area-btn" data-area="ensino" onclick="areaNav.toggle(this,'ensino')"><i class="fa fa-graduation-cap"></i> Ensino <i class="fa fa-chevron-down area-caret"></i></button>
-                <div class="area-dropdown" id="area-dd-ensino">
-                    <div class="area-dropdown-item" onclick="areaNav.go('pedagogico','ensino')"><i class="fa fa-book"></i> Pedagógico (turmas, planejamento, avaliações)</div>
-                    <div class="area-dropdown-item" onclick="areaNav.go('alunos','ensino')"><i class="fa fa-users"></i> Alunos</div>
-                    <div class="area-dropdown-item" onclick="areaNav.go('chamada','ensino')"><i class="fa fa-clipboard-user"></i> Chamada — Equipe Escolar</div>
-                    <div class="area-dropdown-item" onclick="areaNav.go('operacional','ensino','panel-plataformas')"><i class="fa fa-book-open"></i> Plataformas Educacionais</div>
+            <div class="area-item" data-modulo="operacional" data-basico="1">
+                <button class="area-btn" data-area="operacional" onclick="areaNav.toggle(this,'operacional')"><i class="fa fa-headset"></i> Operacional <i class="fa fa-chevron-down area-caret"></i></button>
+                <div class="area-dropdown" id="area-dd-operacional">
+                    <div class="area-dropdown-item" data-modulo="operacional" onclick="areaNav.go('operacional','operacional','panel-chamados-ntei')"><i class="fa fa-ticket"></i> Atendimento — Chamados NTEi</div>
+                    <div class="area-dropdown-item" data-modulo="operacional" onclick="areaNav.go('operacional','operacional','panel-reservas')"><i class="fa fa-calendar-plus"></i> Reservas de Equipamentos e Salas</div>
+                    <div class="area-dropdown-item nav-avancado" data-modulo="operacional" onclick="areaNav.go('operacional','operacional','panel-plataformas')"><i class="fa fa-book-open"></i> Plataformas Educacionais</div>
                 </div>
             </div>
-            <div class="area-item">
-                <button class="area-btn" data-area="escola" onclick="areaNav.toggle(this,'escola')"><i class="fa fa-school"></i> Escola <i class="fa fa-chevron-down area-caret"></i></button>
-                <div class="area-dropdown" id="area-dd-escola">
-                    <div class="area-dropdown-item" onclick="areaNav.go('operacional','escola')"><i class="fa fa-calendar-plus"></i> Reservas de Equipamentos e Salas</div>
-                    <div class="area-dropdown-item" onclick="areaNav.go('patrimonio','escola')"><i class="fa fa-laptop"></i> Patrimônio</div>
-                    <div class="area-dropdown-item" onclick="areaNav.go('gemeo','escola')"><i class="fa fa-map"></i> Gêmeo Digital da Escola</div>
+            <div class="area-item" data-modulo="pedagogico">
+                <button class="area-btn" data-area="pedagogico" onclick="areaNav.toggle(this,'pedagogico')"><i class="fa fa-book"></i> Pedagógico <i class="fa fa-chevron-down area-caret"></i></button>
+                <div class="area-dropdown" id="area-dd-pedagogico">
+                    <div class="area-dropdown-item" data-modulo="pedagogico" onclick="areaNav.go('pedagogico','pedagogico')"><i class="fa fa-book"></i> Turmas, planejamento e avaliações</div>
+                    <div class="area-dropdown-item" data-modulo="chamada" onclick="areaNav.go('chamada','pedagogico')"><i class="fa fa-clipboard-user"></i> Chamada — Equipe Escolar</div>
                 </div>
             </div>
-            <div class="area-item">
-                <button class="area-btn" data-area="pessoas" onclick="areaNav.toggle(this,'pessoas')"><i class="fa fa-people-group"></i> Pessoas <i class="fa fa-chevron-down area-caret"></i></button>
-                <div class="area-dropdown" id="area-dd-pessoas">
-                    <div class="area-dropdown-item" onclick="areaNav.go('alunos','pessoas')"><i class="fa fa-user-graduate"></i> Alunos</div>
-                    <div class="area-dropdown-item ntei-only hidden" onclick="areaNav.go('admin','pessoas','panel-usuarios-ntei')"><i class="fa fa-user-shield"></i> Usuários e Contas</div>
-                </div>
+            <div class="area-item" data-modulo="alunos">
+                <button class="area-btn" data-area="alunos" onclick="areaNav.click(this,'alunos')"><i class="fa fa-user-graduate"></i> Alunos</button>
             </div>
-            <div class="area-item">
+            <div class="area-item" data-modulo="patrimonio">
+                <button class="area-btn" data-area="patrimonio" onclick="areaNav.click(this,'patrimonio')"><i class="fa fa-laptop"></i> Patrimônio</button>
+            </div>
+            <div class="area-item" data-modulo="gemeo">
+                <button class="area-btn" data-area="gemeo" onclick="areaNav.click(this,'gemeo')"><i class="fa fa-map"></i> Gêmeo Digital</button>
+            </div>
+            <div class="area-item" data-modulo="comunicacao" data-basico="1">
                 <button class="area-btn" data-area="comunicacao" onclick="areaNav.click(this,'comunicacao')"><i class="fa fa-comments"></i> Comunicação</button>
             </div>
-            <div class="area-item">
-                <button class="area-btn" data-area="suporte" onclick="areaNav.toggle(this,'suporte')"><i class="fa fa-headset"></i> Suporte <i class="fa fa-chevron-down area-caret"></i></button>
-                <div class="area-dropdown" id="area-dd-suporte">
-                    <div class="area-dropdown-item" onclick="areaNav.go('operacional','suporte')"><i class="fa fa-ticket"></i> Chamados NTEi</div>
-                    <div class="area-dropdown-hint">Abrir chamado, acompanhar, emergências</div>
-                </div>
+            <div class="area-item" data-modulo="editais">
+                <button class="area-btn" data-area="editais" onclick="areaNav.click(this,'editais')"><i class="fa fa-file-signature"></i> Editais</button>
             </div>
-            <div class="area-item">
-                <button class="area-btn" data-area="gestao" onclick="areaNav.toggle(this,'gestao')"><i class="fa fa-chart-line"></i> Gestão <i class="fa fa-chevron-down area-caret"></i></button>
-                <div class="area-dropdown" id="area-dd-gestao">
-                    <div class="area-dropdown-item" onclick="areaNav.go('analise','gestao')"><i class="fa fa-brain"></i> Análise e Relatórios (IA)</div>
-                    <div class="area-dropdown-item" onclick="areaNav.go('patrimonio','gestao')"><i class="fa fa-boxes-stacked"></i> Patrimônio</div>
-                    <div class="area-dropdown-item" onclick="areaNav.go('gemeo','gestao')"><i class="fa fa-map"></i> Gêmeo Digital</div>
-                </div>
+            <div class="area-item" data-modulo="analise">
+                <button class="area-btn" data-area="analise" onclick="areaNav.click(this,'analise')"><i class="fa fa-brain"></i> Análise IA</button>
             </div>
-            <div class="area-item ntei-only hidden">
-                <button class="area-btn ntei-area" data-area="ntei" onclick="areaNav.toggle(this,'ntei')"><i class="fa fa-shield-halved"></i> Central NTEi <i class="fa fa-chevron-down area-caret"></i></button>
-                <div class="area-dropdown" id="area-dd-ntei">
-                    <div class="area-dropdown-item" onclick="areaNav.go('admin','ntei','panel-admin-ntei')"><i class="fa fa-gauge"></i> Visão Geral / Controle Master</div>
-                    <div class="area-dropdown-item" onclick="areaNav.go('admin','ntei','panel-usuarios-ntei')"><i class="fa fa-user-shield"></i> Pessoas &amp; Contas</div>
-                    <div class="area-dropdown-item" onclick="areaNav.go('admin','ntei','permind-menus-list')"><i class="fa fa-lock"></i> Permissões</div>
-                    <div class="area-dropdown-item" onclick="areaNav.go('operacional','ntei')"><i class="fa fa-ticket"></i> Atendimento (todos os chamados)</div>
-                    <div class="area-dropdown-item" onclick="areaNav.go('espaco','ntei')"><i class="fa fa-user-gear"></i> Meu Espaço (Registros · Desempenho · Agenda)</div>
-                    <div class="area-dropdown-item" onclick="areaNav.go('admin','ntei','panel-veyon-master')"><i class="fa fa-desktop"></i> Tecnologia (Veyon / Rede)</div>
-                    <div class="area-dropdown-item" onclick="areaNav.go('admin','ntei','panel-permissoes-individuais')"><i class="fa fa-clipboard-list"></i> Controle / Auditoria</div>
+            <div class="area-item" data-modulo="chatgpt">
+                <button class="area-btn" data-area="chatgpt" onclick="areaNav.click(this,'chatgpt')"><i class="fa fa-robot"></i> AI ChatGPT</button>
+            </div>
+            <div class="area-item ntei-only hidden" data-modulo="admin">
+                <button class="area-btn ntei-area" data-area="admin" onclick="areaNav.toggle(this,'admin')"><i class="fa fa-shield-halved"></i> Admin NTEi <i class="fa fa-chevron-down area-caret"></i></button>
+                <div class="area-dropdown" id="area-dd-admin">
+                    <div class="area-dropdown-item" data-modulo="admin" onclick="areaNav.go('admin','admin','panel-admin-ntei')"><i class="fa fa-gauge"></i> Visão Geral / Controle Master</div>
+                    <div class="area-dropdown-item" data-modulo="admin" onclick="areaNav.go('admin','admin','panel-usuarios-ntei')"><i class="fa fa-user-shield"></i> Pessoas &amp; Contas</div>
+                    <div class="area-dropdown-item" data-modulo="admin" onclick="areaNav.go('admin','admin','permind-menus-list')"><i class="fa fa-lock"></i> Permissões</div>
+                    <div class="area-dropdown-item" data-modulo="operacional" onclick="areaNav.go('operacional','admin')"><i class="fa fa-ticket"></i> Atendimento (todos os chamados)</div>
+                    <div class="area-dropdown-item" data-modulo="espaco" onclick="areaNav.go('espaco','admin')"><i class="fa fa-user-gear"></i> Meu Espaço (Registros · Desempenho · Agenda)</div>
+                    <div class="area-dropdown-item" data-modulo="admin" onclick="areaNav.go('admin','admin','panel-veyon-master')"><i class="fa fa-desktop"></i> Tecnologia (Veyon / Rede)</div>
+                    <div class="area-dropdown-item" data-modulo="admin" onclick="areaNav.go('admin','admin','panel-ia-config')"><i class="fa fa-robot"></i> Configuração de IA</div>
+                    <div class="area-dropdown-item" data-modulo="admin" onclick="areaNav.go('admin','admin','panel-permissoes-individuais')"><i class="fa fa-clipboard-list"></i> Controle / Auditoria</div>
                 </div>
             </div>
         </div>
@@ -1041,7 +1106,7 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
             <div id="topbar-avatar-fallback" onclick="perfilFoto.abrir()" title="Adicionar foto de perfil" style="width:28px; height:28px; border-radius:50%; background:var(--prof); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:bold; cursor:pointer">—</div>
             <span class="topbar-user" id="topbar-username">—</span>
             <div class="topbar-badge" onclick="notificacoes.abrirCentral()" title="Notificações" style="position:relative; cursor:pointer">
-                <span id="conn-status-dot" title="Status de conexão" style="position:absolute; top:-4px; left:-6px; width:8px; height:8px; border-radius:50%; background:#2ecc71; box-shadow:0 0 4px #2ecc71"></span>
+                <span id="conn-status-dot" title="Conectado (online)" style="position: absolute; top: -4px; left: -6px; width: 8px; height: 8px; border-radius: 50%; background: rgb(46, 204, 113); box-shadow: rgb(46, 204, 113) 0px 0px 4px;"></span>
                 <i class="fa fa-bell" style="font-size:16px; color:var(--text-muted)"></i>
                 <span class="badge-count" id="badge-count" style="display:none">0</span>
             </div>
@@ -1193,9 +1258,9 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
         <div id="app-sidebar">
             <div class="sb-card">
                 <div class="sb-unit-head">
-                    <div class="sb-unit-badge"><i class="fa fa-shield-halved"></i></div>
+                    <div class="sb-unit-badge" data-escola-logo><i class="fa fa-shield-halved"></i></div>
                     <div>
-                        <div class="sb-unit-name">C.M.P. Imídeo Giuseppe Nérici</div>
+                        <div class="sb-unit-name" data-escola="nome">C.M.P. Imídeo Giuseppe Nérici</div>
                         <div class="sb-unit-code"><span class="sb-status-dot"></span>NTEi · Ecossistema Inteligente</div>
                     </div>
                 </div>
@@ -1217,11 +1282,17 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
 
             <div class="sb-card">
                 <h4>Módulos <span style="font-weight:400; text-transform:none; letter-spacing:0">Ir para ›</span></h4>
-                <div class="sb-nav-item" onclick="modules.show('dashboard')"><i class="fa fa-gauge" style="color:var(--prof)"></i>Dashboard</div>
-                <div class="sb-nav-item" onclick="modules.show('operacional')"><i class="fa fa-tools" style="color:var(--gestao)"></i>Operacional</div>
-                <div class="sb-nav-item" onclick="modules.show('patrimonio')"><i class="fa fa-laptop" style="color:var(--hw-color)"></i>Patrimônio</div>
-                <div class="sb-nav-item" onclick="modules.show('comunicacao')"><i class="fa fa-comments" style="color:var(--secre)"></i>Comunicação</div>
-                <div class="sb-nav-item" onclick="modules.show('analise')"><i class="fa fa-brain" style="color:var(--cad)"></i>Análise IA</div>
+                <div class="sb-nav-item" data-modulo="dashboard" onclick="modules.show('dashboard')"><i class="fa fa-gauge" style="color:var(--prof)"></i>Dashboard</div>
+                <div class="sb-nav-item" data-modulo="operacional" onclick="modules.show('operacional')"><i class="fa fa-headset" style="color:var(--ntei)"></i>Operacional</div>
+                <div class="sb-nav-item" data-modulo="pedagogico" onclick="modules.show('pedagogico')"><i class="fa fa-book" style="color:var(--secre)"></i>Pedagógico</div>
+                <div class="sb-nav-item" data-modulo="alunos" onclick="modules.show('alunos')"><i class="fa fa-user-graduate" style="color:var(--prof)"></i>Alunos</div>
+                <div class="sb-nav-item" data-modulo="patrimonio" onclick="modules.show('patrimonio')"><i class="fa fa-laptop" style="color:var(--hw-color)"></i>Patrimônio</div>
+                <div class="sb-nav-item" data-modulo="gemeo" onclick="modules.show('gemeo')"><i class="fa fa-map" style="color:var(--plat-color)"></i>Gêmeo Digital</div>
+                <div class="sb-nav-item" data-modulo="comunicacao" onclick="modules.show('comunicacao')"><i class="fa fa-comments" style="color:var(--secre)"></i>Comunicação</div>
+                <div class="sb-nav-item" data-modulo="editais" onclick="modules.show('editais')"><i class="fa fa-file-signature" style="color:var(--gestao)"></i>Editais</div>
+                <div class="sb-nav-item" data-modulo="analise" onclick="modules.show('analise')"><i class="fa fa-brain" style="color:var(--cad)"></i>Análise IA</div>
+                <div class="sb-nav-item" data-modulo="chatgpt" onclick="modules.show('chatgpt')"><i class="fa fa-robot" style="color:var(--sw-color)"></i>AI ChatGPT</div>
+                <div class="sb-nav-item ntei-only hidden" data-modulo="admin" onclick="modules.show('admin')"><i class="fa fa-shield-halved" style="color:var(--ntei)"></i>Admin NTEi</div>
             </div>
 
             <div class="sb-card" id="sb-fav-card">
@@ -1252,7 +1323,7 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
                 <div class="bh-hero">
                     <div class="bh-hero-icon"><i class="fa-solid fa-headset"></i></div>
                     <h1>Central de Suporte</h1>
-                    <p>Colégio Municipal Imídeo Giuseppe Neric &middot; Programa CONECT</p>
+                    <p><span data-escola="nomeCompleto">Colégio Municipal Imídeo Giuseppe Nérici</span> · <span data-escola="programa">Programa CONECT</span></p>
                 </div>
                 <div class="bh-grid">
                     <div class="bh-card bh-c1" onclick="modules.show('operacional')">
@@ -1274,10 +1345,27 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
                 </div>
             </div>
 
-            <div id="mod-dashboard" class="module-view active animate-in">
+            <div id="mod-dashboard" class="module-view animate-in active">
                 <div class="section-title"><i class="fa fa-gauge"></i> Dashboard Central Inteligente — Visão em Tempo Real</div>
 
-                <div id="comunicado-geral-banner">
+                <div class="dash-escola-head">
+                    <div class="dash-escola-logo" data-escola-logo><i class="fa fa-school"></i></div>
+                    <div class="dash-escola-txt"><b data-escola="nomeCompleto">Colégio</b><span><span data-escola="programa">Programa CONECT</span> · NTEi · <span data-escola="cidade"></span></span></div>
+                    <span class="dash-rede-pill" id="dash-rede-pill"><i class="fa fa-wifi"></i> <span id="dash-rede-txt">Rede online</span></span>
+                </div>
+
+                <div class="dash-atalhos">
+                    <div class="dash-atalho" data-modulo="operacional" onclick="areaNav.go('operacional','operacional','panel-chamados-ntei')"><i class="fa fa-ticket" style="color:var(--ntei)"></i>Novo Chamado</div>
+                    <div class="dash-atalho" data-modulo="operacional" onclick="areaNav.go('operacional','operacional','panel-reservas')"><i class="fa fa-calendar-plus" style="color:var(--cad)"></i>Nova Reserva</div>
+                    <div class="dash-atalho" data-modulo="alunos" onclick="areaNav.go('alunos','alunos')"><i class="fa fa-user-graduate" style="color:var(--prof)"></i>Alunos</div>
+                    <div class="dash-atalho" data-modulo="patrimonio" onclick="areaNav.go('patrimonio','patrimonio')"><i class="fa fa-laptop" style="color:var(--hw-color)"></i>Patrimônio</div>
+                    <div class="dash-atalho" data-modulo="comunicacao" onclick="areaNav.go('comunicacao','comunicacao')"><i class="fa fa-comments" style="color:var(--secre)"></i>Comunicação</div>
+                    <div class="dash-atalho" data-modulo="editais" onclick="areaNav.go('editais','editais')"><i class="fa fa-file-signature" style="color:var(--gestao)"></i>Editais</div>
+                    <div class="dash-atalho" data-modulo="analise" onclick="areaNav.go('analise','analise')"><i class="fa fa-brain" style="color:var(--cad)"></i>Análise IA</div>
+                    <div class="dash-atalho" data-modulo="chatgpt" onclick="areaNav.go('chatgpt','chatgpt')"><i class="fa fa-robot" style="color:var(--sw-color)"></i>AI ChatGPT</div>
+                </div>
+
+                <div id="comunicado-geral-banner" style="display: none;">
                     <span class="cg-badge">NOVO</span>
                     <div class="cg-text"><b>📣 COMUNICADO GERAL:</b><span id="cg-banner-texto">Confira os avisos e manutenções programadas do sistema.</span></div>
                     <div class="cg-actions">
@@ -1288,13 +1376,13 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
 
                 <div class="kpi-grid" id="kpi-container">
                     <div class="kpi-card blue"><i class="fa fa-laptop kpi-icon"></i><div class="kpi-num" id="kpi-equip">—</div><div class="kpi-label">Equipamentos Ativos</div><div class="kpi-trend trend-up">● Online</div></div>
-                    <div class="kpi-card red"><i class="fa fa-headset kpi-icon"></i><div class="kpi-num" id="kpi-chamados">—</div><div class="kpi-label">Chamados Abertos</div><div class="kpi-trend" id="kpi-chamados-trend">—</div></div>
-                    <div class="kpi-card green"><i class="fa fa-calendar-check kpi-icon"></i><div class="kpi-num" id="kpi-reservas">—</div><div class="kpi-label">Reservas Ativas</div><div class="kpi-trend trend-up">Em Uso</div></div>
+                    <div class="kpi-card red"><i class="fa fa-headset kpi-icon"></i><div class="kpi-num" id="kpi-chamados">0</div><div class="kpi-label">Chamados Abertos</div><div class="kpi-trend" id="kpi-chamados-trend">—</div></div>
+                    <div class="kpi-card green"><i class="fa fa-calendar-check kpi-icon"></i><div class="kpi-num" id="kpi-reservas">0</div><div class="kpi-label">Reservas Ativas</div><div class="kpi-trend trend-up">Em Uso</div></div>
                     <div class="kpi-card yellow"><i class="fa fa-users kpi-icon"></i><div class="kpi-num" id="kpi-usuarios">—</div><div class="kpi-label">Usuários Cadastrados</div><div class="kpi-trend trend-up">Ativos</div></div>
-                    <div class="kpi-card purple"><i class="fa fa-graduation-cap kpi-icon"></i><div class="kpi-num" id="kpi-alunos">—</div><div class="kpi-label">Alunos Cadastrados</div><div class="kpi-trend">Total</div></div>
+                    <div class="kpi-card purple"><i class="fa fa-graduation-cap kpi-icon"></i><div class="kpi-num" id="kpi-alunos">0</div><div class="kpi-label">Alunos Cadastrados</div><div class="kpi-trend">Total</div></div>
                     <div class="kpi-card green"><i class="fa fa-user-check kpi-icon"></i><div class="kpi-num" id="kpi-presentes">—</div><div class="kpi-label">Alunos Presentes Hoje</div></div>
                     <div class="kpi-card red"><i class="fa fa-user-xmark kpi-icon"></i><div class="kpi-num" id="kpi-faltantes">—</div><div class="kpi-label">Alunos Faltantes Hoje</div></div>
-                    <div class="kpi-card red"><i class="fa fa-triangle-exclamation kpi-icon"></i><div class="kpi-num" id="kpi-manutencao">—</div><div class="kpi-label">Em Manutenção</div><div class="kpi-trend trend-down">Atenção</div></div>
+                    <div class="kpi-card red"><i class="fa fa-triangle-exclamation kpi-icon"></i><div class="kpi-num" id="kpi-manutencao">0</div><div class="kpi-label">Em Manutenção</div><div class="kpi-trend trend-down">Atenção</div></div>
                 </div>
 
                 <div class="dash-grid-2col">
@@ -1302,30 +1390,26 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
                     <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:15px">
                         <div class="panel">
                             <h3><i class="fa fa-chart-line" style="color:var(--ntei)"></i> Chamados (Histórico)</h3>
-                            <div class="chart-container"><canvas id="chart-dash-chamados"></canvas></div>
+                            <div class="chart-container"><canvas id="chart-dash-chamados" style="box-sizing: border-box; display: block; height: 180px; width: 185.7px;" width="185" height="180"></canvas></div>
                         </div>
                         <div class="panel">
                             <h3><i class="fa fa-chart-bar" style="color:var(--prof)"></i> Uso de Recursos</h3>
-                            <div class="chart-container"><canvas id="chart-dash-recursos"></canvas></div>
+                            <div class="chart-container"><canvas id="chart-dash-recursos" style="box-sizing: border-box; display: block; height: 180px; width: 185.7px;" width="185" height="180"></canvas></div>
                         </div>
                         <div class="panel">
                             <h3><i class="fa fa-chart-pie" style="color:var(--gestao)"></i> Status Equipamentos</h3>
-                            <div class="chart-container"><canvas id="chart-dash-equip"></canvas></div>
+                            <div class="chart-container"><canvas id="chart-dash-equip" style="box-sizing: border-box; display: block; height: 180px; width: 185.7px;" width="185" height="180"></canvas></div>
                         </div>
                     </div>
 
                     <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px; margin-top:0">
                         <div class="panel">
                             <h3><i class="fa fa-bolt" style="color:var(--gestao)"></i> Alertas Automáticos do Sistema</h3>
-                            <div id="dashboard-alertas-container">
-                                <div class="loading-spinner"><i class="fa fa-spin fa-circle-notch"></i> Analisando dados...</div>
-                            </div>
+                            <div id="dashboard-alertas-container"><div class="info-box" style="color:var(--cad)">✅ <b>Sistema operando normalmente.</b> Nenhum alerta crítico.</div></div>
                         </div>
                         <div class="panel">
                             <h3><i class="fa fa-clock" style="color:var(--prof)"></i> Atividades Recentes</h3>
-                            <div id="dashboard-atividades" style="max-height:200px; overflow-y:auto">
-                                <div class="loading-spinner"><i class="fa fa-spin fa-circle-notch"></i> Carregando...</div>
-                            </div>
+                            <div id="dashboard-atividades" style="max-height:200px; overflow-y:auto"><div style="font-size:11.5px;color:var(--text-muted)">Carregando atividades...</div></div>
                         </div>
                     </div>
 
@@ -1368,6 +1452,19 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
                     </div>
 
                     <div class="widget-card">
+                        <h4><i class="fa fa-bullhorn" style="color:var(--secre)"></i> Comunicados Recentes</h4>
+                        <div id="dash-comunicados"><div style="font-size:11.5px;color:var(--text-muted)">Carregando...</div></div>
+                    </div>
+
+                    <div class="widget-card">
+                        <h4><i class="fa fa-circle-info" style="color:var(--prof)"></i> Informações Importantes</h4>
+                        <div class="dash-info-row"><span>Unidade</span><b data-escola="nome"></b></div>
+                        <div class="dash-info-row"><span>Sigla</span><b data-escola="sigla"></b></div>
+                        <div class="dash-info-row"><span>Município</span><b data-escola="cidade"></b></div>
+                        <div class="dash-info-row"><span>Programa</span><b data-escola="programa"></b></div>
+                    </div>
+
+                    <div class="widget-card">
                         <h4><i class="fa fa-wifi"></i> Monitoramento de Rede</h4>
                         <div class="net-stat-grid">
                             <div class="net-stat"><b>ONLINE</b><span>Conectividade</span></div>
@@ -1390,13 +1487,13 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
             </div>
 
             <!-- ══════════ MODULE: OPERACIONAL ══════════ -->
-            <div id="mod-operacional" class="module-view">
+            <div id="mod-operacional" class="module-view animate-in">
                 <div class="grid-layout">
                     <div class="left-col">
                         <!-- Nova Reserva -->
-                        <div class="panel">
+                        <div class="panel" id="panel-reservas">
                             <h3><i class="fa fa-calendar-plus" style="color:var(--prof)"></i> Nova Reserva</h3>
-                            <select id="res-eq"></select>
+                            <select id="res-eq"><option value="-P2cYnoQQR0GBuaWnTFP">💻 Chromebook 16 (PAT: 227848)</option></select>
                             <input type="text" id="res-sl" placeholder="Número da Sala">
                             <input type="datetime-local" id="res-dt">
                             <button class="btn" style="background:var(--prof); color:white" onclick="app.reservar()">Agendar Reserva</button>
@@ -1418,7 +1515,7 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
                         </div>
 
                         <!-- Plataformas -->
-                        <div class="panel">
+                        <div class="panel" id="panel-plataformas">
                             <h3><i class="fa fa-book-open" style="color:var(--plat-color)"></i> Plataformas Educacionais</h3>
                             <div id="dynamic-plat-list" style="margin-bottom:10px"></div>
                         </div>
@@ -1428,7 +1525,7 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
 
                     <div class="center-col">
                         <!-- ═══════ CHAMADOS NTEi — APP LAUNCHER ═══════ -->
-                        <div class="panel">
+                        <div class="panel" id="panel-chamados-ntei">
                             <h3><i class="fa fa-headset" style="color:var(--ntei)"></i> 🎫 Chamados NTEi</h3>
 
                             <!-- STEP 0: Tipo (Hardware/Software) -->
@@ -1473,7 +1570,7 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
 
                                 <div class="cham-form-step" id="cham-fstep-2">
                                     <h4 style="margin:4px 0 10px 0; font-size:13px">Localização</h4>
-                                    <input type="text" id="cham-f-unidade" placeholder="Unidade" value="NTEi Imídeo Giuseppe">
+                                    <input type="text" id="cham-f-unidade" placeholder="Unidade" value="NTEi Imídeo Giuseppe" data-escola="nomeNTEi">
                                     <input type="text" id="cham-f-local" placeholder="Local (ex: Sala 5º Ano, Lab. Informática)">
                                     <input type="text" id="cham-f-equip" placeholder="Equipamento (ex: Chromebook 05) — opcional" class="cham-cond-hw">
                                     <select id="cham-f-impacto">
@@ -1525,7 +1622,7 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
                                 <div class="cham-filter-chip" data-f="Software" onclick="chamados.filtrar('Software')">Software</div>
                                 <div class="cham-filter-chip" data-f="meus" onclick="chamados.filtrar('meus')">Meus chamados</div>
                             </div>
-                            <div id="lista-chamados-nti" style="max-height:400px; overflow-y:auto"></div>
+                            <div id="lista-chamados-nti" style="max-height:400px; overflow-y:auto"><p style="text-align:center; color:#666; font-size:12px; padding:16px">Nenhum chamado encontrado para este filtro.</p></div>
                         </div>
                         <div id="active-ticket-area" class="panel hidden" style="border: 1px solid var(--prof)">
                             <h3><i class="fa fa-headset"></i> Atendimento Privado NTEi</h3>
@@ -1604,8 +1701,8 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
                     <div class="right-col">
                         <!-- Reservas Ativas -->
                         <div class="panel">
-                            <h3><i class="fa fa-clock" style="color:var(--cad)"></i> Reservas Ativas (Imídeo Giuseppe)</h3>
-                            <div id="lista-reservas-ativas" style="max-height: 350px; overflow-y: auto;"></div>
+                            <h3><i class="fa fa-clock" style="color:var(--cad)"></i> Reservas Ativas (<span data-escola="nomeCurto">Imídeo Giuseppe</span>)</h3>
+                            <div id="lista-reservas-ativas" style="max-height: 350px; overflow-y: auto;"><p style="text-align:center;color:#444;font-size:12px;padding:10px">🎉 Nenhum equipamento reservado.</p></div>
                         </div>
                         <!-- Solicitações Acesso -->
                         <div id="solicitacoes-acesso-box" class="panel hidden" style="border: 1px solid var(--gestao);">
@@ -1615,7 +1712,7 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
                         <!-- Feedbacks NTEi -->
                         <div id="panel-feedbacks-ntei" class="panel hidden" style="border: 1px solid var(--prof)">
                             <h3><i class="fa fa-comment-dots"></i> Feedbacks de Devolução</h3>
-                            <div id="lista-feedbacks-devolucao" style="max-height: 250px; overflow-y: auto;"></div>
+                            <div id="lista-feedbacks-devolucao" style="max-height: 250px; overflow-y: auto;"><p style="text-align:center;color:#444;font-size:12px;padding:10px">🎉 Nenhum alerta técnico pendente.</p></div>
                         </div>
                     </div>
                 </div>
@@ -1675,14 +1772,14 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
                         <h3 style="color:var(--prof)"><i class="fa fa-calendar-alt"></i> Calendário Inteligente</h3>
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px">
                             <button onclick="calendario.anterior()" style="background:transparent; border:none; color:white; cursor:pointer; font-size:16px">‹</button>
-                            <span id="cal-mes-ano" style="font-family:'Orbitron'; font-size:12px">—</span>
+                            <span id="cal-mes-ano" style="font-family:'Orbitron'; font-size:12px">Outubro 2026</span>
                             <button onclick="calendario.proximo()" style="background:transparent; border:none; color:white; cursor:pointer; font-size:16px">›</button>
                         </div>
                         <div class="cal-grid" id="cal-header">
                             <div class="cal-head">Dom</div><div class="cal-head">Seg</div><div class="cal-head">Ter</div>
                             <div class="cal-head">Qua</div><div class="cal-head">Qui</div><div class="cal-head">Sex</div><div class="cal-head">Sáb</div>
                         </div>
-                        <div class="cal-grid" id="cal-grid"></div>
+                        <div class="cal-grid" id="cal-grid"><div></div><div></div><div></div><div></div><div class="cal-day  " onclick="calendario.selecionarDia(1)">1</div><div class="cal-day  " onclick="calendario.selecionarDia(2)">2</div><div class="cal-day  weekend" onclick="calendario.selecionarDia(3)">3</div><div class="cal-day  weekend" onclick="calendario.selecionarDia(4)">4</div><div class="cal-day  " onclick="calendario.selecionarDia(5)">5</div><div class="cal-day today " onclick="calendario.selecionarDia(6)">6</div><div class="cal-day  " onclick="calendario.selecionarDia(7)">7</div><div class="cal-day  " onclick="calendario.selecionarDia(8)">8</div><div class="cal-day  " onclick="calendario.selecionarDia(9)">9</div><div class="cal-day  weekend" onclick="calendario.selecionarDia(10)">10</div><div class="cal-day  weekend" onclick="calendario.selecionarDia(11)">11</div><div class="cal-day  " onclick="calendario.selecionarDia(12)">12</div><div class="cal-day  " onclick="calendario.selecionarDia(13)">13</div><div class="cal-day  " onclick="calendario.selecionarDia(14)">14</div><div class="cal-day  " onclick="calendario.selecionarDia(15)">15</div><div class="cal-day  " onclick="calendario.selecionarDia(16)">16</div><div class="cal-day  weekend" onclick="calendario.selecionarDia(17)">17</div><div class="cal-day  weekend" onclick="calendario.selecionarDia(18)">18</div><div class="cal-day  " onclick="calendario.selecionarDia(19)">19</div><div class="cal-day  " onclick="calendario.selecionarDia(20)">20</div><div class="cal-day  " onclick="calendario.selecionarDia(21)">21</div><div class="cal-day  " onclick="calendario.selecionarDia(22)">22</div><div class="cal-day  " onclick="calendario.selecionarDia(23)">23</div><div class="cal-day  weekend" onclick="calendario.selecionarDia(24)">24</div><div class="cal-day  weekend" onclick="calendario.selecionarDia(25)">25</div><div class="cal-day  " onclick="calendario.selecionarDia(26)">26</div><div class="cal-day  " onclick="calendario.selecionarDia(27)">27</div><div class="cal-day  " onclick="calendario.selecionarDia(28)">28</div><div class="cal-day  " onclick="calendario.selecionarDia(29)">29</div><div class="cal-day  " onclick="calendario.selecionarDia(30)">30</div><div class="cal-day  weekend" onclick="calendario.selecionarDia(31)">31</div></div>
                         <div style="margin-top:10px; border-top:1px solid var(--border-subtle); padding-top:8px">
                             <input type="text" id="evento-titulo" placeholder="Novo evento..." style="margin:0 0 5px 0">
                             <input type="date" id="evento-data" style="margin:0 0 5px 0">
@@ -1714,7 +1811,8 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
                     <h3 style="color:var(--cad)"><i class="fa fa-user-plus"></i> Cadastro de alunos por sala</h3>
                     <p style="font-size:12px;color:var(--text-muted);margin-top:0">Cole a lista escrita: uma linha por aluno, com o <b>RA</b> e o <b>nome completo</b> (ex.: <code>1234567 Maria da Silva Souza</code>, também aceita <code>;</code> ou <code>-</code> entre eles).</p>
                     <input type="text" id="ch-cad-sala" placeholder="Sala / Turma (ex.: 5º A - Manhã)">
-                    <textarea id="ch-cad-texto" placeholder="1234567 Maria da Silva Souza&#10;1234568 João Pedro Oliveira" style="width:100%;height:150px;border-radius:8px;border:1px solid #333;background:rgba(0,0,0,.4);color:inherit;padding:10px"></textarea>
+                    <textarea id="ch-cad-texto" placeholder="1234567 Maria da Silva Souza
+1234568 João Pedro Oliveira" style="width:100%;height:150px;border-radius:8px;border:1px solid #333;background:rgba(0,0,0,.4);color:inherit;padding:10px"></textarea>
                     <div class="nx-row" style="margin-top:8px"><button class="btn" style="background:var(--cad);color:#fff" onclick="chamadaEscola.cadastrar()"><i class="fa fa-floppy-disk"></i> CADASTRAR ALUNOS</button></div>
                     <div id="ch-cad-msg" style="font-size:12px;margin:6px 0"></div>
                     <h4 style="margin:14px 0 6px">Salas cadastradas</h4>
@@ -1736,7 +1834,7 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
                     <button class="nx-tab" data-t="age" onclick="meuEspaco.tab('age')">📅 Agenda NTEi</button>
                 </div>
                 <div id="ep-v-reg" class="panel">
-                    <div class="nx-row"><select id="ep-cat"><option>Atendimento</option><option>Equipamento</option><option>Procedimento</option><option>Apoio escolar</option><option>Outro</option></select><input type="text" id="ep-txt" placeholder="O que você fez? (ex.: Verificação de 12 Chromebooks)" style="flex:3" onkeydown="if(event.key==='Enter')meuEspaco.addReg()"><label style="font-size:12px;flex:0 0 auto;min-width:0"><input type="checkbox" id="ep-ok" checked style="width:auto"> Concluído</label><button class="btn" style="background:var(--prof)" onclick="meuEspaco.addReg()">＋ Registrar</button></div>
+                    <div class="nx-row"><select id="ep-cat"><option>Atendimento</option><option>Equipamento</option><option>Procedimento</option><option>Apoio escolar</option><option>Outro</option></select><input type="text" id="ep-txt" placeholder="O que você fez? (ex.: Verificação de 12 Chromebooks)" style="flex:3" onkeydown="if(event.key==='Enter')meuEspaco.addReg()"><label style="font-size:12px;flex:0 0 auto;min-width:0"><input type="checkbox" id="ep-ok" checked="" style="width:auto"> Concluído</label><button class="btn" style="background:var(--prof)" onclick="meuEspaco.addReg()">＋ Registrar</button></div>
                     <h4 style="margin:10px 0">Hoje</h4>
                     <div class="nx-time" id="ep-hoje"></div>
                     <button class="btn" style="background:var(--cad);color:#fff;margin-top:8px" onclick="meuEspaco.resumo()"><i class="fa fa-wand-magic-sparkles"></i> GERAR RESUMO DO DIA</button>
@@ -1796,10 +1894,10 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
                     <div class="panel">
                         <h3 style="color:var(--prof)"><i class="fa fa-boxes-stacked"></i> Inventário Tecnológico Inteligente</h3>
                         <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom:10px">
-                            <div class="kpi-card blue" style="margin:0"><div class="kpi-num" id="inv-total">—</div><div class="kpi-label">Total Cadastrado</div></div>
-                            <div class="kpi-card green" style="margin:0"><div class="kpi-num" id="inv-disp">—</div><div class="kpi-label">Disponíveis</div></div>
-                            <div class="kpi-card yellow" style="margin:0"><div class="kpi-num" id="inv-uso">—</div><div class="kpi-label">Em Uso</div></div>
-                            <div class="kpi-card red" style="margin:0"><div class="kpi-num" id="inv-manut">—</div><div class="kpi-label">Manutenção</div></div>
+                            <div class="kpi-card blue" style="margin:0"><div class="kpi-num" id="inv-total">1</div><div class="kpi-label">Total Cadastrado</div></div>
+                            <div class="kpi-card green" style="margin:0"><div class="kpi-num" id="inv-disp">1</div><div class="kpi-label">Disponíveis</div></div>
+                            <div class="kpi-card yellow" style="margin:0"><div class="kpi-num" id="inv-uso">0</div><div class="kpi-label">Em Uso</div></div>
+                            <div class="kpi-card red" style="margin:0"><div class="kpi-num" id="inv-manut">0</div><div class="kpi-label">Manutenção</div></div>
                         </div>
                         <div style="max-height:280px; overflow-y:auto;" id="inventario-lista-pat"></div>
                     </div>
@@ -1807,9 +1905,7 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
                     <!-- Histórico de Uso -->
                     <div class="panel">
                         <h3 style="color:var(--gestao)"><i class="fa fa-history"></i> Histórico de Uso por Equipamento</h3>
-                        <select id="hist-equip-select" onchange="historico.carregar(this.value)">
-                            <option value="">Selecione um equipamento...</option>
-                        </select>
+                        <select id="hist-equip-select" onchange="historico.carregar(this.value)"><option value="">Selecione um equipamento...</option><option value="-P2cYnoQQR0GBuaWnTFP">Chromebook 16</option></select>
                         <div id="hist-equip-lista" style="max-height:280px; overflow-y:auto; margin-top:10px"></div>
                         <div class="chart-container" style="height:150px"><canvas id="chart-hist-equip"></canvas></div>
                     </div>
@@ -1819,9 +1915,12 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
                 <div class="panel" style="border:1px solid rgba(165,94,234,0.3)">
                     <h3 style="color:var(--secre)"><i class="fa fa-crystal-ball"></i> Análise Preditiva de Manutenção</h3>
                     <p style="font-size:12px; color:var(--text-muted)">IA identifica equipamentos com risco de falha baseado no histórico de chamados.</p>
-                    <div id="pred-lista">
-                        <div class="loading-spinner"><i class="fa fa-spin fa-circle-notch"></i> Processando histórico...</div>
-                    </div>
+                    <div id="pred-lista"><div class="plat-manage-item" style="border-left:3px solid var(--gestao)">
+                    <div><b>Chromebook 16</b><br><small style="color:#aaa">multilaser</small></div>
+                    <span class="risco-badge risco-medio" style="">
+                        RISCO MEDIO
+                    </span>
+                </div></div>
                     <button class="btn" style="background:rgba(165,94,234,0.2); color:var(--secre); margin-top:8px" onclick="preditiva.analisar()"><i class="fa fa-brain"></i> Executar Análise Preditiva</button>
                 </div>
             </div>
@@ -1839,7 +1938,7 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
                             <div class="kpi-card red" style="margin:0"><div class="kpi-num" id="gem-ocup">—</div><div class="kpi-label">Ocupados</div></div>
                         </div>
                                                 <div class="nx-sala" style="border-color:rgba(0,173,239,.4)">
-                            <b style="color:var(--prof)">🏫 C.M.P. Imídeo Giuseppe Nérici (C.M.P.I.G.N)</b>
+                            <b style="color:var(--prof)">🏫 <span data-escola="nome">C.M.P. Imídeo Giuseppe Nérici</span> (<span data-escola="sigla">C.M.P.I.G.N</span>)</b>
                             <div style="font-size:12px;color:var(--text-muted);margin:4px 0 10px">Rua Hebert Volpato Teixeira, 02 — Fazendinha, Santana de Parnaíba - SP</div>
                             <div class="nx-kpis" style="margin:0">
                                 <div class="nx-kpi b"><b>20</b><span>Salas de aula</span></div><div class="nx-kpi b"><b>600</b><span>Chromebooks</span></div><div class="nx-kpi b"><b>10</b><span>Computadores</span></div><div class="nx-kpi b"><b>23</b><span>Projetores</span></div><div class="nx-kpi b"><b>3</b><span>TVs</span></div><div class="nx-kpi b"><b>4</b><span>Impressoras</span></div><div class="nx-kpi b"><b>9</b><span>Access Points</span></div><div class="nx-kpi b"><b>1</b><span>Caixa de som</span></div>
@@ -1906,9 +2005,37 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
                                         <i class="fa fa-search"></i>
                                         <input type="text" id="p2p-search" placeholder="Buscar contatos..." oninput="app.filterP2PContacts(this.value)">
                                     </div>
-                                    <div id="p2p-contact-list" class="p2p-contact-list">
-                                        <p style="font-size:11px; color:#667; text-align:center; padding:20px 10px">Carregando contatos...</p>
-                                    </div>
+                                    <div id="p2p-contact-list" class="p2p-contact-list"><div style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px 4px;font-size:10px;letter-spacing:1px;color:#dbe5f2;font-weight:700">GRUPOS <button type="button" onclick="app.novoGrupo()" style="border:0;border-radius:8px;background:#2ecc71;color:#000;font-weight:800;font-size:10px;padding:4px 9px;cursor:pointer">＋ NOVO</button></div><div style="font-size:11px;color:#9aa7b8;padding:2px 10px 8px">Nenhum grupo ainda.</div><div style="padding:8px 10px 4px;font-size:10px;letter-spacing:1px;color:#dbe5f2;font-weight:700">CONTATOS</div><div class="p2p-contact-item " onclick="app.selectP2PContact('48036')">
+                    <div class="p2p-contact-avatar">K</div>
+                    <div class="p2p-contact-info">
+                        <div class="p2p-contact-name">Karla</div>
+                        <div class="p2p-contact-preview">Você: 📞 Chamada de voz</div>
+                    </div>
+                    <div class="p2p-contact-meta">
+                        <span>15:24</span>
+                        <span class="p2p-status-dot offline" title="Status" style="background: rgb(125, 135, 148);"></span>
+                    </div>
+                </div><div class="p2p-contact-item " onclick="app.selectP2PContact('42912')">
+                    <div class="p2p-contact-avatar">L</div>
+                    <div class="p2p-contact-info">
+                        <div class="p2p-contact-name">LIVIA STEFANY MELO DOS ANJOS</div>
+                        <div class="p2p-contact-preview">Secretaria</div>
+                    </div>
+                    <div class="p2p-contact-meta">
+                        
+                        <span class="p2p-status-dot offline" title="Status" style="background: rgb(125, 135, 148);"></span>
+                    </div>
+                </div><div class="p2p-contact-item " onclick="app.selectP2PContact('47295')">
+                    <div class="p2p-contact-avatar">M</div>
+                    <div class="p2p-contact-info">
+                        <div class="p2p-contact-name">Manuele S.</div>
+                        <div class="p2p-contact-preview">Obrigado</div>
+                    </div>
+                    <div class="p2p-contact-meta">
+                        <span>19:22</span>
+                        <span class="p2p-status-dot offline" title="Status" style="background: rgb(125, 135, 148);"></span>
+                    </div>
+                </div></div>
                                 </div>
                                 <div class="p2p-conv-col">
                                     <div id="p2p-conv-header" class="p2p-conv-header p2p-conv-header-empty">
@@ -1933,7 +2060,7 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
                             <input type="text" id="ideia-titulo" placeholder="Título da ideia">
                             <textarea id="ideia-desc" placeholder="Descreva sua sugestão de melhoria..." style="width:100%; height:60px; border-radius:8px; border:1px solid #333; background:rgba(0,0,0,0.4); color:white; padding:8px; resize:none; font-family:'Poppins'; font-size:12px; margin:5px 0;"></textarea>
                             <button class="btn" style="background:var(--secre); color:white" onclick="ideias.enviar()">Enviar Ideia</button>
-                            <div id="ideias-lista" style="margin-top:10px; max-height:250px; overflow-y:auto"></div>
+                            <div id="ideias-lista" style="margin-top:10px; max-height:250px; overflow-y:auto"><p style="font-size:12px; color:#666">Nenhuma ideia enviada ainda.</p></div>
                         </div>
                     </div>
 
@@ -1994,9 +2121,7 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
                 <!-- Auditoria -->
                 <div class="panel" style="border:1px solid rgba(255,255,255,0.1)">
                     <h3 style="color:var(--text-muted)"><i class="fa fa-shield-halved"></i> Auditoria Completa do Sistema</h3>
-                    <div id="audit-log" style="max-height:300px; overflow-y:auto">
-                        <div class="loading-spinner"><i class="fa fa-spin fa-circle-notch"></i> Carregando logs...</div>
-                    </div>
+                    <div id="audit-log" style="max-height:300px; overflow-y:auto"><div style="font-size:12px;color:var(--text-muted)">Carregando auditoria...</div></div>
                 </div>
 
                 <!-- Memória Institucional -->
@@ -2014,16 +2139,60 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
                             <textarea id="mem-desc" placeholder="Descrição completa..." style="width:100%; height:60px; border-radius:8px; border:1px solid #333; background:rgba(0,0,0,0.4); color:white; padding:8px; resize:none; font-family:'Poppins'; font-size:12px; margin:5px 0;"></textarea>
                             <button class="btn" style="background:var(--cad); color:white" onclick="memoria.salvar()">Registrar na Memória</button>
                         </div>
-                        <div id="memoria-lista" style="max-height:200px; overflow-y:auto"></div>
+                        <div id="memoria-lista" style="max-height:200px; overflow-y:auto"><p style="font-size:12px; color:#666">Nenhum registro.</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══════════ MODULE: EDITAIS ══════════ -->
+            <div id="mod-editais" class="module-view">
+                <div class="nx-hero"><div class="nx-ico"><i class="fa fa-file-signature"></i></div><div><h2>Editais</h2><p>Editais, chamamentos e documentos oficiais da unidade.</p></div></div>
+                <div class="panel" id="painel-criar-edital">
+                    <h3><i class="fa fa-plus-circle" style="color:var(--gestao)"></i> Cadastrar Edital</h3>
+                    <input type="text" id="ed-titulo" placeholder="Título do edital">
+                    <input type="text" id="ed-numero" placeholder="Número (opcional)">
+                    <select id="ed-categoria"><option>Geral</option><option>Processo Seletivo</option><option>Compras e Serviços</option><option>Projetos</option><option>Eventos</option></select>
+                    <textarea id="ed-descricao" placeholder="Descrição (opcional)" style="width:100%; height:60px; border-radius:8px; border:1px solid #333; background:rgba(0,0,0,0.4); color:white; padding:8px; box-sizing:border-box"></textarea>
+                    <label style="font-size:11px; color:var(--text-muted)">Encerramento</label>
+                    <input type="date" id="ed-prazo">
+                    <div style="display:flex; gap:6px; margin:6px 0">
+                        <button type="button" class="btn" id="ed-tab-upload" style="margin:0; background:var(--prof); color:#fff" onclick="editais.toggleFonteDoc('upload')">Enviar arquivo</button>
+                        <button type="button" class="btn" id="ed-tab-link" style="margin:0; background:rgba(255,255,255,0.08); color:#fff" onclick="editais.toggleFonteDoc('link')">Usar link</button>
+                    </div>
+                    <div id="ed-doc-upload-box"><input type="file" id="ed-doc-file" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg"></div>
+                    <div id="ed-doc-link-box" class="hidden"><input type="text" id="ed-doc-link" placeholder="https://..."></div>
+                    <button class="btn" style="background:var(--gestao); color:#000" onclick="editais.publicar()">Publicar Edital</button>
+                    <div id="ed-upload-status" style="font-size:11px; color:var(--text-muted); margin-top:6px"></div>
+                </div>
+                <div class="panel">
+                    <h3><i class="fa fa-list" style="color:var(--prof)"></i> Editais Publicados</h3>
+                    <div class="nx-row">
+                        <input type="text" id="ed-busca" placeholder="Buscar por título ou número" oninput="editais._desenhar()">
+                        <select id="ed-filtro-status" onchange="editais._desenhar()"><option value="">Todos os status</option><option>Aberto</option><option>Em Andamento</option><option>Encerrado</option></select>
+                    </div>
+                    <div id="ed-lista"></div>
+                </div>
+            </div>
+
+            <!-- ══════════ MODULE: AI CHATGPT ══════════ -->
+            <div id="mod-chatgpt" class="module-view">
+                <div class="nx-hero"><div class="nx-ico"><i class="fa fa-robot"></i></div><div><h2>AI ChatGPT</h2><p>Assistente de IA do NTEi. Usa o provedor e a chave configurados em Admin NTEi.</p></div></div>
+                <div class="panel">
+                    <div id="chat-ia-status" style="font-size:11px; color:var(--text-muted); margin-bottom:8px"></div>
+                    <div class="chat-ia-box" id="chat-ia-box"><div class="chat-ia-msg ia">Olá! Como posso ajudar?</div></div>
+                    <div style="display:flex; gap:6px">
+                        <input type="text" id="chat-ia-input" placeholder="Digite sua pergunta..." style="margin:0" onkeydown="if(event.key==='Enter')chatIA.enviar()">
+                        <button class="btn" id="chat-ia-send" style="width:55px; margin:0; background:var(--prof); color:#fff" onclick="chatIA.enviar()"><i class="fa fa-paper-plane"></i></button>
+                        <button class="btn" style="width:55px; margin:0; background:rgba(255,255,255,0.1); color:#fff" title="Nova conversa" onclick="chatIA.limpar()"><i class="fa fa-rotate"></i></button>
                     </div>
                 </div>
             </div>
 
             <!-- ══════════ MODULE: ADMIN NTEI ══════════ -->
-            <div id="mod-admin" class="module-view">
+            <div id="mod-admin" class="module-view animate-in">
                 <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px">
                     <!-- Controle Master -->
-                    <div id="panel-admin-ntei" class="panel hidden" style="border: 2px solid var(--ntei)">
+                    <div id="panel-admin-ntei" class="panel hidden" style="border: 2px solid var(--ntei);">
                         <h3 style="color:var(--ntei)"><i class="fa fa-cog fa-spin"></i> CONTROLE MASTER DO SISTEMA</h3>
 
                         <div style="margin-top:15px; background:rgba(255,255,255,0.05); padding:12px; border-radius:10px">
@@ -2033,18 +2202,24 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
                             <input type="text" id="eq-patrimonio" placeholder="Patrimônio">
                             <button class="btn" style="background:var(--cad);" id="btn-salvar-equip" onclick="app.cadastrarEquipamento()">Salvar Equipamento</button>
                             <p style="font-size:10px; color:#aaa; margin:12px 0 5px 0">LISTA DE EQUIPAMENTOS:</p>
-                            <div id="lista-inventario-ntei" style="max-height:160px; overflow-y:auto; background:rgba(0,0,0,0.2); padding:5px; border-radius:5px"></div>
+                            <div id="lista-inventario-ntei" style="max-height:160px; overflow-y:auto; background:rgba(0,0,0,0.2); padding:5px; border-radius:5px"><div class="plat-manage-item">
+                        <div><b>Chromebook 16</b> <small>(disponivel)</small><br><span style="font-size:10px;color:#aaa">Mod: multilaser | Pat: 227848</span></div>
+                        <div class="plat-manage-actions">
+                            <i class="fa fa-edit" style="color:#3498db" onclick="app.editarEquipVisual('-P2cYnoQQR0GBuaWnTFP','Chromebook 16','multilaser','227848')"></i>
+                            <i class="fa fa-trash" style="color:var(--ntei)" onclick="app.excluirEquipamento('-P2cYnoQQR0GBuaWnTFP')"></i>
+                        </div>
+                    </div></div>
                         </div>
 
                         <div style="margin-top:15px; background:rgba(255,255,255,0.05); padding:10px; border-radius:10px">
                             <p style="font-size:11px; color:#2ecc71; font-weight:bold"><i class="fa fa-user-plus"></i> NOVAS CONTAS PENDENTES:</p>
-                            <div id="lista-contas-pendentes"></div>
+                            <div id="lista-contas-pendentes"><p style="font-size:11px; color:#555; margin:0">Nenhuma solicitação pendente.</p></div>
                         </div>
 
                         <input type="text" id="input-aviso-geral" placeholder="Escreva um aviso para todos..." style="margin-top:15px">
                         <button class="btn" style="background:var(--prof)" onclick="app.enviarAvisoGeral()">POSTAR AVISO GERAL</button>
 
-                        <div style="margin-top:15px; background:rgba(255,255,255,0.05); padding:12px; border-radius:10px; border:1px solid rgba(165,94,234,0.35)">
+                        <div id="panel-ia-config" style="margin-top:15px; background:rgba(255,255,255,0.05); padding:12px; border-radius:10px; border:1px solid rgba(165,94,234,0.35)">
                             <p style="font-size:11px; color:var(--secre); margin-top:0; font-weight:bold"><i class="fa fa-robot"></i> IA DO ASSISTENTE PEDAGÓGICO:</p>
                             <p style="font-size:10.5px; color:var(--text-muted); margin-top:-4px">Escolha o provedor e cole a chave de API. Fica salvo no sistema e vale para todos os usuários. Como não há servidor por trás desta página, qualquer pessoa com acesso ao código/console do navegador pode ver esta chave — use uma chave restrita/com limite de uso.</p>
                             <select id="ia-provedor" style="margin-top:6px">
@@ -2053,7 +2228,7 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
                             </select>
                             <input type="password" id="ia-api-key" placeholder="Cole aqui a chave de API">
                             <button class="btn" style="background:var(--secre); color:#fff" onclick="iaConfig.salvar()">Salvar Configuração de IA</button>
-                            <div id="ia-config-status" style="font-size:11px; color:var(--text-muted); margin-top:6px"></div>
+                            <div id="ia-config-status" style="font-size:11px; color:var(--text-muted); margin-top:6px">⚠️ Nenhuma chave de API configurada ainda.</div>
                         </div>
 
                         <p style="font-size:11px; margin-top:15px">GERENCIAR PLATAFORMAS:</p>
@@ -2089,39 +2264,114 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
                         </div>
 
                         <p style="font-size:10px; color:#aaa; margin-bottom:5px;">PAINEL DE USUÁRIOS:</p>
-                        <div id="lista-usuarios-ativos" style="max-height:300px; overflow-y:auto; background:rgba(0,0,0,0.2); padding:5px; border-radius:5px"></div>
+                        <div id="lista-usuarios-ativos" style="max-height:300px; overflow-y:auto; background:rgba(0,0,0,0.2); padding:5px; border-radius:5px"><div class="plat-manage-item" style="flex-direction:column;align-items:flex-start;gap:4px">
+                            <div style="width:100%;display:flex;justify-content:space-between"><span><b>LIVIA STEFANY MELO DOS ANJOS</b> (Secretaria)</span><span style="color:#2ecc71">● Ativo</span></div>
+                            <span style="font-size:10px;color:#aaa">Pront: 42912 | livia.42912@edu.santanadeparnaiba.sp.gov</span>
+                            <div style="display:flex;gap:3px;width:100%">
+                                <button class="btn" style="padding:3px;font-size:9px;margin:0;background:#f1c40f;color:black" onclick="app.bloquearUsuarioTemporario('42912')">B.Temp</button>
+                                <button class="btn" style="padding:3px;font-size:9px;margin:0;background:#e74c3c;color:white" onclick="app.alterarStatusUsuario('42912','bloqueado_permanente')">B.Perm</button>
+                                <button class="btn" style="padding:3px;font-size:9px;margin:0;background:#2ecc71;color:white" onclick="app.alterarStatusUsuario('42912','ativo')">Desbloquear</button>
+                                <button class="btn" style="padding:3px;font-size:9px;margin:0;background:#3d3d3d;color:white" onclick="app.deletarConta('42912')">Apagar</button>
+                            </div>
+                        </div><div class="plat-manage-item" style="flex-direction:column;align-items:flex-start;gap:4px">
+                            <div style="width:100%;display:flex;justify-content:space-between"><span><b>Kelvin</b> (NTEi)</span><span style="color:#2ecc71">● Ativo</span></div>
+                            <span style="font-size:10px;color:#aaa">Pront: 46690 | —</span>
+                            <div style="display:flex;gap:3px;width:100%">
+                                <button class="btn" style="padding:3px;font-size:9px;margin:0;background:#f1c40f;color:black" onclick="app.bloquearUsuarioTemporario('46690')">B.Temp</button>
+                                <button class="btn" style="padding:3px;font-size:9px;margin:0;background:#e74c3c;color:white" onclick="app.alterarStatusUsuario('46690','bloqueado_permanente')">B.Perm</button>
+                                <button class="btn" style="padding:3px;font-size:9px;margin:0;background:#2ecc71;color:white" onclick="app.alterarStatusUsuario('46690','ativo')">Desbloquear</button>
+                                <button class="btn" style="padding:3px;font-size:9px;margin:0;background:#3d3d3d;color:white" onclick="app.deletarConta('46690')">Apagar</button>
+                            </div>
+                        </div><div class="plat-manage-item" style="flex-direction:column;align-items:flex-start;gap:4px">
+                            <div style="width:100%;display:flex;justify-content:space-between"><span><b>Manuele S.</b> (NTEi)</span><span style="color:#2ecc71">● Ativo</span></div>
+                            <span style="font-size:10px;color:#aaa">Pront: 47295 | —</span>
+                            <div style="display:flex;gap:3px;width:100%">
+                                <button class="btn" style="padding:3px;font-size:9px;margin:0;background:#f1c40f;color:black" onclick="app.bloquearUsuarioTemporario('47295')">B.Temp</button>
+                                <button class="btn" style="padding:3px;font-size:9px;margin:0;background:#e74c3c;color:white" onclick="app.alterarStatusUsuario('47295','bloqueado_permanente')">B.Perm</button>
+                                <button class="btn" style="padding:3px;font-size:9px;margin:0;background:#2ecc71;color:white" onclick="app.alterarStatusUsuario('47295','ativo')">Desbloquear</button>
+                                <button class="btn" style="padding:3px;font-size:9px;margin:0;background:#3d3d3d;color:white" onclick="app.deletarConta('47295')">Apagar</button>
+                            </div>
+                        </div><div class="plat-manage-item" style="flex-direction:column;align-items:flex-start;gap:4px">
+                            <div style="width:100%;display:flex;justify-content:space-between"><span><b>Karla</b> (NTEi)</span><span style="color:#2ecc71">● Ativo</span></div>
+                            <span style="font-size:10px;color:#aaa">Pront: 48036 | —</span>
+                            <div style="display:flex;gap:3px;width:100%">
+                                <button class="btn" style="padding:3px;font-size:9px;margin:0;background:#f1c40f;color:black" onclick="app.bloquearUsuarioTemporario('48036')">B.Temp</button>
+                                <button class="btn" style="padding:3px;font-size:9px;margin:0;background:#e74c3c;color:white" onclick="app.alterarStatusUsuario('48036','bloqueado_permanente')">B.Perm</button>
+                                <button class="btn" style="padding:3px;font-size:9px;margin:0;background:#2ecc71;color:white" onclick="app.alterarStatusUsuario('48036','ativo')">Desbloquear</button>
+                                <button class="btn" style="padding:3px;font-size:9px;margin:0;background:#3d3d3d;color:white" onclick="app.deletarConta('48036')">Apagar</button>
+                            </div>
+                        </div></div>
                     </div>
                 </div>
 
                 <!-- Veyon Master -->
                 <div id="panel-veyon-master" class="panel hidden" style="border: 1px solid var(--prof)">
                     <h3><i class="fa fa-desktop" style="color:var(--prof)"></i> SUPERVISÃO DE TERMINAIS (Veyon Master)</h3>
-                    <div class="veyon-grid" id="veyon-container-monitores"></div>
+                    <div class="veyon-grid" id="veyon-container-monitores"><div class="veyon-screen">
+                        <div class="veyon-badge"></div>
+                        <i class="fa fa-desktop fa-2x" style="color:#444; margin-bottom:5px"></i><br>
+                        <b>LIVIA STEFANY MELO DOS ANJOS</b><br><small style="color:#666; font-size:9px">Cargo: Secretaria</small><br>
+                        <small style="font-size:9px; color:#555">🔴 Offline</small><br>
+                        <button class="btn" style="font-size:8px; padding:3px; margin-top:4px; background:var(--ntei)" onclick="app.intervirVeyon('42912')">Intervir</button>
+                    </div><div class="veyon-screen veyon-active">
+                        <div class="veyon-badge"></div>
+                        <i class="fa fa-desktop fa-2x" style="color:#444; margin-bottom:5px"></i><br>
+                        <b>Kelvin</b><br><small style="color:#666; font-size:9px">Cargo: NTEi</small><br>
+                        <small style="font-size:9px; color:#555">🟢 Online</small><br>
+                        <button class="btn" style="font-size:8px; padding:3px; margin-top:4px; background:var(--ntei)" onclick="app.intervirVeyon('46690')">Intervir</button>
+                    </div><div class="veyon-screen">
+                        <div class="veyon-badge"></div>
+                        <i class="fa fa-desktop fa-2x" style="color:#444; margin-bottom:5px"></i><br>
+                        <b>Manuele S.</b><br><small style="color:#666; font-size:9px">Cargo: NTEi</small><br>
+                        <small style="font-size:9px; color:#555">🔴 Offline</small><br>
+                        <button class="btn" style="font-size:8px; padding:3px; margin-top:4px; background:var(--ntei)" onclick="app.intervirVeyon('47295')">Intervir</button>
+                    </div><div class="veyon-screen">
+                        <div class="veyon-badge"></div>
+                        <i class="fa fa-desktop fa-2x" style="color:#444; margin-bottom:5px"></i><br>
+                        <b>Karla</b><br><small style="color:#666; font-size:9px">Cargo: NTEi</small><br>
+                        <small style="font-size:9px; color:#555">🔴 Offline</small><br>
+                        <button class="btn" style="font-size:8px; padding:3px; margin-top:4px; background:var(--ntei)" onclick="app.intervirVeyon('48036')">Intervir</button>
+                    </div></div>
                 </div>
 
                 <!-- Gráfico NTEi -->
                 <div id="panel-ntei-graficos" class="panel hidden">
                     <h3><i class="fa fa-chart-line"></i> Monitoramento de Tráfego</h3>
-                    <div class="chart-container"><canvas id="chart-real-time-chamados"></canvas></div>
+                    <div class="chart-container"><canvas id="chart-real-time-chamados" height="180" style="display: block; box-sizing: border-box; height: 180px; width: 1562px;" width="1562"></canvas></div>
 
                     <p style="font-size:11px; color:var(--text-muted); margin:14px 0 4px 0">Velocidade de conexão do seu dispositivo (medida ao vivo):</p>
                     <div style="display:flex; align-items:center; gap:18px; flex-wrap:wrap; background:rgba(0,0,0,0.25); border-radius:10px; padding:12px">
                         <svg viewBox="0 0 200 110" style="width:150px; flex-shrink:0">
                             <path d="M10,100 A90,90 0 0,1 190,100" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="14"></path>
-                            <path id="veloc-arc" d="M10,100 A90,90 0 0,1 190,100" fill="none" stroke="var(--prof)" stroke-width="14" stroke-dasharray="283" stroke-dashoffset="283" stroke-linecap="round"></path>
-                            <text x="100" y="90" text-anchor="middle" font-family="Orbitron" font-size="26" fill="white" id="veloc-num">—</text>
+                            <path id="veloc-arc" d="M10,100 A90,90 0 0,1 190,100" fill="none" stroke="var(--prof)" stroke-width="14" stroke-dasharray="283" stroke-dashoffset="283" stroke-linecap="round" style="stroke-dashoffset: 0; stroke: var(--cad);"></path>
+                            <text x="100" y="90" text-anchor="middle" font-family="Orbitron" font-size="26" fill="white" id="veloc-num">111.9</text>
                             <text x="100" y="106" text-anchor="middle" font-family="Poppins" font-size="10" fill="#8b949e">Mbps</text>
                         </svg>
                         <div style="font-size:11.5px; color:var(--text-muted); flex:1; min-width:160px">
-                            <div>Ping: <b id="veloc-ping" style="color:white">—</b> ms</div>
-                            <div>Dispositivo: <b id="veloc-dispositivo" style="color:white">—</b></div>
-                            <div>Última medição: <b id="veloc-hora" style="color:white">—</b></div>
-                            <div style="margin-top:6px"><span id="veloc-status" style="color:#888">Aguardando medição...</span></div>
+                            <div>Ping: <b id="veloc-ping" style="color:white">9</b> ms</div>
+                            <div>Dispositivo: <b id="veloc-dispositivo" style="color:white">Kelvin (NTEi)</b></div>
+                            <div>Última medição: <b id="veloc-hora" style="color:white">09:09:08</b></div>
+                            <div style="margin-top:6px"><span id="veloc-status" style="color:#888">Medição concluída.</span></div>
                         </div>
                     </div>
 
                     <p style="font-size:11px; color:var(--text-muted); margin:14px 0 4px 0">Dispositivos monitorados (todos os prontuários logados):</p>
-                    <div id="veloc-lista-dispositivos" style="max-height:180px; overflow-y:auto; background:rgba(0,0,0,0.2); padding:6px; border-radius:8px; font-size:11px"></div>
+                    <div id="veloc-lista-dispositivos" style="max-height:180px; overflow-y:auto; background:rgba(0,0,0,0.2); padding:6px; border-radius:8px; font-size:11px"><div style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px solid rgba(255,255,255,0.05)">
+                        <span>LIVIA STEFANY MELO DOS ANJOS <small style="color:#888">(Secretaria)</small></span>
+                        <span style="color:var(--cad)">87.6 Mbps · 11ms <small style="color:#888">· há 933min</small></span>
+                    </div><div style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px solid rgba(255,255,255,0.05)">
+                        <span>kel <small style="color:#888">(Professor)</small></span>
+                        <span style="color:var(--cad)">84.4 Mbps · 35ms <small style="color:#888">· há 1135min</small></span>
+                    </div><div style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px solid rgba(255,255,255,0.05)">
+                        <span>Kelvin <small style="color:#888">(NTEi)</small></span>
+                        <span style="color:var(--cad)">111.9 Mbps · 9ms <small style="color:#888">· há 0min</small></span>
+                    </div><div style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px solid rgba(255,255,255,0.05)">
+                        <span>Manuele S. <small style="color:#888">(NTEi)</small></span>
+                        <span style="color:var(--gestao)">12.8 Mbps · 29ms <small style="color:#888">· há 738min</small></span>
+                    </div><div style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px solid rgba(255,255,255,0.05)">
+                        <span>Karla <small style="color:#888">(NTEi)</small></span>
+                        <span style="color:var(--cad)">36.5 Mbps · 25ms <small style="color:#888">· há 1213min</small></span>
+                    </div></div>
                 </div>
 
                 <!-- Permissões Individuais por Prontuário -->
@@ -2142,7 +2392,9 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
                         <button class="btn" style="background:rgba(255,255,255,0.08); margin-top:6px" onclick="permissoesIndividuais.limpar()">Remover overrides (voltar ao padrão do perfil)</button>
                     </div>
                     <p style="font-size:10px; color:#aaa; margin:16px 0 6px 0">HISTÓRICO DE OVERRIDES ATIVOS:</p>
-                    <div id="permind-lista-overrides" style="max-height:160px; overflow-y:auto; background:rgba(0,0,0,0.2); padding:5px; border-radius:5px; font-size:11px"></div>
+                    <div id="permind-lista-overrides" style="max-height:160px; overflow-y:auto; background:rgba(0,0,0,0.2); padding:5px; border-radius:5px; font-size:11px"><div style="padding:4px 0; border-bottom:1px solid rgba(255,255,255,0.06)">
+                    <b>48036</b> — 11 override(s) · por Kelvin
+                </div></div>
                 </div>
 
 
@@ -2188,7 +2440,7 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
     // Todos os dados desta unidade ficam em "unidades/imideo/..." dentro do banco,
     // sem misturar com usuários/chamados/alunos da Chácara.
     // Para usar OUTRO projeto Firebase, troque o databaseURL acima e deixe o prefixo vazio ('').
-    const UNIDADE_DB_PREFIX = 'unidades/imideo';
+    const UNIDADE_DB_PREFIX = ESCOLA.dbPrefix;
     const _dbRaw = firebase.database();
     const db = {
         ref(caminho) {
@@ -2260,6 +2512,8 @@ html,body{overflow-x:hidden}img,canvas,video{max-width:100%}
             if (id === 'dashboard') dashboard.refresh();
             if (id === 'gemeo') gemeoDigital.render();
             if (id === 'patrimonio') inventario.render();
+            if (id === 'editais') editais.renderLista();
+            if (id === 'chatgpt') chatIA.abrir();
             
         }
     };
@@ -2715,7 +2969,7 @@ Seja prático, detalhado e de fácil aplicação para professores da rede munici
             let totalEq = 0, eqManut = 0; eqSnap.forEach(e => { const d = e.val(); if (!d) return; totalEq++; if (d.status === 'manutencao') eqManut++; });
             let totalRes = 0; resSnap.forEach(() => totalRes++);
             let totalAlunos = 0; alunosSnap.forEach(() => totalAlunos++);
-            const contexto = `Dados reais do sistema Programa CONECT - NTEi Imídeo Giuseppe:
+            const contexto = `Dados reais do sistema Programa CONECT - ${ESCOLA.nomeNTEi}:
 - Total de equipamentos: ${totalEq}, em manutenção: ${eqManut}
 - Chamados totais: ${totalCham}, abertos: ${chamAbertos}
 - Chamados por tipo: ${JSON.stringify(tiposCham)}
@@ -2840,7 +3094,7 @@ Seja prático, detalhado e de fácil aplicação para professores da rede munici
             this.anexoAtual = null;
             // Reseta o formulário
             ['cham-f-problema','cham-f-desc','cham-f-local'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
-            document.getElementById('cham-f-unidade').value = 'NTEi Imídeo Giuseppe';
+            document.getElementById('cham-f-unidade').value = ESCOLA.nomeNTEi;
             document.getElementById('cham-f-impacto').value = 'individual';
             document.getElementById('cham-f-anexo').value = '';
             document.getElementById('cham-form-titulo').textContent = `${this.tipoAtual} · ${catId} — Descreva o problema`;
@@ -3595,7 +3849,7 @@ Seja prático, detalhado e de fácil aplicação para professores da rede munici
             try { localStorage.setItem('nteiPerfilFoto_' + app.user.pront, fotoUrl); } catch (e) {}
             db.ref('usuarios/' + app.user.pront).update({ foto: fotoUrl }).then(() => {
                 app.user.foto = fotoUrl;
-                try { localStorage.setItem('nteiSession_imideo', JSON.stringify(app.user)); } catch (e) {}
+                try { localStorage.setItem(ESCOLA.chaveSessao, JSON.stringify(app.user)); } catch (e) {}
                 this.aplicar(fotoUrl);
                 status.textContent = '';
                 this.fechar();
@@ -3992,7 +4246,7 @@ Seja prático, detalhado e de fácil aplicação para professores da rede munici
             preview.innerHTML = `
                 <div class="digital-card" style="background: linear-gradient(135deg, ${c.bg}, ${c.bg}dd); border-color:${c.accent}50">
                     <div class="digital-card-header">
-                        <div class="digital-card-school" style="color:${c.accent}">NTEi · IMÍDEO GIUSEPPE</div>
+                        <div class="digital-card-school" style="color:${c.accent}">NTEi · ${ESCOLA.nomeCurto.toUpperCase()}</div>
                         <span class="tag" style="background:${c.accent}30; color:${c.accent}">CONECT</span>
                     </div>
                     <div style="display:flex; justify-content:space-between; align-items:flex-end">
@@ -4542,7 +4796,7 @@ input::placeholder, textarea::placeholder { color: #94a3b8 !important; opacity: 
             { id: 'pedagogico', nome: 'Pedagógico' }, { id: 'alunos', nome: 'Alunos' },
             { id: 'patrimonio', nome: 'Patrimônio' },
             { id: 'gemeo', nome: 'Gêmeo Digital' }, { id: 'comunicacao', nome: 'Comunicação' },
-            { id: 'editais', nome: 'Editais' }, { id: 'analise', nome: 'Análise IA' }, { id: 'admin', nome: 'Admin NTEi' }
+            { id: 'editais', nome: 'Editais' }, { id: 'analise', nome: 'Análise IA' }, { id: 'chatgpt', nome: 'AI ChatGPT' }, { id: 'admin', nome: 'Admin NTEi' }
         ],
 
         init() {
@@ -4756,7 +5010,7 @@ input::placeholder, textarea::placeholder { color: #94a3b8 !important; opacity: 
             document.querySelectorAll('.topbar-btn[data-menu-custom]').forEach(b => b.remove());
             if (!app.user) return;
             const nav = document.getElementById('topbar-nav');
-            const adminBtn = nav?.querySelector('button[onclick*="\'admin\'"]');
+            const adminBtn = nav?.querySelector('.area-item[data-modulo="admin"]');
             Object.keys(dados).forEach(id => {
                 const m = dados[id];
                 if (!m.ativo) return;
@@ -5203,7 +5457,7 @@ input::placeholder, textarea::placeholder { color: #94a3b8 !important; opacity: 
         // Não apaga histórico, chamados, reservas, permissões, foto etc — só a sessão local.
         logout() {
             if (!confirm('Deseja realmente sair?')) return;
-            try { localStorage.removeItem('nteiSession_imideo'); } catch (e) {}
+            try { localStorage.removeItem(ESCOLA.chaveSessao); } catch (e) {}
             auditoria.registrar('Autenticação', 'Logout realizado.');
             location.reload();
         },
@@ -5333,7 +5587,7 @@ input::placeholder, textarea::placeholder { color: #94a3b8 !important; opacity: 
 
         start() {
             // Persiste a sessão localmente (login sobrevive a F5 / fechar navegador)
-            try { localStorage.setItem('nteiSession_imideo', JSON.stringify(this.user)); } catch (e) {}
+            try { localStorage.setItem(ESCOLA.chaveSessao, JSON.stringify(this.user)); } catch (e) {}
             document.documentElement.classList.toggle('modo-basico', this.user.cargo !== 'NTEi');
 
             document.getElementById('login-screen').classList.add('hidden');
@@ -5411,6 +5665,7 @@ input::placeholder, textarea::placeholder { color: #94a3b8 !important; opacity: 
 
             // Inicia todos os módulos
             iaConfig.init();
+            dashPadrao.init();
             this.syncSystemControls();
             this.syncData();
             this.carregarEquipamentosDinamicos();
@@ -5471,11 +5726,11 @@ input::placeholder, textarea::placeholder { color: #94a3b8 !important; opacity: 
         aplicarOverridesDeMenu() {
             const { menusLiberados, menusBloqueados } = this.overridesIndividuais;
             (permissoesIndividuais._menusBase || []).forEach(m => {
-                const botoes = document.querySelectorAll(`.topbar-btn[onclick*="'${m.id}'"]`);
+                const botoes = document.querySelectorAll(`.topbar-btn[onclick*="'${m.id}'"], [data-modulo="${m.id}"]`);
                 if (menusBloqueados.includes(m.id)) {
                     botoes.forEach(b => b.classList.add('hidden'));
                 } else if (menusLiberados.includes(m.id)) {
-                    botoes.forEach(b => b.classList.remove('hidden'));
+                    botoes.forEach(b => { b.classList.remove('hidden'); b.classList.add('menu-liberado'); });
                 }
                 // menus sem override: fica como a restrição de cargo já deixou
             });
@@ -5493,7 +5748,7 @@ input::placeholder, textarea::placeholder { color: #94a3b8 !important; opacity: 
             const cargo = this.user?.cargo;
             const restrito = (cargo === 'Professor' || cargo === 'Gestão' || cargo === 'Secretaria' || cargo === 'SEFE');
             if (restrito) {
-                const idsEscondidos = ['dashboard', 'patrimonio', 'gemeo', 'editais', 'analise', 'admin'];
+                const idsEscondidos = ['dashboard', 'patrimonio', 'gemeo', 'editais', 'analise', 'chatgpt', 'admin'];
                 idsEscondidos.forEach(id => {
                     document.querySelectorAll(`.topbar-btn[onclick*="'${id}'"]`).forEach(btn => btn.classList.add('hidden'));
                 });
@@ -6309,12 +6564,90 @@ input::placeholder, textarea::placeholder { color: #94a3b8 !important; opacity: 
     document.getElementById('p2p-chat-in')?.addEventListener('keypress', e => { if (e.key === 'Enter') app.sendP2PMessage(); });
     document.getElementById('chat-in')?.addEventListener('keypress', e => { if (e.key === 'Enter') app.sendChat(); });
 
+
+    // ═══════════════════════════════════════════════════════
+    //  AI ChatGPT — conversa com o provedor configurado em Admin NTEi (config/ia)
+    // ═══════════════════════════════════════════════════════
+    const chatIA = {
+        historico: [], ocupado: false,
+        abrir() {
+            const st = document.getElementById('chat-ia-status');
+            const { provedor, apiKey } = iaConfig.dados || {};
+            if (st) st.textContent = apiKey ? `Provedor: ${provedor === 'openai' ? 'OpenAI (ChatGPT)' : 'Google Gemini'}` : '⚠️ Nenhuma chave de IA configurada. Peça ao NTEi para configurar em Admin NTEi → Configuração de IA.';
+        },
+        _add(papel, texto) {
+            const box = document.getElementById('chat-ia-box'); if (!box) return null;
+            const d = document.createElement('div'); d.className = 'chat-ia-msg ' + papel; d.textContent = texto;
+            box.appendChild(d); box.scrollTop = box.scrollHeight; return d;
+        },
+        limpar() {
+            this.historico = [];
+            const box = document.getElementById('chat-ia-box'); if (box) box.innerHTML = '';
+            this._add('ia', 'Nova conversa iniciada. Como posso ajudar?');
+        },
+        async enviar() {
+            if (this.ocupado) return;
+            const inp = document.getElementById('chat-ia-input'); const txt = (inp.value || '').trim();
+            if (!txt) return;
+            const { provedor, apiKey } = iaConfig.dados || {};
+            if (!apiKey) { this.abrir(); alert('Nenhuma chave de IA configurada. Peça ao NTEi para configurar.'); return; }
+            inp.value = ''; this._add('eu', txt); this.historico.push({ role: 'user', text: txt });
+            const espera = this._add('ia', '⏳ Pensando...'); this.ocupado = true;
+            const btn = document.getElementById('chat-ia-send'); if (btn) btn.disabled = true;
+            try {
+                const resp = provedor === 'openai' ? await this._openai(apiKey) : await this._gemini(apiKey);
+                espera.textContent = resp || 'Sem resposta. Tente novamente.';
+                if (resp) this.historico.push({ role: 'assistant', text: resp });
+                auditoria.registrar?.('AI ChatGPT', 'Consulta realizada');
+            } catch (e) { espera.textContent = '❌ Erro na conexão com a IA: ' + e.message; this.historico.pop(); }
+            this.ocupado = false; if (btn) btn.disabled = false;
+            document.getElementById('chat-ia-box').scrollTop = 1e9;
+        },
+        _sistema() { return `Você é o assistente do Programa CONECT / NTEi da unidade ${ESCOLA.nomeCompleto}. Responda em português do Brasil, de forma clara e objetiva.`; },
+        async _openai(apiKey) {
+            const messages = [{ role: 'system', content: this._sistema() }, ...this.historico.map(h => ({ role: h.role, content: h.text }))];
+            const r = await fetch('https://api.openai.com/v1/chat/completions', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` }, body: JSON.stringify({ model: 'gpt-4o-mini', messages }) });
+            const d = await r.json(); if (d.error) throw new Error(d.error.message || 'Erro na API da OpenAI.');
+            return d.choices?.[0]?.message?.content;
+        },
+        async _gemini(apiKey) {
+            const contents = this.historico.map(h => ({ role: h.role === 'user' ? 'user' : 'model', parts: [{ text: h.text }] }));
+            const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ systemInstruction: { parts: [{ text: this._sistema() }] }, contents }) });
+            const d = await r.json(); if (d.error) throw new Error(d.error.message || 'Erro na API do Gemini.');
+            return d.candidates?.[0]?.content?.parts?.[0]?.text;
+        }
+    };
+
+    // Dashboard padrão: status da rede e comunicados recentes (dados reais da unidade)
+    const dashPadrao = {
+        init() {
+            const atualizar = () => {
+                const on = navigator.onLine, p = document.getElementById('dash-rede-pill'), t = document.getElementById('dash-rede-txt');
+                if (p) p.classList.toggle('off', !on); if (t) t.textContent = on ? 'Rede online' : 'Sem conexão';
+            };
+            window.addEventListener('online', atualizar); window.addEventListener('offline', atualizar); atualizar();
+            db.ref('comunicados').limitToLast(5).on('value', snap => {
+                const box = document.getElementById('dash-comunicados'); if (!box) return;
+                const itens = []; snap.forEach(c => itens.unshift(c.val()));
+                const vis = itens.filter(d => d && app.user && (d.dest === 'Todos' || d.dest === app.user.cargo)).slice(0, 3);
+                box.innerHTML = '';
+                if (!vis.length) { box.innerHTML = '<div style="font-size:11.5px;color:var(--text-muted)">Nenhum comunicado recente.</div>'; return; }
+                vis.forEach(d => {
+                    const el = document.createElement('div'); el.className = 'dash-comun-item';
+                    const b = document.createElement('b'); b.textContent = d.titulo || '';
+                    const sm = document.createElement('small'); sm.textContent = (d.autor || '') + (d.data ? ' · ' + d.data : '');
+                    el.appendChild(b); el.appendChild(sm); box.appendChild(el);
+                });
+            });
+        }
+    };
+
     // ═══════════════════════════════════════════════════════
     //  RESTAURAÇÃO AUTOMÁTICA DE SESSÃO (login persistente)
     // ═══════════════════════════════════════════════════════
     (function restaurarSessao() {
         let sessaoSalva = null;
-        try { sessaoSalva = JSON.parse(localStorage.getItem('nteiSession_imideo') || 'null'); } catch (e) { sessaoSalva = null; }
+        try { sessaoSalva = JSON.parse(localStorage.getItem(ESCOLA.chaveSessao) || 'null'); } catch (e) { sessaoSalva = null; }
         if (!sessaoSalva || !sessaoSalva.pront) return; // sem sessão válida → mostra login normalmente
 
         app.user = sessaoSalva;
@@ -6336,7 +6669,7 @@ input::placeholder, textarea::placeholder { color: #94a3b8 !important; opacity: 
                 const fotoLocal = localStorage.getItem('nteiPerfilFoto_' + app.user.pront);
                 if (fotoLocal) app.user.foto = fotoLocal;
             } catch (e) {}
-            localStorage.setItem('nteiSession_imideo', JSON.stringify(app.user));
+            localStorage.setItem(ESCOLA.chaveSessao, JSON.stringify(app.user));
             if (typeof perfilFoto !== 'undefined') perfilFoto.aplicar(app.user.foto || null);
         }).catch(() => {});
     })();
@@ -6347,6 +6680,7 @@ input::placeholder, textarea::placeholder { color: #94a3b8 !important; opacity: 
     //  REFORMA NTEi — NAVEGAÇÃO POR ÁREAS (não substitui modules.show)
     // ═══════════════════════════════════════════════════════
     const areaNav = {
+        _alias: { ensino: 'pedagogico', escola: 'operacional', pessoas: 'alunos', suporte: 'operacional', gestao: 'analise', ntei: 'admin' },
         toggle(btn, area) {
             const dd = document.getElementById('area-dd-' + area);
             const wasOpen = dd.classList.contains('open');
@@ -6360,6 +6694,7 @@ input::placeholder, textarea::placeholder { color: #94a3b8 !important; opacity: 
         },
         go(moduleId, area, focarPainelId) {
             document.querySelectorAll('.area-dropdown').forEach(d => d.classList.remove('open'));
+            area = this._alias[area] || area;
             const btn = document.querySelector('.area-btn[data-area="' + area + '"]');
             this._marcarAtiva(btn);
             modules.show(moduleId);
@@ -7003,6 +7338,7 @@ input::placeholder, textarea::placeholder { color: #94a3b8 !important; opacity: 
         console.warn('Font Awesome bloqueado — usando ícones alternativos');
     }, 1500));
 </script>
+
 
 
 </body></html>
